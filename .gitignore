@@ -1,3 +1,4 @@
+
 # Created by https://www.gitignore.io/api/laravel
 
 ### Laravel ###
@@ -32,3 +33,4 @@ storage/*.key
 
 
 # End of https://www.gitignore.io/api/laravel
+
