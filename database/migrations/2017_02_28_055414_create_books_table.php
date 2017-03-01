@@ -15,7 +15,12 @@ class CreateBooksTable extends Migration
     {
         Schema::create('Book', function (Blueprint $table) {
             $table->increments('bid');
-            $table->json('bookAttr');
+            if ((DB::connection()->getPdo()->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') && version_compare(DB::connection()->getPdo()->getAttribute(PDO::ATTR_SERVER_VERSION), '5.7.8', 'ge')) {
+                $table->json('bookAttr');
+                }  else {
+                $table->text('bookAttr');
+                }
+            
             $table->enum('fields',['foo', 'bar']);
             $table->string('createdBy');
             $table->timestamps();
