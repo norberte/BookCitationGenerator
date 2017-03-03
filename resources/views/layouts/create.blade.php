@@ -2,16 +2,14 @@
 
 @section('content')
  <h1>Add book to Database</h1>
- <form method="POST" action="http://localhost/Laravel5.4/public/posts">
+ <form method="POST" action="http://localhost/Laravel5.4/public/books">
  {{ csrf_field() }}
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" name="title" placeholder="Title of book">
+ @foreach($attributes as $attribute)
+    <div class="form-group">
+    <label for={{$attribute}}>{{$attribute}}</label>
+    <input type="text" class="form-control" id={{$attribute}} name={{$attribute}}>
   </div>
-  <div class="form-group">
-    <label for="author">Author</label>
-    <input type="text" class="form-control" id="author" name="author" placeholder="Author of book">
-   <div class="form-group">
+ @endforeach
    		<button type="submit" class="btn btn-primary">Add Book</button>
    </div>
 
