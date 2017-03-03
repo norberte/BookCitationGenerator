@@ -11,22 +11,27 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+//routes to page for adding books
+Route::get('/books/create','BookController@create');
+
+
+//Route for storing user input into the database
+Route::post('/books','BookController@store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
-
-Auth::routes();
 
 Route::get('/changePassword', 'changePassword@index');
+
 
 
 
