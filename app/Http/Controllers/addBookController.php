@@ -21,5 +21,7 @@ class addBookController extends Controller
     	'copyright',
     	'isbn',
     	'createdBy'];
+
+    	return view('/layouts/create',compact('attributes'));
     }
 }
