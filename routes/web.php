@@ -11,13 +11,17 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/create','addBookController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
 
 Auth::routes();
 
@@ -27,6 +31,7 @@ Route::get('/home', 'HomeController@index');
 Auth::routes();
 
 Route::get('/changePassword', 'changePassword@index');
+
 
 
 
