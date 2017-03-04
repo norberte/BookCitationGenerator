@@ -29,10 +29,17 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 
-
+// route for changing password page
 Route::get('/changePassword', 'changePassword@index');
 
 
 
+Auth::routes();
+
+//Route to the page to edit books
+Route::get('/books/edit', 'BookController@update');
+
+//Route to update edit into the database
+Route::post('/books', 'BookController@update');
 
 
