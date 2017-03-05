@@ -1,0 +1,36 @@
+
+# Created by https://www.gitignore.io/api/laravel
+
+### Laravel ###
+vendor/
+node_modules/
+/node_modules
+/public/storage
+/public/hot
+/storage/*.key
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+
+npm-debug.log
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+storage/*.key
+.env.*.php
+.env.php
+.env
+.env.example
+
+# phpStorm
+# User-specific stuff:
+.idea
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+
+
+# End of https://www.gitignore.io/api/laravel
+
