@@ -28,12 +28,12 @@ Auth::routes();
 
 //Route to the page to edit books
 Route::get('/books/edit', 'BookController@edit');
+
+
 //Route to update edit into the database
-Route::post('/books', 'BookController@update');
+Route::post('/books/update', 'BookController@update');
 
 
-// route to update the information to the database
-Route::post('/books/edit', 'BookController@update');
 
 
 // route for changing password page

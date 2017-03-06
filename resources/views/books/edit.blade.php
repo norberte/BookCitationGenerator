@@ -3,7 +3,7 @@
 <?php
 use App\Book;
 
-?>
+
 
 @extends('layouts/master')
 
@@ -13,14 +13,13 @@ use App\Book;
 
         <!-- this populates the form when you try to edit a book -->
 
-<?php
         // change the number next to bid to change which book you are going to edit
         $items = App\Book::where('bid', 2)->get();
-?>
 
 
-        <form method="POST" action="http://127.0.0.1:8000/books/edit">
-                {{ csrf_field() }}
+
+    <form method="POST" action="http://localhost/bookcat/public/books/update">
+        {{ csrf_field() }}
 
                 <div class="form-group">
                         <label for="bid">bid</label>
