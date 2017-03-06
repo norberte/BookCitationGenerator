@@ -21,7 +21,6 @@ Route::post('/books','BookController@store');
 
 Auth::routes();
 
-// Route for the home page with the search functionality
 Route::get('/home', 'HomeController@index');
 
 // route for changing password page
