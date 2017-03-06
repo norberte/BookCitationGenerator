@@ -23,14 +23,13 @@ class CreateBooksTable extends Migration
             $table->string('authorFirstName', 255)->nullable();
             $table->string('illustratorFirstName', 255)->nullable();
             $table->string('illustratorLastName', 255)->nullable();
-			$table->string('translatorFirstName', 255)->nullable();
+			      $table->string('translatorFirstName', 255)->nullable();
             $table->string('translatorLastName', 255)->nullable();
             $table->string('publisher', 255)->nullable();
             $table->string('copyright', 255)->nullable();
             $table->string('isbn', 255)->nullable();
             $table->string('createdBy',255)->nullable();
             $table->timestamps();
-            
         });
     }
 

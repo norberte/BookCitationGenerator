@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,5 +40,4 @@ Route::get('/books/edit', 'BookController@update');
 
 //Route to update edit into the database
 Route::post('/books', 'BookController@update');
-
 

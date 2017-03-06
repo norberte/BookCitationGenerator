@@ -1,29 +1,27 @@
+// I was using this to test editing the values in the database. 
+
 @extends('layouts/master')
 
 @section('content')
- <h1>Add book to Database</h1>
+    <h1>Edit book</h1>
 
 
- <form method="POST" action="http://localhost/bookcat/public/books">
- {{ csrf_field() }}
+    <form method="POST" action="http://127.0.0.1:8000/books">
+        {{ csrf_field() }}
+
+        <div class="form-group">
+            <label for="bid">bid</label>
+            <input type="text" class="form-control" id="bid" name="bid">
+
+            <label for="title">title</label>
+            <input type="text" class="form-control" id="title" name="title">
+
+            <label for="codeNum">codeNum</label>
+            <input type="text" class="form-control" id="codeNum" name="codeNum">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Change</button>
+    </form>
 
 
- 
- @foreach($attributes as $attribute)
-    <div class="form-group">
-    <label for="{{$attribute}}">{{$attribute}}</label>
-    <input type="text" class="form-control" id="{{$attribute}}" name="{{$attribute}}">
-  </div>
- @endforeach
-   		<button type="submit" class="btn btn-primary">Add Book</button>
-   </div>
-
-	
-  </div>
-
-
-
-</form>
-
-
- @endsection
+@endsection
