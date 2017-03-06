@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
-use Illuminate\Http\Request;
+use Request;
+
 
 use App\Book;
 
@@ -33,23 +34,27 @@ class BookController extends Controller
     	
     	// Create a new book using the request data
     	//Save it to the database
+        $input =Request::except('_token');
+       
+        $arr_tojson = json_encode($input);
+
+        $arr2_tojson = json_encode($input);
+        
+        Book::create(['bookAttr'=>$arr_tojson]);
+        Book::create(['fields'=>$arr_tojson]);
+        
+        
 
         DB::table('book')->insert(
 
-                [
-        'title' => request('title'),
-        'codeNum' => request('codeNum'),
-        'authorLastName' => request('authorLastName'),
-        'authorFirstName' => request('authorFirstName'),
-        'illustratorFirstName' => request('illustratorFirstName'),
-        'illustratorLastName' => request('illustratorLastName'),
-        'translatorFirstName' => request('translatorFirstName'),
-        'translatorLastName' => request('translatorLastName'),
-        'publisher'=> request('publisher'),
-        'copyright'=> request('copyright') ,
-        'isbn'=> request('isbn'),
-        'createdBy'=> request('createdBy')]
+            [      
+                     $input
+      
+            ]
             );
+
+
+
     	
         //redirects to same page for now.
          return redirect('/');
