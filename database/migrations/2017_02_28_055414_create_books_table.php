@@ -30,7 +30,6 @@ class CreateBooksTable extends Migration
             $table->string('isbn', 255)->nullable();
             $table->string('createdBy',255)->nullable();
             $table->timestamps();
-            
         });
     }
 
