@@ -1,27 +1,32 @@
 <?php
+
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+
 use Request;
+
 use App\Book;
 
 class BookController extends Controller
 {
-    public function create()
+     public function create()
     {
-        $attributes = [
-            'title',
-            'codeNum',
-            'authorLastName',
-            'authorFirstName',
-            'illustratorFirstName',
-            'illustratorLastName',
-            'translatorFirstName',
-            'translatorLastName',
-            'publisher',
-            'copyright',
-            'isbn',
-            'createdBy'];
-        return view('/books/create', compact('attributes'));
+    	$attributes = [
+    	'title',
+    	'codeNum',
+    	'authorLastName',
+    	'authorFirstName',
+    	'illustratorFirstName',
+    	'illustratorLastName',
+    	'translatorFirstName',
+    	'translatorLastName',
+    	'publisher',
+    	'copyright',
+    	'isbn',
+    	'createdBy'];
+
+    	return view('/books/create',compact('attributes'));
+
     }
 
     public function store()
@@ -46,46 +51,42 @@ class BookController extends Controller
         DB::table('Book')
                 ->latest()
                 ->update($input);
-       /* Book::create(['fields'=>$arr_tojson]);
         
-        
-        DB::table('book')->insert(
-            [        
-                     'bookAttr'=>$arr_tojson,
-                     'fields'=>$arr_tojson,
-                     $input
-      
-            ]
-            );*/
 
-        //redirects to same page for now.
-        return redirect('/');
+
+         return redirect('/');
+
     }
 
+
+   
     public function edit()
     {
-
         return view('/books/edit');
     }
 
-// this function updates books in the database
-    public function update()
-    {
-        DB::table('book')->where('bid', request('bid'))->update([
-            'title' => request('title'),
-            'codeNum' => request('codeNum'),
-            'authorLastName' => request('authorLastName'),
-            'authorFirstName' => request('authorFirstName'),
-            'illustratorFirstName' => request('illustratorFirstName'),
-            'illustratorLastName' => request('illustratorLastName'),
-            'translatorFirstName' => request('translatorFirstName'),
-            'translatorLastName' => request('translatorLastName'),
-            'publisher' => request('publisher'),
-            'copyright' => request('copyright'),
-            'isbn' => request('isbn'),
-            'createdBy' => request('createdBy')
-        ]);
-        return redirect('/');
+    // this function updates books in the database
+    public function update() {
+
+
+         DB::table('book')->where('bid', request('bid'))->update([
+             'title' => request('title'),
+             'codeNum' => request('codeNum'),
+             'authorLastName' => request('authorLastName'),
+             'authorFirstName' => request('authorFirstName'),
+             'illustratorFirstName' => request('illustratorFirstName'),
+             'illustratorLastName' => request('illustratorLastName'),
+             'translatorFirstName' => request('translatorFirstName'),
+             'translatorLastName' => request('translatorLastName'),
+             'publisher'=> request('publisher'),
+             'copyright'=> request('copyright'),
+             'isbn'=> request('isbn'),
+             'createdBy'=> request('createdBy')
+         ]);
+
+
+       return view('/books/edit');
+
     }
 
 

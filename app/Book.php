@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
+
 
 {   
    
@@ -15,9 +15,4 @@ class Book extends Model
     // since ours is not plural, we can specify a custom table it will look for. In this case, ours is book
    	protected $table = 'book';
    
-   
-
-	
-
-	
 }
