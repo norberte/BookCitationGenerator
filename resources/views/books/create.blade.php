@@ -4,8 +4,13 @@
  <h1>Add book to Database</h1>
 
 
- <form method="POST" action="http://localhost/bookcat/public/books">
+ <form method="POST" action="http://127.0.0.1:8000/books">
  {{ csrf_field() }}
+
+
+
+
+
 
 
  
@@ -16,10 +21,8 @@
   </div>
  @endforeach
    		<button type="submit" class="btn btn-primary">Add Book</button>
-   </div>
 
-	
-  </div>
+
 
 
 
