@@ -37,9 +37,9 @@ Route::get('/changePassword', 'changePassword@index');
 Auth::routes();
 
 //Route to the page to edit books
-Route::get('/books/edit', 'BookController@update');
+Route::get('/books/edit', 'BookController@edit');
 
 //Route to update edit into the database
-Route::post('/books', 'BookController@update');
+Route::post('/books/update', 'BookController@update');
 
 
