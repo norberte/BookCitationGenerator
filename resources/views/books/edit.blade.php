@@ -6,7 +6,7 @@
     <h1>Edit book</h1>
 
 
-    <form method="POST" action="http://127.0.0.1:8000/books">
+    <form method="POST" action="http://localhost/bookcat/public/books/update">
         {{ csrf_field() }}
 
         <div class="form-group">
