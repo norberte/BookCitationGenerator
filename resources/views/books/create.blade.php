@@ -4,7 +4,7 @@
  <h1>Add book to Database</h1>
 
 
- <form method="POST" action="http://127.0.0.1:8000/books">
+ <form method="POST" action="http://localhost/bookcat/public/books">
  {{ csrf_field() }}
 
 
