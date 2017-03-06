@@ -1,67 +1,31 @@
-<!--This form will be to change a password. It is not finished yet. -->
 
-@extends('layouts.app')
 
-@section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Change your password</div>
-                    <div class="panel-body">
-                        <!-- I will need to change the route here to a screen that says successful or something, when I'm done -->
-                        <form class="form-horizontal" role="form" method="POST" action="http://127.0.0.1:8000/createPassword">
-                            {{ csrf_field() }}
-                            <!-- Enter in old password -->
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label for="password" class="col-md-4 control-label">Password</label>
+<h1>Reset Password</h1>
 
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="password" required>
+<form action="http://127.0.0.1:8000/changePassword" method="post">
+    {{ csrf_field() }}
+    Old password:<br>
+    <input type="password" name="oldpassword"><br>
+    New password:<br>
+    <input type="password" name="newpassword1"><br><br>
+    Enter new password again:<br>
+    <input type="password" name="newpassword2"><br><br>
+    <input type="submit" value="Submit">
+</form>
 
-                                        @if ($errors->has('password'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-                            <!-- Enter new password -->
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label for="password" class="col-md-4 control-label">Password</label>
 
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="password" required>
 
-                                        @if ($errors->has('password'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                <!-- Confirm password -->
-                                <div class="form-group">
-                                    <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
-                                    <div class="col-md-6">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
 
-                                    </div>
-                                </div>
 
-                            <div class="form-group">
-                                <div class="col-md-8 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Submit
-                                    </button>
 
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+
+
+
+
+
+
+
+
+
+
