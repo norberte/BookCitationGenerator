@@ -14,7 +14,12 @@ class CreateTemplatesTable extends Migration
     public function up()
     {
         Schema::create('Template', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('tid');
+            $table->string('tname', 255)->unique();
+            $table->json('tags')->nullable();
+            $table->json('style')->nullable();
+            $table->json('keyword')->nullable();
+            $table->string('createdBy')->nullable();
             $table->timestamps();
         });
     }
