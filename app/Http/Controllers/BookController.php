@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
-<<<<<<< HEAD
+
 use Request;
-||||||| 5ece176... Merging into development with search functionality connected
-use Illuminate\Http\Request;
-=======
 
-use Illuminate\Http\Request;
-
->>>>>>> parent of 5ece176... Merging into development with search functionality connected
 use App\Book;
 
 class BookController extends Controller
@@ -36,17 +30,7 @@ class BookController extends Controller
     }
 
     public function store()
-<<<<<<< HEAD
-||||||| 5ece176... Merging into development with search functionality connected
-    {
-=======
-    { 	
-    	
-    	// Create a new book using the request data
-    	//Save it to the database
->>>>>>> parent of 5ece176... Merging into development with search functionality connected
 
-<<<<<<< HEAD
     { 	
     	
     	// Create a new book using the request data
@@ -67,70 +51,23 @@ class BookController extends Controller
         DB::table('Book')
                 ->latest()
                 ->update($input);
-       /* Book::create(['fields'=>$arr_tojson]);
         
-        
-||||||| 5ece176... Merging into development with search functionality connected
-        // Create a new book using the request data
-        //Save it to the database
-=======
->>>>>>> parent of 5ece176... Merging into development with search functionality connected
-        DB::table('book')->insert(
-<<<<<<< HEAD
-            [        
-                     'bookAttr'=>$arr_tojson,
-                     'fields'=>$arr_tojson,
-                     $input
-      
-            ]
-            );*/
-||||||| 5ece176... Merging into development with search functionality connected
-            [
-                'title' => request('title'),
-                'codeNum' => request('codeNum'),
-                'authorLastName' => request('authorLastName'),
-                'authorFirstName' => request('authorFirstName'),
-                'illustratorFirstName' => request('illustratorFirstName'),
-                'illustratorLastName' => request('illustratorLastName'),
-                'translatorFirstName' => request('translatorFirstName'),
-                'translatorLastName' => request('translatorLastName'),
-                'publisher' => request('publisher'),
-                'copyright' => request('copyright'),
-                'isbn' => request('isbn'),
-                'createdBy' => request('createdBy')]
-        );
-=======
->>>>>>> parent of 5ece176... Merging into development with search functionality connected
 
-                [
-        'title' => request('title'),
-        'codeNum' => request('codeNum'),
-        'authorLastName' => request('authorLastName'),
-        'authorFirstName' => request('authorFirstName'),
-        'illustratorFirstName' => request('illustratorFirstName'),
-        'illustratorLastName' => request('illustratorLastName'),
-        'translatorFirstName' => request('translatorFirstName'),
-        'translatorLastName' => request('translatorLastName'),
-        'publisher'=> request('publisher'),
-        'copyright'=> request('copyright') ,
-        'isbn'=> request('isbn'),
-        'createdBy'=> request('createdBy')]
-            );
-    	
-        //redirects to same page for now.
+
          return redirect('/');
 
     }
 
-<<<<<<< HEAD
+
+   
     public function edit()
     {
-||||||| 5ece176... Merging into development with search functionality connected
-    public function edit(){
-=======
+        return view('/books/edit');
+    }
+
     // this function updates books in the database
     public function update() {
->>>>>>> parent of 5ece176... Merging into development with search functionality connected
+
 
          DB::table('book')->where('bid', request('bid'))->update([
              'title' => request('title'),
@@ -153,13 +90,5 @@ class BookController extends Controller
     }
 
 
-<<<<<<< HEAD
 }
 
-||||||| 5ece176... Merging into development with search functionality connected
-}
-=======
-
-
-}
->>>>>>> parent of 5ece176... Merging into development with search functionality connected
