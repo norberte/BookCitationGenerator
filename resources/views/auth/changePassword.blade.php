@@ -10,7 +10,7 @@
                     <div class="panel-heading">Change your password</div>
                     <div class="panel-body">
                         <!-- I will need to change the route here to a screen that says successful or something, when I'm done -->
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="http://127.0.0.1:8000/createPassword">
                             {{ csrf_field() }}
                             <!-- Enter in old password -->
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

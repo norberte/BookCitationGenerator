@@ -23,8 +23,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-// route for changing password page
-Route::get('/changePassword', 'changePassword@index');
 
 Auth::routes();
 
@@ -33,3 +31,10 @@ Route::get('/books/edit', 'BookController@edit');
 
 // route to update the information to the database
 Route::post('/books/edit', 'BookController@update');
+
+
+// route for changing password page
+Route::get('/changePassword', 'changePassword@index');
+
+//route to update database with new password
+Route::post('/changePassword', 'changePassword@change');

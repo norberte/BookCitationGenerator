@@ -43,6 +43,4 @@ use App\Book;
 
 
 
-
-
 @endsection
