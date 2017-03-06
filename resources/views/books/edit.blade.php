@@ -1,48 +1,34 @@
-<!-- This was just a mock page to test updating entries in the database -->
-
-<?php
-use App\Book;
-
-?>
+// I was using this to test editing the values in the database. 
 
 @extends('layouts/master')
 
 @section('content')
-        <h1>Edit book</h1>
+    <h1>Edit book</h1>
 
 
-        <!-- this populates the form when you try to edit a book -->
+    <form method="POST" action="http://127.0.0.1:8000/books">
+        {{ csrf_field() }}
 
-<?php
-        // change the number next to bid to change which book you are going to edit
-        $items = App\Book::where('bid', 2)->get();
-?>
+        <div class="form-group">
+            <label for="bid">bid</label>
+            <input type="text" class="form-control" id="bid" name="bid">
 
+            <label for="title">title</label>
+            <input type="text" class="form-control" id="title" name="title">
 
-        <form method="POST" action="http://127.0.0.1:8000/books/edit">
-                {{ csrf_field() }}
+            <label for="codeNum">codeNum</label>
+            <input type="text" class="form-control" id="codeNum" name="codeNum">
+        </div>
 
-                <div class="form-group">
-                        <label for="bid">bid</label>
-                        <input type="text" class="form-control" id="bid" name="bid" value="{{$items[0]['bid']}}">
-
-                        <label for="title">title</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{$items[0]['title']}}">
-
-                        <label for="codeNum">codeNum</label>
-                        <input type="text" class="form-control" id="codeNum" name="codeNum" value="{{$items[0]['codeNum']}}">
-                    </div>
-
-                <button type="submit" class="btn btn-primary">Submit Change</button>
-                </div>
+        <button type="submit" class="btn btn-primary">Submit Change</button>
+        </div>
 
 
-                </div>
-
-           </form>
+        </div>
 
 
 
+    </form>
 
 
 @endsection

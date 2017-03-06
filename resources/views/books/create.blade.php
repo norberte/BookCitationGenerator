@@ -8,11 +8,6 @@
  {{ csrf_field() }}
 
 
-
-
-
-
-
  
  @foreach($attributes as $attribute)
     <div class="form-group">
@@ -21,8 +16,10 @@
   </div>
  @endforeach
    		<button type="submit" class="btn btn-primary">Add Book</button>
+   </div>
 
-
+	
+  </div>
 
 
 
