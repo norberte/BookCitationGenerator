@@ -24,7 +24,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">BooKStrap</a>
+      <a class="navbar-brand" href="{{url('/home')}}">BooKStrap</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -32,8 +32,8 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Add Book</a></li>
-            <li><a href="#">Edit Book</a></li>
+            <li><a href="{{url('/books/addbook')}}">Add Book</a></li>
+            <li><a href="{{url('/books/edit')}}">Edit Book</a></li>
           
           </ul>
         </li>
@@ -46,11 +46,12 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
           </ul>
         </li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Colletion <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Add to collecton</a></a></li>
             <li><a href="#">Edit Book</a></li>
             <li><a href="#">Export</a></li>
+            <li><a href="{{url('/changePassword')}}">Change Password</a></li>
           </ul>
         </li>
       </ul>

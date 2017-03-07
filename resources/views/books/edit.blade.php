@@ -309,7 +309,5 @@ use App\Book;
 
                         </form>
 
-        </body>
-        </html>
 @endsection
 
