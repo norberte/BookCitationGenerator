@@ -20,6 +20,8 @@ use App\Book;
 
 
         <form method="POST" action="http://127.0.0.1:8000/books/edit">
+
+        <form method="POST" action="localhost/SoftwareEngineeringCourse/public/books/edit">
                 {{ csrf_field() }}
 
                 <div class="form-group">
