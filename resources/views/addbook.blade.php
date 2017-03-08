@@ -32,20 +32,20 @@
 
 
   <div class="row">
-    <form method="get" action="addbook.php">
+    <form method="get" action="http:/localhost/bookcat/public/books">
       <div class="col-sm-12">
         <div class="row">
           <div class="col-sm-4 form-group">
             <label>Book Title</label>
-            <input type="text" name="title"  class="form-control" value =" " >
+            <input type="text" name="title"  class="form-control" >
           </div>
           <div class="col-sm-4 form-group">
             <label>Code number</label>
-            <input type="text" name="codename"  class="form-control" value =" " >
+            <input type="text" name="codeNum"  class="form-control"  >
           </div>
           <div class="col-sm-4 form-group">
             <label>isbn</label>
-            <input type="text" name="isbn"  class="form-control" value ="" >
+            <input type="text" name="isbn"  class="form-control" >
           </div>
     </div>
   </div>
@@ -54,15 +54,15 @@
     <div class="row">
       <div class="col-sm-4 form-group">
         <label>Author First Name</label>
-        <input type="text" name="AuthorFname"  class="form-control" value =" " >
+        <input type="text" name="authorFirstName"  class="form-control"  >
       </div>
       <div class="col-sm-4 form-group">
         <label>Author Last Name</label>
-        <input type="text" name="AuthorLname"  class="form-control" value =" " >
+        <input type="text" name="authorLastName"  class="form-control"  >
       </div>
       <div class="col-sm-4 form-group">
         <label>price</label>
-        <input type="text" name="price"  class="form-control" value =" " >
+        <input type="text" name="price"  class="form-control" >
       </div>
   </div>
   </div>
@@ -71,15 +71,15 @@
     <div class="row">
       <div class="col-sm-4 form-group">
         <label>Translator First Name</label>
-        <input type="text" name="TransFname"  class="form-control" value =" " >
+        <input type="text" name="translatorFirstName"  class="form-control" >
       </div>
       <div class="col-sm-4 form-group">
         <label>Translator Last Name</label>
-        <input type="text" name="TransLname"  class="form-control" value =" " >
+        <input type="text" name="translatorLastName"  class="form-control"  >
       </div>
       <div class="col-sm-4 form-group">
         <label>Edition</label>
-        <input type="text" name="edition"  class="form-control" value =" " >
+        <input type="text" name="edition"  class="form-control" >
       </div>
   </div>
   </div>
@@ -88,15 +88,15 @@
     <div class="row">
       <div class="col-sm-4 form-group">
         <label>Illustrator First Name</label>
-        <input type="text" name="IllustFname"  class="form-control" value =" " >
+        <input type="text" name="illustratorFirstName"  class="form-control" >
       </div>
       <div class="col-sm-4 form-group">
         <label>Illustrator Last Name</label>
-        <input type="text" name="IllustLname"  class="form-control" value =" " >
+        <input type="text" name="illustratorLastName"  class="form-control"  >
       </div>
       <div class="col-sm-4 form-group">
         <label>Print Date</label>
-        <input type="text" name="printdate"  class="form-control" value =" " >
+        <input type="text" name="printdate"  class="form-control"  >
       </div>
   </div>
 
@@ -105,15 +105,15 @@
     <div class="row">
       <div class="col-sm-4 form-group">
         <label>Place of Publication</label>
-        <input type="text" name="placeofpublication"  class="form-control" value =" " >
+        <input type="text" name="placeofpublication"  class="form-control"  >
       </div>
       <div class="col-sm-4 form-group">
         <label>Publisher</label>
-        <input type="text" name="publisher"  class="form-control" value =" " >
+        <input type="text" name="publisher"  class="form-control"  >
       </div>
       <div class="col-sm-4 form-group">
         <label>Copy Right</label>
-        <input type="text" name="copyright"  class="form-control" value =" " >
+        <input type="text" name="copyright"  class="form-control"  >
       </div>
   </div>
 
@@ -135,15 +135,15 @@
         <div class="row">
           <div class="col-sm-4 form-group">
             <label>Legal Deposit</label>
-            <input type="text" name="legaldeposit"  class="form-control" value =" " >
+            <input type="text" name="legaldeposit"  class="form-control"  >
           </div>
           <div class="col-sm-4 form-group">
             <label>ISSN Number</label>
-            <input type="text" name="issn"  class="form-control" value =" " >
+            <input type="text" name="issn"  class="form-control" >
           </div>
           <div class="col-sm-4 form-group">
             <label>Partner Companies</label>
-            <input type="text" name="partnercompanies"  class="form-control" value =" " >
+            <input type="text" name="partnercompanies"  class="form-control"  >
           </div>
       </div>
     </div>
@@ -152,15 +152,15 @@
       <div class="row">
         <div class="col-sm-4 form-group">
           <label>Printer</label>
-          <input type="text" name="Printer"  class="form-control" value =" " >
+          <input type="text" name="Printer"  class="form-control"  >
         </div>
         <div class="col-sm-4 form-group">
           <label>Print line</label>
-          <input type="text" name="Printline"  class="form-control" value =" " >
+          <input type="text" name="Printline"  class="form-control"  >
         </div>
         <div class="col-sm-4 form-group">
           <label>Print Run</label>
-          <input type="text" name="Printrun"  class="form-control" value =" " >
+          <input type="text" name="Printrun"  class="form-control"  >
         </div>
     </div>
     </div>
@@ -169,15 +169,15 @@
       <div class="row">
         <div class="col-sm-4 form-group">
           <label>Foreword</label>
-          <input type="text" name="foreword"  class="form-control" value =" " >
+          <input type="text" name="foreword"  class="form-control"  >
         </div>
         <div class="col-sm-4 form-group">
           <label>Introduction</label>
-          <input type="text" name="Introduction"  class="form-control" value =" " >
+          <input type="text" name="Introduction"  class="form-control"  >
         </div>
         <div class="col-sm-4 form-group">
           <label>Preface</label>
-          <input type="text" name="Preface"  class="form-control" value =" " >
+          <input type="text" name="Preface"  class="form-control"  >
         </div>
     </div>
     </div>
@@ -186,15 +186,15 @@
       <div class="row">
         <div class="col-sm-4 form-group">
           <label>Front Material</label>
-          <input type="text" name="Frontmaterial"  class="form-control" value =" " >
+          <input type="text" name="Frontmaterial"  class="form-control" >
         </div>
         <div class="col-sm-4 form-group">
           <label>Artwork Credit(s)</label>
-          <input type="text" name="Artworkcredits"  class="form-control" value =" " >
+          <input type="text" name="Artworkcredits"  class="form-control"  >
         </div>
         <div class="col-sm-4 form-group">
           <label>Editing Credit(s)</label>
-          <input type="text" name="EditingCredits"  class="form-control" value =" " >
+          <input type="text" name="EditingCredits"  class="form-control" >
         </div>
     </div>
     </div>
@@ -203,7 +203,7 @@
       <div class="row">
         <div class="col-sm-4 form-group">
           <label>layout Credit(s)</label>
-          <input type="text" name="layoutCredits"  class="form-control" value =" " >
+          <input type="text" name="layoutCredits"  class="form-control" >
         </div>
         <div class="col-sm-4 form-group">
           <label>Map Credit(s)</label>
@@ -211,7 +211,7 @@
         </div>
         <div class="col-sm-4 form-group">
           <label>Photo Credit(s)</label>
-          <input type="text" name="PhotoCredits"  class="form-control" value =" " >
+          <input type="text" name="PhotoCredits"  class="form-control"  >
         </div>
     </div>
     </div>
@@ -220,15 +220,15 @@
       <div class="row">
         <div class="col-sm-4 form-group">
           <label>Production Credit(s)</label>
-          <input type="text" name="ProductionCredits"  class="form-control" value =" " >
+          <input type="text" name="ProductionCredits"  class="form-control">
         </div>
         <div class="col-sm-4 form-group">
           <label>Translation Credit(s)</label>
-          <input type="text" name="TranslationCredits"  class="form-control" value =" " >
+          <input type="text" name="TranslationCredits"  class="form-control" >
         </div>
         <div class="col-sm-4 form-group">
           <label>Companion Volumes</label>
-          <input type="text" name="CompanionVolumes"  class="form-control" value =" " >
+          <input type="text" name="CompanionVolumes"  class="form-control" >
         </div>
     </div>
     </div>
@@ -237,15 +237,15 @@
       <div class="row">
         <div class="col-sm-4 form-group">
           <label>Series</label>
-          <input type="text" name="Series"  class="form-control" value =" " >
+          <input type="text" name="Series"  class="form-control" >
         </div>
         <div class="col-sm-4 form-group">
           <label>Series Editor</label>
-          <input type="text" name="SeriesEditor"  class="form-control" value =" " >
+          <input type="text" name="SeriesEditor"  class="form-control"  >
         </div>
         <div class="col-sm-4 form-group">
           <label>Issue</label>
-          <input type="text" name="Issue"  class="form-control" value =" " >
+          <input type="text" name="Issue"  class="form-control" >
         </div>
     </div>
     </div>
@@ -254,15 +254,15 @@
       <div class="row">
         <div class="col-sm-4 form-group">
           <label>Copies Examined</label>
-          <input type="text" name="CopiesExamined"  class="form-control" value =" " >
+          <input type="text" name="CopiesExamined"  class="form-control" >
         </div>
         <div class="col-sm-4 form-group">
           <label>Note</label>
-          <input type="text" name="Note"  class="form-control" value =" " >
+          <input type="text" name="Note"  class="form-control" >
         </div>
         <div class="col-sm-4 form-group">
           <label>Copy Number</label>
-          <input type="text" name="CopyNumber"  class="form-control" value =" " >
+          <input type="text" name="CopyNumber"  class="form-control">
         </div>
     </div>
     </div>
@@ -271,15 +271,15 @@
       <div class="row">
         <div class="col-sm-4 form-group">
           <label>Grade</label>
-          <input type="text" name="Grade"  class="form-control" value =" " >
+          <input type="text" name="Grade"  class="form-control" >
         </div>
         <div class="col-sm-4 form-group">
           <label>Description</label>
-          <input type="text" name="Description"  class="form-control" value =" " >
+          <input type="text" name="Description"  class="form-control">
         </div>
         <div class="col-sm-4 form-group">
           <label>Association Copy</label>
-          <input type="text" name="AssociationCopy"  class="form-control" value =" " >
+          <input type="text" name="AssociationCopy"  class="form-control" >
         </div>
     </div>
     </div>
@@ -296,8 +296,8 @@
 </div>
 
 <hr>
+<button type="submit" class="btn btn-lg btn-primary btn-block">Add Book</button>
 
-<input class="btn btn-lg btn-primary btn-block" type="submit" value="Add Book">
 
 </form>
 </body>
