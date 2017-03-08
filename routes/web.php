@@ -18,6 +18,8 @@ Route::get('/books/create','BookController@create');
 //Route for storing user input into the database
 Route::post('/books','BookController@store');
 
+Route::post('/store2','BookController@store2');
+
 
 Auth::routes();
 
