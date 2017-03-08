@@ -1,19 +1,31 @@
 
+@extends('layouts.navbar')
 
-<h1>Reset Password</h1>
+@section('content')
 
-<form action="http://127.0.0.1:8000/changePassword" method="post">
+
+    <h3 id="padding">Change Password</h3><p>&nbsp;</p>
+
+
+<div class="col-sm-4 form-group" id="float_this">
+<form action="http://localhost/SoftwareEngineeringCourse/public/changePassword" method="post">
     {{ csrf_field() }}
-    Old password:<br>
-    <input type="password" name="oldpassword"><br>
-    New password:<br>
-    <input type="password" name="newpassword1"><br><br>
-    Enter new password again:<br>
-    <input type="password" name="newpassword2"><br><br>
-    <input type="submit" value="Submit">
+   <label>Old password:</label>
+    <input type="password" class="form-control" name="oldpassword"><br>
+    <label>New password:</label>
+    <input type="password" class="form-control" name="newpassword1"><br>
+    <label>Enter new password again:</label>
+    <input type="password" class="form-control" name="newpassword2"><br><br>
+    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">
 </form>
+</div>
 
-
+<style>
+    #padding{
+        margin-left: 40px;
+    }
+</style>
+@endsection
 
 
 

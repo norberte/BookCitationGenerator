@@ -41,3 +41,4 @@ Route::get('/changePassword', 'changePassword@index');
 
 //route to update database with new password
 Route::post('/changePassword', 'changePassword@update');
+

@@ -1,32 +1,32 @@
 <!-- THE VALUES NEED TO BE ADDED ONCE THEY ARE IN THE DATABASE -->
+@extends('layouts.navbar')
+
+
 
 <?php
 use App\Book;
 ?>
         <!-- this populates the form when you try to edit a book -->
+
         <!-- change the number next to bid to change which book you are going to edit -->
+
         <?php
-        $items = App\Book::where('bid', 1)->get();
+        $items = App\Book::where('bid', 3)->get();
         ?>
 
 
-        <!DOCTYPE html>
-        <html lang="en">
 
-        <head>
-            <title>Edit Book</title>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="stylesheet.css">
+@section('content')
+
+
+            <link rel="stylesheet" href = "../resources/views/layouts/navbar.css" />
             <style>
                 th{
                     text-align: center;
                 }
             </style>
-        </head>
+
+
         <body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
 
         <div class="container text-center">
@@ -47,8 +47,7 @@ use App\Book;
                         <form method="POST" action="http://localhost/SoftwareEngineeringCourse/public/books/update">
                             {{ csrf_field() }}
 
-                            <!-- For the values to update in the database, this text field needs to be here -->
-                                <!-- obviously we don't want it to show up on the page, so I hide it completely with css -->
+                            <!-- For the values to pdat-->
                             <input type="text" name="bid" id="hidethis" class="form-control" value ="{{$items[0]['bid']}}">
                             <style>
                                 #hidethis{
@@ -310,7 +309,5 @@ use App\Book;
 
                         </form>
 
-        </body>
-        </html>
-
+@endsection
 
