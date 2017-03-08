@@ -1,7 +1,3 @@
-@extends('layouts.app')
-
-        @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +32,8 @@
 
 
   <div class="row">
-    <form method="get" action="http:/localhost/bookcat/public/books">
+    <form method="POST" action="http://localhost/bookcat/public/books">
+      {{ csrf_field() }}
       <div class="col-sm-12">
         <div class="row">
           <div class="col-sm-4 form-group">
@@ -300,10 +297,9 @@
 </div>
 
 <hr>
-<button type="submit" class="btn btn-lg btn-primary btn-block">Add Book</button>
 
+<input class="btn btn-lg btn-primary btn-block" type="submit" value="Add Book">
 
 </form>
 </body>
 </html>
-@endsection
