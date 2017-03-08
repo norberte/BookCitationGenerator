@@ -4,8 +4,10 @@
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" href = "../resources/views/layouts/navbar.css" />
     <script type= "text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 <style>
@@ -40,7 +42,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{url('home')}}">BooKStrap</a>
+            <a class="navbar-brand" href="{{url('/home')}}">BooKStrap</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -48,7 +50,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('/books/addbook')}}">Add Book</a></li>
+                        <li><a href="{{url('/books/create')}}">Add Book</a></li>
                         <li><a href="{{url('/books/edit')}}">Edit Book</a></li>
 
                     </ul>
@@ -67,16 +69,17 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                         <li><a href="#">Add to collecton</a></a></li>
                         <li><a href="#">Edit Book</a></li>
                         <li><a href="#">Export</a></li>
+                        <li><a href="{{url('/changePassword')}}">Change Password</a></li>
                     </ul>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li> <a href="{{ route('logout') }}"
+                <li> <a href="{{ url('logout') }}"
                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
                         Logout
                     </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
             </ul>

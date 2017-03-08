@@ -8,7 +8,7 @@
 
 
 <div class="col-sm-4 form-group" id="float_this">
-<form action="http://localhost/SoftwareEngineeringCourse/public/changePassword" method="post">
+<form action="http://localhost/bookcat/public/changePassword" method="post">
     {{ csrf_field() }}
    <label>Old password:</label>
     <input type="password" class="form-control" name="oldpassword"><br>

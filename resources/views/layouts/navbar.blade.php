@@ -56,12 +56,12 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li> <a href="{{ route('logout') }}"
+        <li> <a href="{{ url('logout') }}"
                 onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
             Logout
           </a>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
           </form>
       </ul>
