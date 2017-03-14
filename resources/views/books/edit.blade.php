@@ -1,4 +1,4 @@
-<!-- THE VALUES NEED TO BE ADDED ONCE THEY ARE IN THE DATABASE -->
+
 
 
 
@@ -15,10 +15,15 @@ error_reporting(E_ERROR | E_PARSE);
         <!-- change the number next to bid to change which book you are going to edit -->
 
         <?php
-        $json = App\Book::where('bid', 9)->get();
+        // the book to change
+        $bid = '9';
 
+        // retrieves the row from database from requested bid
+        $json = App\Book::where('bid', $bid)->get();
+
+        // turns the JSON file into a string
         $items = json_decode($json[0]['bookAttr'], true);
-                
+
 
         ?>
 
@@ -120,7 +125,7 @@ error_reporting(E_ERROR | E_PARSE);
                             {{ csrf_field() }}
 
                             <!-- For the values to pdat-->
-                            <input type="text" name="bid" id="hidethis" class="form-control" value ={{$items['bid']}}>
+                            <input type="text" name="bid" id="hidethis" class="form-control" value ="{{$bid}}">
                             <style>
                                 #hidethis{
                                     display:none;
@@ -131,7 +136,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     <div class="col-sm-4 form-group">
 
                                         <label>Book Title</label>
-                                        <input type="text" name="title"  class="form-control" value ={{$items['title']}}>
+                                        <input type="text" name="title"  class="form-control" value ="{{$items['title']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Code Number</label>
