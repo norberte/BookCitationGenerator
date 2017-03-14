@@ -43,4 +43,5 @@ Route::get('/changePassword', 'changePassword@index');
 
 //route to update database with new password
 Route::post('/changePassword', 'changePassword@update');
-
+//delete selected book, {Book} expects a bid
+Route::delete('/books/{Book}','BookController@destroy');
