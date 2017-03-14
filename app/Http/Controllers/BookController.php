@@ -18,8 +18,7 @@ class BookController extends Controller
 
     public function store()
 
-    { 	
-    	
+    {
 
     	// Create a new book using the request data
     	//Save it to the database
@@ -43,8 +42,6 @@ class BookController extends Controller
         DB::table('book')
             ->where('bid', $id)
             ->update($inputOnly);
-
-
 
 
         return view('/books/addbook');

@@ -43,11 +43,3 @@ Route::get('/changePassword', 'changePassword@index');
 
 //route to update database with new password
 Route::post('/changePassword', 'changePassword@update');
-
-//route to output page. delete this
-Route::get('/output', 'output@index');
-
-Route::post('/output', 'output@write');
-
-Route::get('/outputHTML', 'output@read');
-
