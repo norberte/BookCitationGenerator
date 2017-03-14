@@ -43,10 +43,17 @@ class changePassword extends Controller
             $request->user()->fill([
                 'password' => Hash::make($request->newPassword)
             ])->save();
+            echo '<script language="javascript">';
+            echo 'alert("Password changed!")';
+            echo '</script>';
 
         }
         else {
-            echo "Password incorrect";
+            echo '<script language="javascript">';
+            echo 'alert("Incorrect Password. Please try again.")';
+            echo '</script>';
         }
+
+        return view('/auth/changePassword');
     }
 }

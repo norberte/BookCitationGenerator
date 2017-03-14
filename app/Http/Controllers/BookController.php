@@ -43,11 +43,11 @@ class BookController extends Controller
         DB::table('book')
             ->where('bid', $id)
             ->update($inputOnly);
-      
-        
 
-        
-         return redirect('/');
+
+
+
+        return view('/books/addbook');
 
     }
     
