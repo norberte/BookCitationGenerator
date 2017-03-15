@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Validator;
 use App\Template;
 
 class TemplateController extends Controller
@@ -18,15 +18,12 @@ class TemplateController extends Controller
     // the below store method is a placeholder
     public function store()
     {
-        /*
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'name'       => 'required',
-            'email'      => 'required|email',
-            'nerd_level' => 'required|numeric'
+            'tname'       => 'required|unique',
         );
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make(Request::all(), $rules);
 
         // process the login
         if ($validator->fails()) {
@@ -36,16 +33,15 @@ class TemplateController extends Controller
         } else {
             // store
             $nerd = new Nerd;
-            $nerd->name       = Input::get('name');
-            $nerd->email      = Input::get('email');
-            $nerd->nerd_level = Input::get('nerd_level');
+            $nerd->name       = Request('name');
+            $nerd->email      = Request('email');
+            $nerd->nerd_level = Request('nerd_level');
             $nerd->save();
 
             // redirect
             Session::flash('message', 'Successfully created nerd!');
             return Redirect::to('nerds');
         }
-        */
     }
 
     public function edit($tname)
