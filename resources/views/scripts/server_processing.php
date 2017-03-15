@@ -27,7 +27,7 @@ $columns = array(
 // SQL server connection information
 $sql_details = array(
     'user' => 'root',
-    'pass' => 'YourOwnLocalDBPassword', // do be changed for every different instance of a local DB
+    'pass' => 'Ferencvaros1!', // do be changed for every different instance of a local DB
     'db'   => 'bookCat',
     'host' => 'localhost'
 );

@@ -14,12 +14,34 @@ class CreateTemplatesTable extends Migration
     public function up()
     {
         Schema::create('Template', function (Blueprint $table) {
-            $table->increments('tid');
-            $table->string('tname', 255)->unique();
-            $table->json('tags')->nullable();
-            $table->json('style')->nullable();
-            $table->json('keyword')->nullable();
+            $table->string('tname', 255);
+            $table->integer('position');
+            $table->string('attribute')->nullable();
+            $table->string('attributeStyle')->nullable();
+            $table->string('keyword')->nullable();
+            $table->string('keywordStyle')->nullable();
             $table->string('createdBy')->nullable();
+            $table->primary(['tname', 'position']);
+            $table->timestamps();
+        });
+
+        Schema::create('TemplateKeywords', function (Blueprint $table) {
+            $table->string('tname', 255);
+            $table->integer('position');
+            $table->string('keyword')->nullable();
+            $table->string('keywordStyle')->nullable();
+            $table->string('createdBy')->nullable();
+            $table->primary(['tname', 'position']);
+            $table->timestamps();
+        });
+
+        Schema::create('TemplateAttributes', function (Blueprint $table) {
+            $table->string('tname', 255);
+            $table->integer('position');
+            $table->string('attribute')->nullable();
+            $table->string('attributeStyle')->nullable();
+            $table->string('createdBy')->nullable();
+            $table->primary(['tname', 'position']);
             $table->timestamps();
         });
     }
@@ -32,5 +54,7 @@ class CreateTemplatesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('Template');
+        Schema::dropIfExists('TemplateAttributes');
+        Schema::dropIfExists('TemplateKeywords');
     }
 }
