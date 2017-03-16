@@ -15,6 +15,8 @@
     <!-- Custom styles for this template -->
     <link href="/css/book.css" rel="stylesheet">
   </head>
+  @section('navbar')
+    @show
 
   <body>
 

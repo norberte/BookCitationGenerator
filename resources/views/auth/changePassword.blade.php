@@ -1,67 +1,43 @@
-<!--This form will be to change a password. It is not finished yet. -->
 
-@extends('layouts.app')
+@extends('layouts.navbar')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Change your password</div>
-                    <div class="panel-body">
-                        <!-- I will need to change the route here to a screen that says successful or something, when I'm done -->
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
-                            {{ csrf_field() }}
-                            <!-- Enter in old password -->
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label for="password" class="col-md-4 control-label">Password</label>
 
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="password" required>
 
-                                        @if ($errors->has('password'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-                            <!-- Enter new password -->
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label for="password" class="col-md-4 control-label">Password</label>
+    <h3 id="padding">Change Password</h3><p>&nbsp;</p>
 
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="password" required>
 
-                                        @if ($errors->has('password'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                <!-- Confirm password -->
-                                <div class="form-group">
-                                    <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+<div class="col-sm-4 form-group" id="float_this">
+<form action="http://localhost/bookcat/public/changePassword" method="post">
+    {{ csrf_field() }}
+   <label>Old password:</label>
+    <input type="password" class="form-control" name="oldpassword"><br>
+    <label>New password:</label>
+    <input type="password" class="form-control" name="newpassword1"><br>
+    <label>Enter new password again:</label>
+    <input type="password" class="form-control" name="newpassword2"><br><br>
+    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">
+</form>
+</div>
 
-                                    <div class="col-md-6">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-
-                                    </div>
-                                </div>
-
-                            <div class="form-group">
-                                <div class="col-md-8 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Submit
-                                    </button>
-
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<style>
+    #padding{
+        margin-left: 40px;
+    }
+</style>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
