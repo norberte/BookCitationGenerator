@@ -1,9 +1,9 @@
 <?php
 // DB table to use
-$table = 'book';
+$table = 'books';
 
 // Table's primary key
-$primaryKey = 'bid';
+$primaryKey = 'id';
 
 // Array of database columns which should be read and sent back to DataTables.
 // The `db` parameter represents the column name in the database, while the `dt`
@@ -27,7 +27,7 @@ $columns = array(
 // SQL server connection information
 $sql_details = array(
     'user' => 'root',
-    'pass' => 'Ferencvaros1!', // do be changed for every different instance of a local DB
+    'pass' => 'batchat', // do be changed for every different instance of a local DB
     'db'   => 'bookCat',
     'host' => 'localhost'
 );
