@@ -86,6 +86,7 @@ class BookController extends Controller
     public function destroy(Book $Book){
 
             Book::destroy($Book);
+            
     }
 
 
