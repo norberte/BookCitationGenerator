@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BookCollection extends Model
+class bookcollection extends Model
 {
-    //
+    public function books()
+   	{
+   		return $this->belongsToMany(Book::class);
+   	}
 }
