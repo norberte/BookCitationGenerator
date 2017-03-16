@@ -38,10 +38,10 @@ class BookController extends Controller
 
         //insert the json fields into the dtabase and return the Id of that insertion
 
-        $id = DB::table('book')->insertGetId(['bookAttr'=>$arr_tojson,'fields'=>$arr_tojson]);
+        $id = DB::table('books')->insertGetId(['bookAttr'=>$arr_tojson,'fields'=>$arr_tojson]);
         //use that id to update the other fields corresponding to the same row.
-        DB::table('book')
-            ->where('bid', $id)
+        DB::table('books')
+            ->where('id', $id)
             ->update($inputOnly);
 
 
@@ -63,7 +63,7 @@ class BookController extends Controller
     public function update() {
 
 
-         DB::table('book')->where('bid', request('bid'))->update([
+         DB::table('books')->where('id', request('id'))->update([
              'title' => request('title'),
              'codeNum' => request('codeNum'),
              'authorLastName' => request('authorLastName'),
@@ -90,7 +90,7 @@ class BookController extends Controller
 
 
     public function show($id){
-        $book = DB::table('book')->select('bookAttr')->where('bid', '=', $id)->get();
+        $book = DB::table('books')->select('bookAttr')->where('id', '=', $id)->get();
 
         return view('/home', compact($book));
     }
