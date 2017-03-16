@@ -11,17 +11,18 @@ $primaryKey = 'bid';
 // indexes
 
 $columns = array(
-    array( 'db' => 'title', 'dt' => 0 ),
-    array( 'db' => 'codeNum', 'dt' => 1 ),
-    array( 'db' => 'authorLastName', 'dt' => 2 ),
-    array( 'db' => 'authorFirstName', 'dt' => 3 ),
-    array( 'db' => 'illustratorLastName', 'dt' => 4 ),
-    array( 'db' => 'illustratorFirstName', 'dt' => 5 ),
-    array( 'db' => 'translatorLastName', 'dt' => 6 ),
-    array( 'db' => 'translatorFirstName', 'dt' => 7 ),
-    array( 'db' => 'publisher', 'dt' => 8 ),
-    array( 'db' => 'copyright', 'dt' => 9 ),
-    array( 'db' => 'isbn', 'dt' => 10)
+    array( 'db' => 'bid', 'dt' => 0 ),
+    array( 'db' => 'title', 'dt' => 1 ),
+    array( 'db' => 'codeNum', 'dt' => 2 ),
+    array( 'db' => 'authorLastName', 'dt' => 3 ),
+    array( 'db' => 'authorFirstName', 'dt' => 4 ),
+    array( 'db' => 'illustratorLastName', 'dt' => 5 ),
+    array( 'db' => 'illustratorFirstName', 'dt' => 6 ),
+    array( 'db' => 'translatorLastName', 'dt' => 7 ),
+    array( 'db' => 'translatorFirstName', 'dt' => 8 ),
+    array( 'db' => 'publisher', 'dt' => 9 ),
+    array( 'db' => 'copyright', 'dt' => 10 ),
+    array( 'db' => 'isbn', 'dt' => 11)
 );
 
 // SQL server connection information
