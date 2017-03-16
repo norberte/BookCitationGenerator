@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+
 <style>
 table{
   overflow-x: scroll;
@@ -30,6 +32,7 @@ tfoot {
   margin-left: 80px;
 }
 </style>
+
 <!--
 This is used to display the field of the books in the Datatable, as a way to provide searching for books by different fields link the drop down button to a different
 html file that puts the "SEARCHBY field" in the first column this automatically switches the search filed to the first column
@@ -120,11 +123,13 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 </script>
 
 <div id = "content">
+
   <table width="100%" class="display nowrap dataTable dtr-inline" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
   <thead>
     <tr role="row">
       <th tabindex="0" class="sorting_asc" aria-controls="example" style="width: 139px;" aria-label="Name: activate to sort column descending" aria-sort="ascending" rowspan="1" colspan="1">Book Title
       </th>
+
       <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Code Number
       </th>
       <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Author Last Name
@@ -138,6 +143,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
       <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Translator Last Name
       </th>
       <th tabindex="0" class="dt-body-right sorting" aria-controls="example" style="width: 78px;" aria-label="Salary: activate to sort column ascending" rowspan="1" colspan="1">Translator First Name
+
       </th>
       <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Publisher
       </th>
@@ -145,12 +151,15 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
       </th>
       <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">ISBN
       </th>
+
     </tr>
   </thead>
+
   <tfoot>
     <tr>
       <th class="dt-body-right" rowspan="1" colspan="1">Book Title
       </th>
+
       <th class="dt-body-right" rowspan="1" colspan="1">Code Number
       </th>
       <th class="dt-body-right" rowspan="1" colspan="1">Author Last Name
@@ -164,6 +173,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
       <th class="dt-body-right" rowspan="1" colspan="1">Translator Last Name
       </th>
       <th class="dt-body-right" rowspan="1" colspan="1">Translator First Name
+
       </th>
       <th class="dt-body-right" rowspan="1" colspan="1">Publisher
       </th>
@@ -178,4 +188,5 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
 </div>
 </body>
+
 </html>
