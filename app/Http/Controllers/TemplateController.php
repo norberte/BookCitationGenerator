@@ -16,32 +16,8 @@ class TemplateController extends Controller
 
     // TO DO: figure out how to add each position to the DB
     // the below store method is a placeholder
-    public function store()
-    {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-            'tname'       => 'required|unique',
-        );
-        $validator = Validator::make(Request::all(), $rules);
-
-        // process the login
-        if ($validator->fails()) {
-            return Redirect::to('nerds/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
-            // store
-            $nerd = new Nerd;
-            $nerd->name       = Request('name');
-            $nerd->email      = Request('email');
-            $nerd->nerd_level = Request('nerd_level');
-            $nerd->save();
-
-            // redirect
-            Session::flash('message', 'Successfully created nerd!');
-            return Redirect::to('nerds');
-        }
+    public function store(){
+        var_dump($_POST['template']);
     }
 
     public function edit($tname)
