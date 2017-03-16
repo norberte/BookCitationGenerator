@@ -15,6 +15,7 @@ class CreateCollectionsTable extends Migration
     {
         Schema::create('BookCollection', function (Blueprint $table) {
             $table->increments('cid');
+            $table->string('template_tname')->nullable();
             $table->string('cname', 255)->unique();
             $table->json('bookEntries')->nullable();
             $table->string('createdBy')->nullable();
