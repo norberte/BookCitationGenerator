@@ -85,6 +85,7 @@ class BookController extends Controller
     /*This works it just looks weird with all the books because it uses route model binding.*/
     public function destroy(Book $Book){
             Book::destroy($Book);
+            
     }
 
 
