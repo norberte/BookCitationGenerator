@@ -16,10 +16,10 @@ error_reporting(E_ERROR | E_PARSE);
 
         <?php
         // the book to change
-        $bid = '9';
+        $id = '1';
 
         // retrieves the row from database from requested bid
-        $json = App\Book::where('bid', $bid)->get();
+        $json = App\Book::where('id', $id)->get();
 
         // turns the JSON file into a string
         $items = json_decode($json[0]['bookAttr'], true);
@@ -125,7 +125,7 @@ error_reporting(E_ERROR | E_PARSE);
                             {{ csrf_field() }}
 
                             <!-- For the values to pdat-->
-                            <input type="text" name="bid" id="hidethis" class="form-control" value ="{{$bid}}">
+                            <input type="text" name="id" id="hidethis" class="form-control" value ="{{$id}}">
                             <style>
                                 #hidethis{
                                     display:none;
