@@ -52,9 +52,6 @@ Route::get('/changePassword', 'changePassword@index');
 Route::post('/changePassword', 'changePassword@update');
 
 
-
-
-
 // routes for templates
 Auth::routes();
 
@@ -78,4 +75,3 @@ Route::delete('/templates/{tname}','TemplateController@destroy');
 
 //Route to show all info about specific book, {tname} - name of template expected
 Route::get('/templates/{tname}', 'TemplateController@show');
-
