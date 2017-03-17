@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Hash;
 use App;
+use Auth;
 
 
 
@@ -32,20 +33,22 @@ class changePassword extends Controller
         $newpassword2 = $_POST['newpassword2'];
 
         // retrieves old password from database
-        $password = App\User::value('password');
+        $password = Auth::user()->password;
+
 
 
         // this if statement will check if the old password matches what is in the database.
         // this will also check if the two new passwords are eqvuilant
         // if both conditions pass, the new password will be hashed in the database
-        if ((Hash::check($oldpassword, $password)) && ($newpassword1 == $newpassword2)) {
+        if ((Hash::check($oldpassword, $password)) && ($newpassword1 == $newpassword2) && !(empty($newpassword1))) {
 
             $request->user()->fill([
-                'password' => Hash::make($request->newPassword)
+                'password' => bcrypt($newpassword1)
             ])->save();
             echo '<script language="javascript">';
             echo 'alert("Password changed!")';
             echo '</script>';
+
 
         }
         else {

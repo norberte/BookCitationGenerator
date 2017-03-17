@@ -1,17 +1,32 @@
-<!-- THE VALUES NEED TO BE ADDED ONCE THEY ARE IN THE DATABASE -->
+
 
 
 
 <?php
 use App\Book;
+
+//This is here because it will let me skip the values that are not in the json file.
+// it could be dangerous, but it seems to work right now.
+error_reporting(E_ERROR | E_PARSE);
+
 ?>
         <!-- this populates the form when you try to edit a book -->
 
         <!-- change the number next to bid to change which book you are going to edit -->
 
         <?php
-        $items = App\Book::where('bid', 3)->get();
+        // the book to change
+        $id = '1';
+
+        // retrieves the row from database from requested bid
+        $json = App\Book::where('id', $id)->get();
+
+        // turns the JSON file into a string
+        $items = json_decode($json[0]['bookAttr'], true);
+
+
         ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,7 +125,7 @@ use App\Book;
                             {{ csrf_field() }}
 
                             <!-- For the values to pdat-->
-                            <input type="text" name="bid" id="hidethis" class="form-control" value ="{{$items[0]['bid']}}">
+                            <input type="text" name="id" id="hidethis" class="form-control" value ="{{$id}}">
                             <style>
                                 #hidethis{
                                     display:none;
@@ -121,15 +136,15 @@ use App\Book;
                                     <div class="col-sm-4 form-group">
 
                                         <label>Book Title</label>
-                                        <input type="text" name="title"  class="form-control" value ="{{$items[0]['title']}}">
+                                        <input type="text" name="title"  class="form-control" value ="{{$items['title']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Code Number</label>
-                                        <input type="text" name="codeNum" class="form-control" value ="{{$items[0]['codeNum']}}">
+                                        <input type="text" name="codeNum" class="form-control" value ="{{$items['codeNum']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Isbn</label>
-                                        <input type="text" name="isbn"  class="form-control" value ="{{$items[0]['isbn']}}">
+                                        <input type="text" name="isbn"  class="form-control" value ="{{$items['isbn']}}">
                                     </div>
                                 </div>
                             </div>
@@ -138,15 +153,15 @@ use App\Book;
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
                                         <label>Author First Name</label>
-                                        <input type="text" name="authorFirstName"  class="form-control" value ="{{$items[0]['authorFirstName']}}">
+                                        <input type="text" name="authorFirstName"  class="form-control" value ="{{$items['authorFirstName']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Author Last Name</label>
-                                        <input type="text" name="authorLastName"  class="form-control" value ="{{$items[0]['authorLastName']}}">
+                                        <input type="text" name="authorLastName"  class="form-control" value ="{{$items['authorLastName']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Price</label>
-                                        <input type="text" name="price"  class="form-control" value =" ">
+                                        <input type="text" name="price"  class="form-control" value ="{{$items['price']}}">
                                     </div>
                                 </div>
                             </div>
@@ -155,15 +170,15 @@ use App\Book;
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
                                         <label>Translator First Name</label>
-                                        <input type="text" name="translatorFirstName"  class="form-control" value ="{{$items[0]['translatorFirstName']}}">
+                                        <input type="text" name="translatorFirstName"  class="form-control" value ="{{$items['translatorFirstName']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Translator Last Name</label>
-                                        <input type="text" name="translatorLastName"  class="form-control" value ="{{$items[0]['translatorLastName']}}">
+                                        <input type="text" name="translatorLastName"  class="form-control" value ="{{$items['translatorLastName']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Edition</label>
-                                        <input type="text" name="edition"  class="form-control" value =" ">
+                                        <input type="text" name="edition"  class="form-control" value ="{{$items['edition']}}">
                                     </div>
                                 </div>
                             </div>
@@ -172,15 +187,15 @@ use App\Book;
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
                                         <label>Illustrator First Name</label>
-                                        <input type="text" name="illustratorFirstName"  class="form-control" value ="{{$items[0]['illustratorFirstName']}}">
+                                        <input type="text" name="illustratorFirstName"  class="form-control" value ="{{$items['illustratorFirstName']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Illustrator Last Name</label>
-                                        <input type="text" name="illustratorLastName"  class="form-control" value ="{{$items[0]['illustratorLastName']}}">
+                                        <input type="text" name="illustratorLastName"  class="form-control" value ="{{$items['illustratorLastName']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Print Date</label>
-                                        <input type="text" name="printdate"  class="form-control" value =" ">
+                                        <input type="text" name="printdate"  class="form-control" value ="{{$items['printdate']}}">
                                     </div>
                                 </div>
 
@@ -189,15 +204,15 @@ use App\Book;
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
                                         <label>Place of Publication</label>
-                                        <input type="text" name="placeofpublication"  class="form-control" value =" ">
+                                        <input type="text" name="placeofpublication"  class="form-control" value ="{{$items['placeofpublication']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Publisher</label>
-                                        <input type="text" name="publisher"  class="form-control" value ="{{$items[0]['publisher']}}">
+                                        <input type="text" name="publisher"  class="form-control" value ="{{$items['publisher']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Copyright</label>
-                                        <input type="text" name="copyright"  class="form-control" value ="{{$items[0]['copyright']}}">
+                                        <input type="text" name="copyright"  class="form-control" value ="{{$items['copyright']}}">
                                     </div>
                                 </div>
 
@@ -216,15 +231,15 @@ use App\Book;
                                         <div class="row">
                                             <div class="col-sm-4 form-group">
                                                 <label>Legal Deposit</label>
-                                                <input type="text" name="legaldeposit"  class="form-control" value =" ">
+                                                <input type="text" name="legaldeposit"  class="form-control" value ="{{$items['legaldeposit']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>ISSN Number</label>
-                                                <input type="text" name="issn"  class="form-control" value =" ">
+                                                <input type="text" name="issn"  class="form-control" value ="{{$items['issn']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Partner Companies</label>
-                                                <input type="text" name="partnercompanies"  class="form-control" value =" ">
+                                                <input type="text" name="partnercompanies"  class="form-control" value ="{{$items['partnercompanies']}}">
                                             </div>
                                         </div>
                                     </div>
@@ -233,15 +248,15 @@ use App\Book;
                                         <div class="row">
                                             <div class="col-sm-4 form-group">
                                                 <label>Printer</label>
-                                                <input type="text" name="Printer"  class="form-control" value =" ">
+                                                <input type="text" name="Printer"  class="form-control" value ="{{$items['Printer']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Print line</label>
-                                                <input type="text" name="Printline"  class="form-control" value =" ">
+                                                <input type="text" name="Printline"  class="form-control" value ="{{$items['Printline']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Print Run</label>
-                                                <input type="text" name="Printrun"  class="form-control" value =" ">
+                                                <input type="text" name="Printrun"  class="form-control" value ="{{$items['Printrun']}}">
                                             </div>
                                         </div>
                                     </div>
@@ -250,15 +265,15 @@ use App\Book;
                                         <div class="row">
                                             <div class="col-sm-4 form-group">
                                                 <label>Foreword</label>
-                                                <input type="text" name="foreword"  class="form-control" value =" ">
+                                                <input type="text" name="foreword"  class="form-control" value ="{{$items['foreword']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Introduction</label>
-                                                <input type="text" name="Introduction"  class="form-control" value =" ">
+                                                <input type="text" name="Introduction"  class="form-control" value ="{{$items['Introduction']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Preface</label>
-                                                <input type="text" name="Preface"  class="form-control" value =" ">
+                                                <input type="text" name="Preface"  class="form-control" value ="{{$items['Preface']}}">
                                             </div>
                                         </div>
                                     </div>
@@ -267,15 +282,15 @@ use App\Book;
                                         <div class="row">
                                             <div class="col-sm-4 form-group">
                                                 <label>Front Material</label>
-                                                <input type="text" name="Frontmaterial"  class="form-control" value =" ">
+                                                <input type="text" name="Frontmaterial"  class="form-control" value ="{{$items['Frontmaterial']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Artwork Credit(s)</label>
-                                                <input type="text" name="Artworkcredits"  class="form-control" value =" ">
+                                                <input type="text" name="Artworkcredits"  class="form-control" value ="{{$items['Artworkcredits']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Editing Credit(s)</label>
-                                                <input type="text" name="EditingCredits"  class="form-control" value =" ">
+                                                <input type="text" name="EditingCredits"  class="form-control" value ="{{$items['EditingCredits']}}">
                                             </div>
                                         </div>
                                     </div>
@@ -284,15 +299,15 @@ use App\Book;
                                         <div class="row">
                                             <div class="col-sm-4 form-group">
                                                 <label>layout Credit(s)</label>
-                                                <input type="text" name="layoutCredits"  class="form-control" value =" ">
+                                                <input type="text" name="layoutCredits"  class="form-control" value ="{{$items['layoutCredits']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Map Credit(s)</label>
-                                                <input type="text" name="MapCredits"  class="form-control" value =" ">
+                                                <input type="text" name="MapCredits"  class="form-control" value ="{{$items['MapCredits']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Photo Credit(s)</label>
-                                                <input type="text" name="PhotoCredits"  class="form-control" value =" ">
+                                                <input type="text" name="PhotoCredits"  class="form-control" value ="{{$items['PhotoCredits']}}">
                                             </div>
                                         </div>
                                     </div>
@@ -301,15 +316,15 @@ use App\Book;
                                         <div class="row">
                                             <div class="col-sm-4 form-group">
                                                 <label>Production Credit(s)</label>
-                                                <input type="text" name="ProductionCredits"  class="form-control" value =" ">
+                                                <input type="text" name="ProductionCredits"  class="form-control" value ="{{$items['ProductionCredits']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Translation Credit(s)</label>
-                                                <input type="text" name="TranslationCredits"  class="form-control" value =" ">
+                                                <input type="text" name="TranslationCredits"  class="form-control" value ="{{$items['TranslationCredits']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Companion Volumes</label>
-                                                <input type="text" name="CompanionVolumes"  class="form-control" value =" ">
+                                                <input type="text" name="CompanionVolumes"  class="form-control" value ="{{$items['CompanionVolumes']}}">
                                             </div>
                                         </div>
                                     </div>
@@ -318,15 +333,15 @@ use App\Book;
                                         <div class="row">
                                             <div class="col-sm-4 form-group">
                                                 <label>Series</label>
-                                                <input type="text" name="Series"  class="form-control" value =" ">
+                                                <input type="text" name="Series"  class="form-control" value ="{{$items['Series']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Series Editor</label>
-                                                <input type="text" name="SeriesEditor"  class="form-control" value =" ">
+                                                <input type="text" name="SeriesEditor"  class="form-control" value ="{{$items['SeriesEditor']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Issue</label>
-                                                <input type="text" name="Issue"  class="form-control" value =" ">
+                                                <input type="text" name="Issue"  class="form-control" value ="{{$items['Issue']}}">
                                             </div>
                                         </div>
                                     </div>
@@ -335,15 +350,15 @@ use App\Book;
                                         <div class="row">
                                             <div class="col-sm-4 form-group">
                                                 <label>Copies Examined</label>
-                                                <input type="text" name="CopiesExamined"  class="form-control" value =" ">
+                                                <input type="text" name="CopiesExamined"  class="form-control" value ="{{$items['CopiesExamined']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Note</label>
-                                                <input type="text" name="Note"  class="form-control" value =" ">
+                                                <input type="text" name="Note"  class="form-control" value ="{{$items['Note']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Copy Number</label>
-                                                <input type="text" name="CopyNumber"  class="form-control" value =" ">
+                                                <input type="text" name="CopyNumber"  class="form-control" value ="{{$items['CopyNumber']}}">
                                             </div>
                                         </div>
                                     </div>
@@ -352,15 +367,15 @@ use App\Book;
                                         <div class="row">
                                             <div class="col-sm-4 form-group">
                                                 <label>Grade</label>
-                                                <input type="text" name="Grade"  class="form-control" value =" ">
+                                                <input type="text" name="Grade"  class="form-control" value ="{{$items['Grade']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Description</label>
-                                                <input type="text" name="Description"  class="form-control" value =" ">
+                                                <input type="text" name="Description"  class="form-control" value ="{{$items['Description']}}">
                                             </div>
                                             <div class="col-sm-4 form-group">
                                                 <label>Association Copy</label>
-                                                <input type="text" name="AssociationCopy"  class="form-control" value =" ">
+                                                <input type="text" name="AssociationCopy"  class="form-control" value ="{{$items['AssociationCopy']}}">
                                             </div>
                                         </div>
                                     </div>
