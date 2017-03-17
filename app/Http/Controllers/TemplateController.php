@@ -117,4 +117,10 @@ class TemplateController extends Controller
         // load the view and pass the nerds
         return view('templates.index')->with('templates', $templates);
     }
+
+    public function viewTemplates(){
+
+        return view('/templateViewer');
+    }
 }
+
