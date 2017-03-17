@@ -17,7 +17,28 @@ class TemplateController extends Controller
     // TO DO: figure out how to add each position to the DB
     // the below store method is a placeholder
     public function store(){
-        var_dump($_POST['template']);
+        $data = Request::all();
+        echo "json : ".$data ;
+        // process the login
+    /*
+        $nerd = new Template;
+        $nerd->name       = Request::('name');
+        $nerd->email      = Input::get('email');
+        $nerd->nerd_level = Input::get('nerd_level');
+        $nerd->save();
+
+        $id = DB::table('books')->insertGetId(['bookAttr'=>$arr_tojson,'fields'=>$arr_tojson]);
+        //use that id to update the other fields corresponding to the same row.
+        DB::table('books')
+            ->where('id', $id)
+            ->update($inputOnly);
+    */
+
+
+
+
+        //return view('/books/addbook');
+        return view('/templates.index', compact('data'));
     }
 
     public function edit($tname)
@@ -79,7 +100,7 @@ class TemplateController extends Controller
 
         // redirect
         Session::flash('message', 'Successfully deleted the nerd!');
-        return Redirect::to('templates');
+        return view('templates.index');
     }
 
     // show a specific template - COMPLETE

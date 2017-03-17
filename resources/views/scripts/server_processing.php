@@ -11,7 +11,7 @@ $primaryKey = 'id';
 // indexes
 
 $columns = array(
-    array( 'db' => 'bid', 'dt' => 0 ),
+    array( 'db' => 'id', 'dt' => 0 ),
     array( 'db' => 'title', 'dt' => 1 ),
     array( 'db' => 'codeNum', 'dt' => 2 ),
     array( 'db' => 'authorLastName', 'dt' => 3 ),
@@ -28,7 +28,7 @@ $columns = array(
 // SQL server connection information
 $sql_details = array(
     'user' => 'root',
-    'pass' => 'batchat', // do be changed for every different instance of a local DB
+    'pass' => 'Ferencvaros1!', // do be changed for every different instance of a local DB
     'db'   => 'bookCat',
     'host' => 'localhost'
 );
