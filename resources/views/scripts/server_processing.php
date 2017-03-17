@@ -1,9 +1,9 @@
 <?php
 // DB table to use
-$table = 'book';
+$table = 'books';
 
 // Table's primary key
-$primaryKey = 'bid';
+$primaryKey = 'id';
 
 // Array of database columns which should be read and sent back to DataTables.
 // The `db` parameter represents the column name in the database, while the `dt`
@@ -11,23 +11,24 @@ $primaryKey = 'bid';
 // indexes
 
 $columns = array(
-    array( 'db' => 'title', 'dt' => 0 ),
-    array( 'db' => 'codeNum', 'dt' => 1 ),
-    array( 'db' => 'authorLastName', 'dt' => 2 ),
-    array( 'db' => 'authorFirstName', 'dt' => 3 ),
-    array( 'db' => 'illustratorLastName', 'dt' => 4 ),
-    array( 'db' => 'illustratorFirstName', 'dt' => 5 ),
-    array( 'db' => 'translatorLastName', 'dt' => 6 ),
-    array( 'db' => 'translatorFirstName', 'dt' => 7 ),
-    array( 'db' => 'publisher', 'dt' => 8 ),
-    array( 'db' => 'copyright', 'dt' => 9 ),
-    array( 'db' => 'isbn', 'dt' => 10)
+    array( 'db' => 'bid', 'dt' => 0 ),
+    array( 'db' => 'title', 'dt' => 1 ),
+    array( 'db' => 'codeNum', 'dt' => 2 ),
+    array( 'db' => 'authorLastName', 'dt' => 3 ),
+    array( 'db' => 'authorFirstName', 'dt' => 4 ),
+    array( 'db' => 'illustratorLastName', 'dt' => 5 ),
+    array( 'db' => 'illustratorFirstName', 'dt' => 6 ),
+    array( 'db' => 'translatorLastName', 'dt' => 7 ),
+    array( 'db' => 'translatorFirstName', 'dt' => 8 ),
+    array( 'db' => 'publisher', 'dt' => 9 ),
+    array( 'db' => 'copyright', 'dt' => 10 ),
+    array( 'db' => 'isbn', 'dt' => 11)
 );
 
 // SQL server connection information
 $sql_details = array(
     'user' => 'root',
-    'pass' => 'YourOwnLocalDBPassword', // do be changed for every different instance of a local DB
+    'pass' => 'batchat', // do be changed for every different instance of a local DB
     'db'   => 'bookCat',
     'host' => 'localhost'
 );
