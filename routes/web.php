@@ -30,7 +30,7 @@ Route::get('/books/create','BookController@create');
 Route::post('/books','BookController@store');
 
 //Route to the page to edit books
-Route::get('/books/edit', 'BookController@edit');
+Route::get('/books/edit/', 'BookController@edit');
 // David, shouldn't this be '/books/edit/{Book}', since you are editing a specific book
 
 //Route to update edit into the database
@@ -75,3 +75,6 @@ Route::delete('/templates/{tname}','TemplateController@destroy');
 
 //Route to show all info about specific book, {tname} - name of template expected
 Route::get('/templates/{tname}', 'TemplateController@show');
+
+//Route to template viewer page
+Route::get('/templateViewer', 'TemplateController@viewTemplates');
