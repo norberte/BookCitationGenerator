@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+    font-family: Helvetica, Arial;
+}
+section {
+    padding-bottom: 2em;
+    border-bottom: 5px dashed black;
+}
+.fakeInput {
+    border:1px solid lightgrey;
+    border-radius: 6px;
+    margin-bottom: 1em;
+    padding: .5em;
+}
+.tag {
+    background: white;
+    border:1px solid darkgrey;
+    display: inline-block;
+    padding:.25em .5em;
+    font-size: 1em;
+}
+
+.dragging {
+    opacity: .4;
+}
+
+.token {
+    background: lightblue;
+}
+
+.placeholder {
+    background: lightblue;
+}
+
+.popover {
+    display:none;
+    position: absolute;
+    border: 1px solid lightgrey;
+    width: 100%;
+    top: 100%;
+}
+
+.at-ing .popover {
+    display: block;
+}
+
+.popover .tag {
+    display: block;
+    width: 100%;
+    border-width: 0;
+    text-align: left;
+}
+
+.popover .tag + .tag {
+    border-top-width: 1px;
+}
+
+.popover .tag.active,
+.popover .tag:hover {
+    background: lightblue;
+}
+
+.fakeInputWrap {
+    position: relative;
+}
