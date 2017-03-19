@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
@@ -9,10 +9,8 @@
     <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   
 </head>
 <body>
-
 <style>
 table{
   overflow-x: scroll;
@@ -33,7 +31,6 @@ tfoot {
   margin-left: 80px;
 }
 </style>
-
 <!--
 This is used to display the field of the books in the Datatable, as a way to provide searching for books by different fields link the drop down button to a different
 html file that puts the "SEARCHBY field" in the first column this automatically switches the search filed to the first column
@@ -56,21 +53,20 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     <ul class="dropdown-menu">
                         <li><a href="{{url('/books/create')}}">Add Book</a></li>
                         <li><a href="{{url('/books/edit')}}">Edit Book</a></li>
-
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Add Template</a></li>
-                        <li><a href="#">Edit Template</a></li>
-
+                        <li><a href="{{url('/templates/edit')}}">View Templates</a></li>
+                        <li><a href="{{url('/templates/create')}}">Add Template</a></li>
+                        <li><a href="{{url('/templates/edit')}}">Edit Template</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Add to collecton</a></a></li>
+                        <li><a href="#">Add to collection</a></li>
                         <li><a href="#">Edit Book</a></li>
                         <li><a href="#">Export</a></li>
                         <li><a href="{{url('/changePassword')}}">Change Password</a></li>
@@ -124,13 +120,13 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 </script>
 
 <div id = "content">
-
   <table width="100%" class="display nowrap dataTable dtr-inline" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
   <thead>
     <tr role="row">
+        <th tabindex="0" class="sorting_asc" aria-controls="example" style="width: 139px;" aria-label="Name: activate to sort column descending" aria-sort="ascending" rowspan="1" colspan="1">Book ID
+        </th>
       <th tabindex="0" class="sorting_asc" aria-controls="example" style="width: 139px;" aria-label="Name: activate to sort column descending" aria-sort="ascending" rowspan="1" colspan="1">Book Title
       </th>
-
       <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Code Number
       </th>
       <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Author Last Name
@@ -144,7 +140,6 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
       <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Translator Last Name
       </th>
       <th tabindex="0" class="dt-body-right sorting" aria-controls="example" style="width: 78px;" aria-label="Salary: activate to sort column ascending" rowspan="1" colspan="1">Translator First Name
-
       </th>
       <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Publisher
       </th>
@@ -152,15 +147,14 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
       </th>
       <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">ISBN
       </th>
-
     </tr>
   </thead>
-
   <tfoot>
     <tr>
+        <th class="dt-body-right" rowspan="1" colspan="1">Book ID
+        </th>
       <th class="dt-body-right" rowspan="1" colspan="1">Book Title
       </th>
-
       <th class="dt-body-right" rowspan="1" colspan="1">Code Number
       </th>
       <th class="dt-body-right" rowspan="1" colspan="1">Author Last Name
@@ -174,7 +168,6 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
       <th class="dt-body-right" rowspan="1" colspan="1">Translator Last Name
       </th>
       <th class="dt-body-right" rowspan="1" colspan="1">Translator First Name
-
       </th>
       <th class="dt-body-right" rowspan="1" colspan="1">Publisher
       </th>
@@ -189,5 +182,5 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
 </div>
 </body>
-
 </html>
+

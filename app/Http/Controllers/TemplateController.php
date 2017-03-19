@@ -16,32 +16,29 @@ class TemplateController extends Controller
 
     // TO DO: figure out how to add each position to the DB
     // the below store method is a placeholder
-    public function store()
-    {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-            'tname'       => 'required|unique',
-        );
-        $validator = Validator::make(Request::all(), $rules);
-
+    public function store(){
+        $data = Request::all();
+        echo "json : ".$data ;
         // process the login
-        if ($validator->fails()) {
-            return Redirect::to('nerds/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
-            // store
-            $nerd = new Nerd;
-            $nerd->name       = Request('name');
-            $nerd->email      = Request('email');
-            $nerd->nerd_level = Request('nerd_level');
-            $nerd->save();
+    /*
+        $nerd = new Template;
+        $nerd->name       = Request::('name');
+        $nerd->email      = Input::get('email');
+        $nerd->nerd_level = Input::get('nerd_level');
+        $nerd->save();
 
-            // redirect
-            Session::flash('message', 'Successfully created nerd!');
-            return Redirect::to('nerds');
-        }
+        $id = DB::table('books')->insertGetId(['bookAttr'=>$arr_tojson,'fields'=>$arr_tojson]);
+        //use that id to update the other fields corresponding to the same row.
+        DB::table('books')
+            ->where('id', $id)
+            ->update($inputOnly);
+    */
+
+
+
+
+        //return view('/books/addbook');
+        return view('/templates.index', compact('data'));
     }
 
     public function edit($tname)
@@ -103,7 +100,7 @@ class TemplateController extends Controller
 
         // redirect
         Session::flash('message', 'Successfully deleted the nerd!');
-        return Redirect::to('templates');
+        return view('templates.index');
     }
 
     // show a specific template - COMPLETE
@@ -120,4 +117,10 @@ class TemplateController extends Controller
         // load the view and pass the nerds
         return view('templates.index')->with('templates', $templates);
     }
+
+    public function viewTemplates(){
+
+        return view('/templates/index');
+    }
 }
+

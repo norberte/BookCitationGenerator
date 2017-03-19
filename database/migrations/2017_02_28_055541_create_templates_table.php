@@ -14,6 +14,7 @@ class CreateTemplatesTable extends Migration
     public function up()
     {
         Schema::create('Template', function (Blueprint $table) {
+
             $table->string('tname', 255)->primary();
             $table->integer("bookcollection_id")->nullable();
             $table->longtext('content');
