@@ -133,41 +133,30 @@
 <script>
     $(document).ready(function() {
         // Setup - add a text input to each footer cell
-				var selected = [];
+				
 
 
       	$('#example').DataTable( {
             "processing": true,
             "serverSide": true,
-            "ajax": "../resources/views/scripts/ssp.class.php",
+            "ajax": "../resources/views/scripts/server_processing.php",
 
-								 "columns": [
-		             {
-		                 "class":          "details-control",
-		                 "orderable":      false,
-		                 "data":           null,
-		                 "defaultContent": ""
-		             },
-
-							{"data:" : "id"},
-		             { "data": "Title" },
-							{ "data": "codeNum" },
-							 { "data": "authorLastName" },
-							 { "data": "authorFirstName" },
-							 { "data": "illustratorLastName" },
-							 { "data": "illustratorFirstName" },
-		             { "data": "translatorLastName" },
-							{ "data": "translatorFirstName" },
-							{ "data": "publisher" },
-							{ "data": "copyright" },
-		             { "data": "isbn" }
-		         ],
 
 		 "rowCallback": function( row, data ) {
+		 	$('#example tbody').on('click', 'tr', function(){
+		 		$(this)toggleClass('selected');
+
+		 	});
+		 	
+		 	var selected = table.rows('selected').data();	
+		 	
 		             if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
 		                 $(row).addClass('selected');
 		             }
 		         }
+		
+
+
 
 
 					//head brackets
@@ -317,6 +306,7 @@ function format ( d ) {
 <!--
 -->
 <button id="myBtn">View Collection</button>
+<p>random</p>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
