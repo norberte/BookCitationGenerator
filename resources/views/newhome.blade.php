@@ -7,6 +7,8 @@
 	    <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	    <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.1/css/select.dataTables.min.css">
+	    <script type="text/javascript" scr="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
 	</head>
 	<body>
 	<style>
@@ -133,27 +135,17 @@
 <script>
     $(document).ready(function() {
         // Setup - add a text input to each footer cell
-				
-
+		
+        var selected =[];
 
       	$('#example').DataTable( {
             "processing": true,
             "serverSide": true,
+            select: true,
             "ajax": "../resources/views/scripts/server_processing.php",
 
 
-		 "rowCallback": function( row, data ) {
-		 	$('#example tbody').on('click', 'tr', function(){
-		 		$(this)toggleClass('selected');
-
-		 	});
-		 	
-		 	var selected = table.rows('selected').data();	
-		 	
-		             if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
-		                 $(row).addClass('selected');
-		             }
-		         }
+	
 		
 
 
@@ -162,17 +154,38 @@
 					//head brackets
         } );
 
+     $('#example tbody').on( 'click', 'tr', function () {
+            $(this).toggleClass('selected');
+
+
+        } );
+
+     $('#myBtn').on('click',function(){
+     	selected = table.rows('.selected').data();
+
+     	//for(var i =0; i<selected.length; i++){
+     		//alert(selected[i]);
+     	//}
+					$.post('/bookcat/public/bookcollections', selected)
+				})
+
 
         $('#example thead th').each( function () {
             var title = $('#example thead th').eq( $(this).index() ).text();
             $(this).html('<input type="text" placeholder="'+title+'" />' );
         } );
 
+
+
         // DataTable
+        var table = $('#example').DataTable();
+
+      
+
 
 
         // Apply the search
-        table.columns().eq( 0 ).each( function ( colIdx ) {
+        table.columns('#example').eq( 0 ).each( function ( colIdx ) {
             $( 'input', table.column( colIdx ).header() ).on( 'keyup change', function () {
                 table
                         .column( colIdx )
@@ -181,20 +194,6 @@
             } );
         } );
 
-				//this code is to make each row selectable so the user can see which row is selectedIndex
-
-				 
-				    $('#example tbody').on('click', 'tr', function () {
-				        var id = this.id;
-				        var index = $.inArray(id, selected);
-				 
-				        if ( index === -1 ) {
-				            selected.push( id );
-				        } else {
-				            selected.splice( index, 1 );
-				        }
-				 
-				        $(this).toggleClass('selected');
 
 
 				//so now use js to print all the selected books to a modal form and then when submitted
@@ -202,12 +201,7 @@
 				//so what this code below will do is when the button is clicked it will trasnfer the array from this file to the php to show book collecton
 
 
-		//insert file name here
-				$('#collect').on('click',function(){
-					$.post('', {selected: selected})
-				})
-
-				    } );
+		
 
 				// Setup - add a text input to each footer cell
 
@@ -230,37 +224,9 @@
 
 
 		//thi is used to create a button for each row that shows more info when clcked
-		var detailRows = [];
+	
  
-    $('#example tbody').on( 'click', 'tr td.details-control', function () {
-        var tr = $(this).closest('tr');
-        var row = dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );
- 
-        if ( row.child.isShown() ) {
-            tr.removeClass( 'details' );
-            row.child.hide();
- 
-            // Remove from the 'open' array
-            detailRows.splice( idx, 1 );
-        }
-        else {
-            tr.addClass( 'details' );
-            row.child( format( row.data() ) ).show();
- 
-            // Add to the 'open' array
-            if ( idx === -1 ) {
-                detailRows.push( tr.attr('id') );
-            }
-        }
-    } );
- 
-    // On each draw, loop over the `detailRows` array and show any child rows
-    dt.on( 'draw', function () {
-        $.each( detailRows, function ( i, id ) {
-            $('#'+id+' td.details-control').trigger( 'click' );
-        } );
-    } );
+  
 
 
     } );
