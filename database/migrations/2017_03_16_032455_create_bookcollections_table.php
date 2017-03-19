@@ -18,6 +18,7 @@ class CreateBookcollectionsTable extends Migration
             $table->increments('id');
             $table->string('cname');
             $table->timestamps();
+            $table->string('createdBy')->nullable();
         });
     }
 
