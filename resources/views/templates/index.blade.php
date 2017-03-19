@@ -143,32 +143,61 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             if ( $(this).hasClass('select') ) {
                 fieldname = 'select';
                 $.ajax({
-                    "processing": true,
-                    "serverSide": true,
-                    url: "../resources/views/scripts/server_processing_templateViewer.php",
-                    type: "post",
+                    type: "POST",
+                    url: "../resources/views/scripts/templateview.php",
                     data:{
-                        fieldname: 'fieldname'
+                        fieldname: fieldname,
+                        templatename: templatename,
                     },
-                    datatype: 'string',
                     success: function(data){
-
+                        alert("Success!");
                     }
-
                 });
-
                 alert( "Template Name: " + templatename + " Field Name: " + fieldname);
             }
             if ( $(this).hasClass('delete') ) {
                 fieldname = 'delete';
+                $.ajax({
+                    type: "POST",
+                    url: "../resources/views/scripts/templateview.php",
+                    data:{
+                        fieldname: fieldname,
+                        templatename: templatename,
+                    },
+                    success: function(data){
+                        alert("Success!");
+                    }
+                });
                 alert( "Template Name: " + templatename + " Field Name: " + fieldname);
             }
             if ( $(this).hasClass('edit') ) {
                 fieldname = 'edit';
+                $.ajax({
+                    type: "POST",
+                    url: "../resources/views/scripts/templateview.php",
+                    data:{
+                        fieldname: fieldname,
+                        templatename: templatename,
+                    },
+                    success: function(data){
+                        alert("Success!");
+                    }
+                });
                 alert( "Template Name: " + templatename + " Field Name: " + fieldname);
             }
             if ( $(this).hasClass('view') ) {
                 fieldname = 'view';
+                $.ajax({
+                    type: "POST",
+                    url: "../resources/views/scripts/templateview.php",
+                    data:{
+                        fieldname: fieldname,
+                        templatename: templatename,
+                    },
+                    success: function(data){
+                        alert("Success!");
+                    }
+                });
                 alert( "Template Name: " + templatename + " Field Name: " + fieldname);
             }
 

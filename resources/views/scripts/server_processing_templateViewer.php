@@ -28,8 +28,6 @@ $sql_details = array(
 );
 
 
-
-
 function delete(){
 
     $rowNumber = 2;
@@ -47,5 +45,5 @@ function delete(){
 require('ssp.class.php');
 
 echo json_encode(
-    \SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
+    \SSP::simple( $_POST, $sql_details, $table, $primaryKey, $columns)
 );
