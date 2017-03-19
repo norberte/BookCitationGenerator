@@ -1,11 +1,11 @@
 @extends('layout.master')
 @section('content')
-	{{$bookcollection->cname}}
+	{{$collection->cname}}
 	<br>
 	<br>
 	@foreach($books as $book)
 		{{$book->title}}<br>
-		{{$book->authorLastName}}<br>
+		{{$book->authorFirstName}}<br>
 		
 	@endforeach
 
