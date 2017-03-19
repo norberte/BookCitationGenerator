@@ -1,7 +1,4 @@
 
-
-
-
 <?php
 use App\Book;
 
@@ -16,7 +13,7 @@ error_reporting(E_ERROR | E_PARSE);
 
         <?php
         // the book to change
-        $id = '1';
+        $id = '2';
 
         // retrieves the row from database from requested bid
         $json = App\Book::where('id', $id)->get();

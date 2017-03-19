@@ -120,7 +120,7 @@ class TemplateController extends Controller
 
     public function viewTemplates(){
 
-        return view('/templateViewer');
+        return view('/templates/index');
     }
 }
 
