@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -183,4 +182,3 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 </div>
 </body>
 </html>
-
