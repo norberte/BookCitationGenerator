@@ -15,7 +15,7 @@ class CreateTemplatesTable extends Migration
     {
         Schema::create('Template', function (Blueprint $table) {
             $table->string('tname', 255)->unique();
-            $table->integer("bookcollection_id");
+            $table->integer("bookcollection_id")->nullable();
             $table->integer('position');
             $table->string('attribute')->nullable();
             $table->string('attributeStyle')->nullable();
