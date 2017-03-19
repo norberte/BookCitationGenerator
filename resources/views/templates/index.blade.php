@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" href = "../resources/views/layouts/navbar.css" />
     <script type= "text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -8,6 +9,8 @@
     <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="index.css" />
+
 </head>
 <body>
 <style>
@@ -112,7 +115,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             "columnDefs": [ {
                 "targets": 1,
                 "data": 'view',
-                "defaultContent": "<button class = 'view' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px; '>View!</button>"},
+                "defaultContent": "<button class = 'view' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>View!</button>"},
                 {
                     "targets": 2,
                     "data": 'edit',
@@ -141,13 +144,13 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
 
             if ( $(this).hasClass('select') ) {
-                fieldname = 'select';
+                    fieldname ='delete';
                 $.ajax({
-                    type: "POST",
+                    type: "post",
                     url: "../resources/views/scripts/templateview.php",
                     data:{
                         fieldname: fieldname,
-                        templatename: templatename,
+                        templatename: templatename
                     },
                     success: function(data){
                         alert("Success!");
@@ -162,7 +165,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     url: "../resources/views/scripts/templateview.php",
                     data:{
                         fieldname: fieldname,
-                        templatename: templatename,
+                        templatename: templatename
                     },
                     success: function(data){
                         alert("Success!");
@@ -177,7 +180,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     url: "../resources/views/scripts/templateview.php",
                     data:{
                         fieldname: fieldname,
-                        templatename: templatename,
+                        templatename: templatename
                     },
                     success: function(data){
                         alert("Success!");
@@ -192,7 +195,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     url: "../resources/views/scripts/templateview.php",
                     data:{
                         fieldname: fieldname,
-                        templatename: templatename,
+                        templatename: templatename
                     },
                     success: function(data){
                         alert("Success!");
