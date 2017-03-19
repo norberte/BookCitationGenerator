@@ -77,4 +77,4 @@ Route::delete('/templates/{tname}','TemplateController@destroy');
 Route::get('/templates/{tname}', 'TemplateController@show');
 
 //Route to template viewer page
-Route::get('/templateViewer', 'TemplateController@viewTemplates');
+Route::get('/templates/index', 'TemplateController@viewTemplates');
