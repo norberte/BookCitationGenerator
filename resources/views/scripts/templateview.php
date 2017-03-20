@@ -1,26 +1,26 @@
 <?php
 
 
+use App\Http\Controllers;
 
 
 //include('../../../app/Http/Controllers/TemplateController.php');
 
     //retrieves the template edit/select/view/delete from javascript
 //retrieves the templatename
-$templatename = $_POST["templatename"];
-
-
+$templateName = $_POST["templatename"];
 
     $delete = $_POST["fieldname"];
+print_r($templateName);
 
 
 
-echo $templatename;
-echo $delete;
 
 
 
-//return ('/templates/{tname}', compact($templatename));
+//return view ('/templates/{tname}', compact($templatename));
+
+
 
 
 

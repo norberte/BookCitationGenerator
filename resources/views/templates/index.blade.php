@@ -130,7 +130,6 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     "defaultContent": "<button class = 'select' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Select!</button>"}
             ]
         } );
-        // DataTable
         var table = $('#example').DataTable();
 
         //After clicking the button, it retrieves the Template Name
@@ -145,6 +144,21 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
             if ( $(this).hasClass('select') ) {
                     fieldname ='delete';
+
+                $.ajax({
+                    type: "delete",
+                    url: "templates/" + templatename,
+                    data:{
+
+                    },
+                    success: function(data){
+                        alert("Success!");
+                    }
+                });
+                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
+            }
+            if ( $(this).hasClass('delete') ) {
+                fieldname = 'delete';
                 $.ajax({
                     type: "post",
                     url: "../resources/views/scripts/templateview.php",
@@ -156,22 +170,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                         alert("Success!");
                     }
                 });
-                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
-            }
-            if ( $(this).hasClass('delete') ) {
-                fieldname = 'delete';
-                $.ajax({
-                    type: "POST",
-                    url: "../resources/views/scripts/templateview.php",
-                    data:{
-                        fieldname: fieldname,
-                        templatename: templatename
-                    },
-                    success: function(data){
-                        alert("Success!");
-                    }
-                });
-                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
+                window.location.href = "http://localhost/bookcat/public/templates/" + templatename;
             }
             if ( $(this).hasClass('edit') ) {
                 fieldname = 'edit';
@@ -191,17 +190,15 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             if ( $(this).hasClass('view') ) {
                 fieldname = 'view';
                 $.ajax({
-                    type: "POST",
-                    url: "../resources/views/scripts/templateview.php",
+                    type: "get",
+                    url: "templates/" + templatename,
                     data:{
-                        fieldname: fieldname,
-                        templatename: templatename
                     },
                     success: function(data){
                         alert("Success!");
                     }
                 });
-                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
+                window.location.href = "http://localhost/bookcat/public/templates/" + templatename;
             }
 
         } );

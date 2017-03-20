@@ -58,20 +58,23 @@ class TemplateController extends Controller
 
     // deletes a specific template
     // COMPLETE
-    public function destroy($templateName)
+    public function destroy($tname)
     {
-        DB::table('template')->where('tname', '=', $templateName)->delete();
+
+
+
+        DB::table('template')->where('tname','=', $tname)->delete();
 
         // redirect
         // Session::flash('message', 'Successfully deleted the template!');
-        return view('templates.index');
+        return view('templates/index');
     }
 
     // shows a specific template
     // COMPLETE
     public function show($tname)
     {
-        $template = DB::table('template')->select('content')->where('tname', '=', $tname)->get();
+        $template = DB::table('template')->select('tname')->where('tname', '=', $tname)->get();
 
         return view('templates.show')->with('template', $template);
     }

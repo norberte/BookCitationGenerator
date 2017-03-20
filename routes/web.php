@@ -71,7 +71,7 @@ Route::get('/templates/{tname}/edit', 'TemplateController@edit');
 Route::post('/templates/{tname}', 'TemplateController@update');
 
 //Route to delete a selected template, {tname} - name of template expected
-Route::delete('/templates/{tname}','TemplateController@destroy');
+Route::post('/templates/{tname}','TemplateController@destroy');
 
 //Route to show all info about specific book, {tname} - name of template expected
 Route::get('/templates/{tname}', 'TemplateController@show');
