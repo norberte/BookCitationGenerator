@@ -1,4 +1,3 @@
-<!-- app/views/nerds/show.blade.php -->
 
 <!DOCTYPE html>
 <html>
@@ -8,7 +7,7 @@
 </head>
 <body>
 <div class="container">
-
+<strong>{{$template}}</strong>
 </div>
 </body>
 </html>

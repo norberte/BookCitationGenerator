@@ -23,20 +23,10 @@ $columns = array(
 $sql_details = array(
     'user' => 'root',
     'pass' => 'arcade', // to be changed for every different instance of a local DB
-    'db'   => 'bookCat',
+    'db'   => 'bookcat',
     'host' => 'localhost'
 );
 
-
-
-
-function delete(){
-
-    $rowNumber = 2;
-        $delete = App\Book::find($rowNumber);
-        $delete->delete();
-
-}
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -47,5 +37,5 @@ function delete(){
 require('ssp.class.php');
 
 echo json_encode(
-    \SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
+    \SSP::simple( $_POST, $sql_details, $table, $primaryKey, $columns)
 );

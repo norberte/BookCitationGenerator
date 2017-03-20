@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" href = "../resources/views/layouts/navbar.css" />
     <script type= "text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -8,6 +9,8 @@
     <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="index.css" />
+
 </head>
 <body>
 <style>
@@ -112,7 +115,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             "columnDefs": [ {
                 "targets": 1,
                 "data": 'view',
-                "defaultContent": "<button class = 'view' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px; '>View!</button>"},
+                "defaultContent": "<button class = 'view' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>View!</button>"},
                 {
                     "targets": 2,
                     "data": 'edit',
@@ -127,7 +130,6 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     "defaultContent": "<button class = 'select' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Select!</button>"}
             ]
         } );
-        // DataTable
         var table = $('#example').DataTable();
 
         //After clicking the button, it retrieves the Template Name
@@ -141,35 +143,62 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
 
             if ( $(this).hasClass('select') ) {
-                fieldname = 'select';
+                    fieldname ='delete';
+
                 $.ajax({
-                    "processing": true,
-                    "serverSide": true,
-                    url: "../resources/views/scripts/server_processing_templateViewer.php",
-                    type: "post",
+                    type: "delete",
+                    url: "templates/" + templatename,
                     data:{
-                        fieldname: 'fieldname'
+
                     },
-                    datatype: 'string',
                     success: function(data){
-
+                        alert("Success!");
                     }
-
                 });
-
                 alert( "Template Name: " + templatename + " Field Name: " + fieldname);
             }
             if ( $(this).hasClass('delete') ) {
                 fieldname = 'delete';
-                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
+                $.ajax({
+                    type: "post",
+                    url: "../resources/views/scripts/templateview.php",
+                    data:{
+                        fieldname: fieldname,
+                        templatename: templatename
+                    },
+                    success: function(data){
+                        alert("Success!");
+                    }
+                });
+                window.location.href = "http://localhost/bookcat/public/templates/" + templatename;
             }
             if ( $(this).hasClass('edit') ) {
                 fieldname = 'edit';
+                $.ajax({
+                    type: "POST",
+                    url: "../resources/views/scripts/templateview.php",
+                    data:{
+                        fieldname: fieldname,
+                        templatename: templatename
+                    },
+                    success: function(data){
+                        alert("Success!");
+                    }
+                });
                 alert( "Template Name: " + templatename + " Field Name: " + fieldname);
             }
             if ( $(this).hasClass('view') ) {
                 fieldname = 'view';
-                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
+                $.ajax({
+                    type: "get",
+                    url: "templates/" + templatename,
+                    data:{
+                    },
+                    success: function(data){
+                        alert("Success!");
+                    }
+                });
+                window.location.href = "http://localhost/bookcat/public/templates/" + templatename;
             }
 
         } );
