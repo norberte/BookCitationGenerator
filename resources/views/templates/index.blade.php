@@ -9,7 +9,6 @@
     <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="index.css" />
 
 </head>
 <body>
@@ -100,18 +99,14 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
 <script>
 
-
-    //need to send an Ajax request to the server which will then do "DELETE FROM whatever WHERE something=somethingelse
-
-
-
     $(document).ready(function() {
         // Setup - add a text input to each footer cell
         $('#example').DataTable( {
+            //search only works if serverside is set to false....Not sure if we will run into
+            // any more problems because of this, but if we do changing it back to true should be a start
             "processing": true,
-            "serverSide": true,
+            "serverside": false,
             "ajax": "../resources/views/scripts/server_processing_templateViewer.php",
-
             "columnDefs": [ {
                 "targets": 1,
                 "data": 'view',
@@ -130,6 +125,8 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     "defaultContent": "<button class = 'select' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Select!</button>"}
             ]
         } );
+
+
         var table = $('#example').DataTable();
 
         //After clicking the button, it retrieves the Template Name
@@ -202,7 +199,18 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             }
 
         } );
+        // DataTable
+        var table = $('#example').DataTable();
 
+        // Apply the search
+        table.columns().eq( 0 ).each( function ( colIdx ) {
+            $( 'input', table.column( colIdx ).header() ).on( 'keyup change', function () {
+                table
+                    .column( colIdx )
+                    .search( this.value )
+                    .draw();
+            } );
+        } );
 
     } );
 </script>
@@ -211,15 +219,15 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
     <table width="100%" class="display nowrap dataTable dtr-inline" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
         <thead>
         <tr role="row">
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Template Name
+            <th tabindex="0" class="sorting_asc" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" aria-sort="ascending" rowspan="1" colspan="1">Template Name
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> View
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">View
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Edit
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Edit
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Delete
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Delete
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Select
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Select
             </th>
         </tr>
         </thead>
