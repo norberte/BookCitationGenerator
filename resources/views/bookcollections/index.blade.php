@@ -29,10 +29,15 @@
                         <li>  
                              
                              <a href={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}}>{{$collection->cname}}</a> 
+                            
                             <div class="st-content">
+
                               
                             </div>
                         </li>
+                         <form action = "{{'/bookcollections/'.$collection->cname}}">
+                               <input type ="submit" value="delete">
+                             </form>
                         @endforeach
                     </ul>
                 </div>
