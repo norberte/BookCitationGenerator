@@ -137,60 +137,57 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             if ( $(this).hasClass('select') ) {
                 $.ajax({
                     type: "get",
-                    url: "../resources/views/scripts/server_processing_templateViewer.php" + templatename,
-                    data:{
-                    },
-                    success: function(data){
-                        alert("Success!");
-                    }
+
+                    url: "/templates/apply"
+                    //data: {
+                    //   templatename: templatename
+                    //},
+
                 });
-                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
+                window.location.href = "http://localhost/bookcat/public/templates/apply";
             }
             if ( $(this).hasClass('delete') ) {
                 $.ajax({
+
                     type: "POST",
                    url: "../resources/views/scripts/templateview.blade.php",
                     data:{
                         templatename: templatename
+
                     },
                     success: function(data){
                         alert("Success!");
                     }
                 });
+
                 location.reload();
             }
             if ( $(this).hasClass('edit') ) {
-
                 $.ajax({
-                    type: "POST",
-                    url: "../resources/views/scripts/templateview.blade.php",
+                    type: "get",
+                    url: "/templates/" + templatename + "/edit",
                     data:{
-                        fieldname: fieldname,
-                        templatename: templatename
+                        //templatename: templatename
                     },
                     success: function(data){
                         alert("Success!");
                     }
                 });
-                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
+                window.location.href = "http://localhost/bookcat/public/templates/" + templatename + "/edit";
             }
             if ( $(this).hasClass('view') ) {
                 $.ajax({
                     type: "get",
                     url: "templates/" + templatename,
                     data:{
-                    },
-                    success: function(data){
-                        alert("Success!");
                     }
                 });
                 window.location.href = "http://localhost/bookcat/public/templates/" + templatename;
             }
-
         } );
+
         // DataTable
         var table = $('#example').DataTable();
-
         // Apply the search
         table.columns().eq( 0 ).each( function ( colIdx ) {
             $( 'input', table.column( colIdx ).header() ).on( 'keyup change', function () {

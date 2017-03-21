@@ -10,7 +10,7 @@ $templateName = $_POST["templatename"];
 
 
 //routes to the location where the template name will get deleted from the database
-header("Location: http://localhost/bookcat/public/templates/". $templateName . "/delete");
+header("Location: http://localhost/bookcat/public/templates/delete/".$templateName);
 
 exit();
 
