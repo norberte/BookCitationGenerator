@@ -65,7 +65,9 @@ class TemplateController extends Controller
         DB::table('template')->where('tname','=', $tname)->delete();
 
         // Session::flash('message', 'Successfully deleted the template!');
+
         return Redirect::to('/templates');
+
     }
 
     // shows a specific template
@@ -73,7 +75,9 @@ class TemplateController extends Controller
     public function show($tname)
     {
         $template = DB::table('template')->select('tname')->where('tname', '=', $tname)->get();
+
         return view('templates.show')->with('template', $template);
+
     }
 
     // shows all templates
@@ -82,16 +86,12 @@ class TemplateController extends Controller
     {
         //$templates = Template::all();
         //$templates = DB::table('template')->select('*')->get();
-
         // load the view and pass all templates
         //return view('/templates/index')->with('templates', $templates);
         return view('/templates/index');
     }
-
     public function applyTemplate()
     {
         return Redirect::to('/templates/apply');
     }
-
-
 }

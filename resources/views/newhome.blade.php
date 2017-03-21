@@ -7,6 +7,8 @@
 	    <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	    <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.1/css/select.dataTables.min.css">
+	    <script type="text/javascript" scr="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
 	</head>
 	<body>
 	<style>
@@ -19,6 +21,12 @@
 	tfoot {
 	    display: table-header-group;
 	}
+	#form1 div{
+		display:block;
+		margin:0.3em;
+	}
+	
+
 
 	#content{
 	  width: 90%;
@@ -66,6 +74,112 @@
 	    text-decoration: none;
 	    cursor: pointer;
 	}
+
+	/* Full-width input fields */
+#form1 input[type=hidden]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: none;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#form1 p{
+	color:white;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin-right:8em;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    float:right;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn1 {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn1,.signupbtn1 {float:left;width:50%}
+
+/* Add padding to container elements */
+.container1 {
+    padding: 16px;
+}
+
+/* The Modal (background) */
+.modal1 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    top: 50%;
+  	left: 50%;
+  	width:95%;
+    max-width: 800px; /* Full width */
+    height:80%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,2); /* Black w/ opacity */
+    padding-top: 60px;
+    transform: translate(-50%, -50%);
+}
+}
+
+/* Modal Content/Box */
+.modal-content1 {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+.modal-overlay1{
+	  z-index: 1000;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+/* The Close Button (x) */
+.close1 {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    color: red;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.close1:hover,
+.close1:focus {
+    color: blue;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix1::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+}
 
 	</style>
 	<!--
@@ -121,7 +235,8 @@
 	                        Logout
 	                    </a>
 	                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
-	                        {{ csrf_field() }}
+	                    {{ csrf_token() }}
+	                        
 	                    </form>
 	            </ul>
 	        </div>
@@ -133,45 +248,100 @@
 <script>
     $(document).ready(function() {
         // Setup - add a text input to each footer cell
-				var selected = [];
-
+		
+        var selected =[];
 
       	$('#example').DataTable( {
             "processing": true,
             "serverSide": true,
-            "ajax": "../resources/views/scripts/ssp.class.php",
+            select: true,
+            "ajax": "../resources/views/scripts/server_processing.php",
 
-								 "columns": [
-		             {
-		                 "class":          "details-control",
-		                 "orderable":      false,
-		                 "data":           null,
-		                 "defaultContent": ""
-		             },
 
-							{"data:" : "id"},
-		             { "data": "Title" },
-							{ "data": "codeNum" },
-							 { "data": "authorLastName" },
-							 { "data": "authorFirstName" },
-							 { "data": "illustratorLastName" },
-							 { "data": "illustratorFirstName" },
-		             { "data": "translatorLastName" },
-							{ "data": "translatorFirstName" },
-							{ "data": "publisher" },
-							{ "data": "copyright" },
-		             { "data": "isbn" }
-		         ],
+	
+		
 
-		 "rowCallback": function( row, data ) {
-		             if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
-		                 $(row).addClass('selected');
-		             }
-		         }
+
 
 
 					//head brackets
         } );
+
+    /*javascript for my modal BY Andry*/
+        // Get the modal
+var modal1 = document.getElementById('myModal1');
+
+// Get the button that opens the modal
+var btn1 = document.getElementById("create");
+
+// Get the <span> element that closes the modal
+var span1 = document.getElementsByClassName("close1")[0];
+
+// When the user clicks the button, open the modal 
+btn1.onclick = function() {
+    modal1.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span1.onclick = function() {
+    modal1.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal1) {
+        modal1.style.display = "none";
+    }
+}
+
+     $('#example tbody').on( 'click', 'tr', function () {
+            $(this).toggleClass('selected');
+
+        });
+
+     // DataTable
+        var table = $('#example').DataTable();
+
+/*I created this script to dynamically add form inputs for every selected item of the user Andry*/
+     $('#create').on('click',function(){
+         
+     	selected = table.rows('.selected').data();
+     	form = document.getElementById('form1');
+     	var subbutoon = document.createElement('div');
+     	subbutoon.innerHTML = '<input type="text" name="cname" placeholder ="Enter Book collection name" />';
+     	form.appendChild(subbutoon);
+
+     	for(var i =0; i<selected.length; i++){
+    		var newcontent = document.createElement('div');
+    		newcontent.innerHTML = '<input type="hidden" name="books[]" value ="'+parseInt(selected[i])+'"/><br>';
+        	form.appendChild(newcontent);
+        	var newcontent1 = document.createElement('p');
+    		newcontent1.innerHTML = (selected[i]) + '<br>';
+        	form.appendChild(newcontent1);
+    					
+     		}
+ 
+
+  		
+     	
+               });
+        /*------*/ 	
+    //    $( "#myBtn" ).click( function() {
+        
+    // });
+
+    //  	for(var i =0; i<selected.length; i++){
+    //  		tid[i] = parseInt(selected[i]);
+     		
+    //  	}
+				// 	$.post('/bookcat/public/bookcollections', tid)
+				// })
+			window.setTimeout(function() {
+  $(".flash").fadeTo(500, 0).slideUp(500, function(){
+      $(this).remove();
+  	});
+			}, 5000);
+
 
 
         $('#example thead th').each( function () {
@@ -179,11 +349,16 @@
             $(this).html('<input type="text" placeholder="'+title+'" />' );
         } );
 
-        // DataTable
+
+
+       
+
+      
+
 
 
         // Apply the search
-        table.columns().eq( 0 ).each( function ( colIdx ) {
+        table.columns('#example').eq( 0 ).each( function ( colIdx ) {
             $( 'input', table.column( colIdx ).header() ).on( 'keyup change', function () {
                 table
                         .column( colIdx )
@@ -192,20 +367,6 @@
             } );
         } );
 
-				//this code is to make each row selectable so the user can see which row is selectedIndex
-
-				 
-				    $('#example tbody').on('click', 'tr', function () {
-				        var id = this.id;
-				        var index = $.inArray(id, selected);
-				 
-				        if ( index === -1 ) {
-				            selected.push( id );
-				        } else {
-				            selected.splice( index, 1 );
-				        }
-				 
-				        $(this).toggleClass('selected');
 
 
 				//so now use js to print all the selected books to a modal form and then when submitted
@@ -213,12 +374,7 @@
 				//so what this code below will do is when the button is clicked it will trasnfer the array from this file to the php to show book collecton
 
 
-		//insert file name here
-				$('#collect').on('click',function(){
-					$.post('', {selected: selected})
-				})
-
-				    } );
+		
 
 				// Setup - add a text input to each footer cell
 
@@ -241,37 +397,9 @@
 
 
 		//thi is used to create a button for each row that shows more info when clcked
-		var detailRows = [];
+	
  
-    $('#example tbody').on( 'click', 'tr td.details-control', function () {
-        var tr = $(this).closest('tr');
-        var row = dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );
- 
-        if ( row.child.isShown() ) {
-            tr.removeClass( 'details' );
-            row.child.hide();
- 
-            // Remove from the 'open' array
-            detailRows.splice( idx, 1 );
-        }
-        else {
-            tr.addClass( 'details' );
-            row.child( format( row.data() ) ).show();
- 
-            // Add to the 'open' array
-            if ( idx === -1 ) {
-                detailRows.push( tr.attr('id') );
-            }
-        }
-    } );
- 
-    // On each draw, loop over the `detailRows` array and show any child rows
-    dt.on( 'draw', function () {
-        $.each( detailRows, function ( i, id ) {
-            $('#'+id+' td.details-control').trigger( 'click' );
-        } );
-    } );
+  
 
 
     } );
@@ -316,7 +444,11 @@ function format ( d ) {
 </script>
 <!--
 -->
-<button id="myBtn">View Collection</button>
+<!-- flashes message after creating new collection then fades out after 5 seconds by ANdry -->
+@if (Session::has('message'))
+	<div class = "alert alert-success flash">{{ Session::get('message')}}</div>
+@endif
+
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -390,8 +522,33 @@ function format ( d ) {
 
 
 	</table>
+	
 
 
 	</div>
+
+		<!-- Trigger/Open The Modal -->
+<button id="create">Create  collection</button>
+
+<!-- The Modal -->
+<div id="myModal1" class="modal1">
+
+  <!-- Modal content -->
+  <div class="modal-overlay1">
+	
+
+
+    <span class="close1">&times;</span>
+    <div id="formdiv">
+    
+    	<form action="http://localhost/bookcat/public/bookcollections"  method="POST"  id="form1" >
+    	  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+            <input class="btn btn-primary" type="submit" value="Add bookcollection" name="signup">
+                </form>
+   </div>
+  </div>
+
+
+        
 	</body>
 	</html>

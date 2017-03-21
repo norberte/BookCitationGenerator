@@ -9,7 +9,6 @@
     <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="index.css" />
 
 </head>
 <body>
@@ -55,21 +54,20 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     <ul class="dropdown-menu">
                         <li><a href="{{url('/books/create')}}">Add Book</a></li>
                         <li><a href="{{url('/books/edit')}}">Edit Book</a></li>
-
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Add Template</a></li>
-                        <li><a href="#">Edit Template</a></li>
-
+                        <li><a href="{{url('/templates')}}">View Templates</a></li>
+                        <li><a href="{{url('/templates/create')}}">Add Template</a></li>
+                        <li><a href="{{url('/templates/edit')}}">Edit Template</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Add to collecton</a></li>
+                        <li><a href="#">Add to collection</a></li>
                         <li><a href="#">Edit Book</a></li>
                         <li><a href="#">Export</a></li>
                         <li><a href="{{url('/changePassword')}}">Change Password</a></li>
@@ -100,36 +98,34 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
 <script>
 
-
-    //need to send an Ajax request to the server which will then do "DELETE FROM whatever WHERE something=somethingelse
-
-
-
     $(document).ready(function() {
         // Setup - add a text input to each footer cell
         $('#example').DataTable( {
+            //search only works if serverside is set to false....Not sure if we will run into
+            // any more problems because of this, but if we do changing it back to true should be a start
             "processing": true,
-            "serverSide": true,
+            "serverSide": false,
             "ajax": "../resources/views/scripts/server_processing_templateViewer.php",
             "columnDefs": [ {
                 "targets": 1,
                 "data": 'view',
-                "defaultContent": "<button class = 'view' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>View!</button>"},
+                "defaultContent": "<button class = 'view' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>View!</button>"},
                 {
                     "targets": 2,
                     "data": 'edit',
-                    "defaultContent": "<button class = 'edit' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Edit!</button>"},
+                    "defaultContent": "<button class = 'edit' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Edit!</button>"},
                 {
+
                     "targets": 3,
                     "data": 'delete',
-                    "defaultContent": "<button class = 'delete' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Delete!</button>"},
+                    "defaultContent": "<button class = 'delete' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Delete!</button>"},
                 {
                     "targets": 4,
                     "data": 'select',
-                    "defaultContent": "<button class = 'select' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Select!</button>"}
+                    "defaultContent": "<button class = 'select' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Select!</button>"}
             ]
+
         } );
-        var table = $('#example').DataTable();
 
         //After clicking the button, it retrieves the Template Name
         $('#example tbody').on( 'click', 'button', function () {
@@ -140,25 +136,30 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             if ( $(this).hasClass('select') ) {
                 $.ajax({
                     type: "get",
+
                     url: "/templates/apply"
                     //data: {
                     //   templatename: templatename
                     //},
+
                 });
                 window.location.href = "http://localhost/bookcat/public/templates/apply";
             }
             if ( $(this).hasClass('delete') ) {
                 $.ajax({
-                    type: "post",
-                    url: "templates/delete/" + templatename,
+
+                    type: "POST",
+                   url: "../resources/views/scripts/templateview.blade.php",
                     data:{
-                        //templatename: templatename
+                        templatename: templatename
+
                     },
                     success: function(data){
                         alert("Success!");
                     }
                 });
-                window.location.href = "http://localhost/bookcat/public/templates/delete/" + templatename;
+                alert("Template Name: '" + templatename + "' has been deleted");
+                location.reload();
             }
             if ( $(this).hasClass('edit') ) {
                 $.ajax({
@@ -184,6 +185,17 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             }
         } );
 
+        // DataTable
+        var table = $('#example').DataTable();
+        // Apply the search
+        table.columns().eq( 0 ).each( function ( colIdx ) {
+            $( 'input', table.column( colIdx ).header() ).on( 'keyup change', function () {
+                table
+                    .column( colIdx )
+                    .search( this.value )
+                    .draw();
+            } );
+        } );
 
     } );
 </script>
@@ -192,15 +204,15 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
     <table width="100%" class="display nowrap dataTable dtr-inline" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
         <thead>
         <tr role="row">
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Template Name
+            <th tabindex="0" class="sorting_asc" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" aria-sort="ascending" rowspan="1" colspan="1">Template Name
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> View
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">View
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Edit
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Edit
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Delete
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Delete
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Select
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Select
             </th>
         </tr>
         </thead>
