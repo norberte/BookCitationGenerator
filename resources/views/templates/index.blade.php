@@ -105,29 +105,28 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             //search only works if serverside is set to false....Not sure if we will run into
             // any more problems because of this, but if we do changing it back to true should be a start
             "processing": true,
-            "serverside": false,
+            "serverSide": false,
             "ajax": "../resources/views/scripts/server_processing_templateViewer.php",
             "columnDefs": [ {
                 "targets": 1,
                 "data": 'view',
-                "defaultContent": "<button class = 'view' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>View!</button>"},
+                "defaultContent": "<button class = 'view' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>View!</button>"},
                 {
                     "targets": 2,
                     "data": 'edit',
-                    "defaultContent": "<button class = 'edit' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Edit!</button>"},
+                    "defaultContent": "<button class = 'edit' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Edit!</button>"},
                 {
+
                     "targets": 3,
                     "data": 'delete',
-                    "defaultContent": "<button class = 'delete' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Delete!</button>"},
+                    "defaultContent": "<button class = 'delete' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Delete!</button>"},
                 {
                     "targets": 4,
                     "data": 'select',
-                    "defaultContent": "<button class = 'select' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Select!</button>"}
+                    "defaultContent": "<button class = 'select' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Select!</button>"}
             ]
+
         } );
-
-
-        var table = $('#example').DataTable();
 
         //After clicking the button, it retrieves the Template Name
         $('#example tbody').on( 'click', 'button', function () {
@@ -135,18 +134,11 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             //store the template name in a variable
             var templatename = data[0];
 
-            //fieldname will be edit/view/select/delete
-            var fieldname;
-
-
             if ( $(this).hasClass('select') ) {
-                    fieldname ='delete';
-
                 $.ajax({
-                    type: "delete",
-                    url: "templates/" + templatename,
+                    type: "get",
+                    url: "../resources/views/scripts/server_processing_templateViewer.php" + templatename,
                     data:{
-
                     },
                     success: function(data){
                         alert("Success!");
@@ -155,25 +147,23 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                 alert( "Template Name: " + templatename + " Field Name: " + fieldname);
             }
             if ( $(this).hasClass('delete') ) {
-                fieldname = 'delete';
                 $.ajax({
-                    type: "post",
-                    url: "../resources/views/scripts/templateview.php",
+                    type: "POST",
+                   url: "../resources/views/scripts/templateview.blade.php",
                     data:{
-                        fieldname: fieldname,
                         templatename: templatename
                     },
                     success: function(data){
                         alert("Success!");
                     }
                 });
-                window.location.href = "http://localhost/bookcat/public/templates/" + templatename;
+                location.reload();
             }
             if ( $(this).hasClass('edit') ) {
-                fieldname = 'edit';
+
                 $.ajax({
                     type: "POST",
-                    url: "../resources/views/scripts/templateview.php",
+                    url: "../resources/views/scripts/templateview.blade.php",
                     data:{
                         fieldname: fieldname,
                         templatename: templatename
@@ -185,7 +175,6 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                 alert( "Template Name: " + templatename + " Field Name: " + fieldname);
             }
             if ( $(this).hasClass('view') ) {
-                fieldname = 'view';
                 $.ajax({
                     type: "get",
                     url: "templates/" + templatename,

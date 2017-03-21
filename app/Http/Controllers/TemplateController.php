@@ -67,7 +67,7 @@ class TemplateController extends Controller
 
         // redirect
         // Session::flash('message', 'Successfully deleted the template!');
-        return view('templates/index');
+        return view('/templates/index');
     }
 
     // shows a specific template
@@ -76,7 +76,7 @@ class TemplateController extends Controller
     {
         $template = DB::table('template')->select('tname')->where('tname', '=', $tname)->get();
 
-        return view('templates.show')->with('template', $template);
+        return view('/templates/show')->with('template', $template);
     }
 
     // shows all templates
@@ -84,14 +84,18 @@ class TemplateController extends Controller
     public function index()
     {
         //$templates = Template::all();
-        $templates = Request::all();
+
 
         // load the view and pass all templates
-        return view('templates.index')->with('templates', $templates);
+        return view('/templates/index');
     }
 
     public function view(){
-        return view('templates/index');
+        return view('/templates/index');
+    }
+
+    public function templateview(){
+        return view('/scripts/templateview');
     }
 
 
