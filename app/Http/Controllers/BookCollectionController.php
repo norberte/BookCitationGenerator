@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
 use App\bookcollection;
 
 class BookcollectionController extends Controller
@@ -31,7 +32,7 @@ class BookcollectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -45,15 +46,20 @@ class BookcollectionController extends Controller
     public function store(Request $request)
     {    
 
-        dd($request);
+        
         //in front end name="book_id[]""
         $bookcollection = new bookcollection;
 
         $bookcollection->cname = $request->cname;
         
         $bookcollection->save();
-
+        
+        /*set to false so I dont overwrite existing relationships.this adds the book array of ids and associates it with the corresponding request cname*/
         $bookcollection->books()->sync($request->books,false);
+
+        Session::flash('message', 'Successfully created collection!');
+
+        return redirect('/home');
 
 
     }
