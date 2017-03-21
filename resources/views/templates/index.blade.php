@@ -111,7 +111,6 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             "processing": true,
             "serverSide": true,
             "ajax": "../resources/views/scripts/server_processing_templateViewer.php",
-
             "columnDefs": [ {
                 "targets": 1,
                 "data": 'view',
@@ -138,69 +137,51 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             //store the template name in a variable
             var templatename = data[0];
 
-            //fieldname will be edit/view/select/delete
-            var fieldname;
-
-
             if ( $(this).hasClass('select') ) {
-                    fieldname ='delete';
-
                 $.ajax({
-                    type: "delete",
-                    url: "templates/" + templatename,
-                    data:{
-
-                    },
-                    success: function(data){
-                        alert("Success!");
-                    }
+                    type: "get",
+                    url: "/templates/apply"
+                    //data: {
+                    //   templatename: templatename
+                    //},
                 });
-                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
+                window.location.href = "http://localhost/bookcat/public/templates/apply";
             }
             if ( $(this).hasClass('delete') ) {
-                fieldname = 'delete';
                 $.ajax({
                     type: "post",
-                    url: "../resources/views/scripts/templateview.php",
+                    url: "templates/delete/" + templatename,
                     data:{
-                        fieldname: fieldname,
-                        templatename: templatename
+                        //templatename: templatename
                     },
                     success: function(data){
                         alert("Success!");
                     }
                 });
-                window.location.href = "http://localhost/bookcat/public/templates/" + templatename;
+                window.location.href = "http://localhost/bookcat/public/templates/delete/" + templatename;
             }
             if ( $(this).hasClass('edit') ) {
-                fieldname = 'edit';
                 $.ajax({
-                    type: "POST",
-                    url: "../resources/views/scripts/templateview.php",
+                    type: "get",
+                    url: "/templates/" + templatename + "/edit",
                     data:{
-                        fieldname: fieldname,
-                        templatename: templatename
+                        //templatename: templatename
                     },
                     success: function(data){
                         alert("Success!");
                     }
                 });
-                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
+                window.location.href = "http://localhost/bookcat/public/templates/" + templatename + "/edit";
             }
             if ( $(this).hasClass('view') ) {
-                fieldname = 'view';
                 $.ajax({
                     type: "get",
                     url: "templates/" + templatename,
                     data:{
-                    },
-                    success: function(data){
-                        alert("Success!");
                     }
                 });
                 window.location.href = "http://localhost/bookcat/public/templates/" + templatename;
             }
-
         } );
 
 
