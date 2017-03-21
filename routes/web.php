@@ -71,10 +71,14 @@ Route::get('/templates/{tname}/edit', 'TemplateController@edit');
 Route::post('/templates/{tname}', 'TemplateController@update');
 
 //Route to delete a selected template, {tname} - name of template expected
-Route::delete('/templates/{tname}','TemplateController@destroy');
+
+Route::get('/templates/delete/{tname}', 'TemplateController@destroy');
+
 
 //Route to show all info about specific book, {tname} - name of template expected
 Route::get('/templates/{tname}', 'TemplateController@show');
+
+Route::get('/templates/applyTemplate', 'TemplateController@applyTemplate');
 
 
 /*this is pretty cool instead of having to define every single route for get, post, delete patch etc. I defined a resouceful controller that automatically links to the required controller method here is an example of how the routes work: 
@@ -84,5 +88,8 @@ Route::resource('bookcollections','BookcollectionController');
 
 
 //Route to template viewer page
-Route::get('/templates', 'TemplateController@index');
+//Route::get('/templates', 'TemplateController@view');
+
+
+Route::get('/scripts/templateview/', 'TemplateController@templateview');
 

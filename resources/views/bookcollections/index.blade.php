@@ -17,8 +17,11 @@
         }
       </style>
     </noscript>
-    
-        
+
+            <?php
+                echo $_POST['templatename'];
+            ?>
+            <br>
             <div class="wrapper">
                 <div id="st-accordion" class="st-accordion">
                     <ul>
