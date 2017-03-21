@@ -39,10 +39,10 @@ class TemplateController extends Controller
     public function edit($tname)
     {
         // get the template
-        $template = DB::table('template')->select('content')->where('tname', '=', $tname)->get();
+        $template = DB::table('template')->select('*')->where('tname', '=', $tname)->get();
 
         // show the edit form and pass the template
-        return view('/templates/{tname}/edit')->with('template', $template);
+        return view('/templates/edit')->with('template', $template);
     }
 
     //  updates a specific template in the database
@@ -74,10 +74,9 @@ class TemplateController extends Controller
     // COMPLETE
     public function show($tname)
     {
-        $template = DB::table('template')->select('tname')->where('tname', '=', $tname)->get();
+        $template = DB::table('template')->select('*')->where('tname', '=', $tname)->get();
 
-        return view('templates.show')->with('template', $template);
-
+        return view('/templates/show')->with('template', $template);
     }
 
     // shows all templates
