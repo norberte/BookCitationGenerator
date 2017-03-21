@@ -109,20 +109,20 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             "columnDefs": [ {
                 "targets": 1,
                 "data": 'view',
-                "defaultContent": "<button class = 'view' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>View!</button>"},
+                "defaultContent": "<button class = 'view' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>View template</button>"},
                 {
                     "targets": 2,
                     "data": 'edit',
-                    "defaultContent": "<button class = 'edit' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Edit!</button>"},
+                    "defaultContent": "<button class = 'edit' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Edit template</button>"},
                 {
 
                     "targets": 3,
                     "data": 'delete',
-                    "defaultContent": "<button class = 'delete' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Delete!</button>"},
+                    "defaultContent": "<button class = 'delete' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Delete template</button>"},
                 {
                     "targets": 4,
                     "data": 'select',
-                    "defaultContent": "<button class = 'select' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Select!</button>"}
+                    "defaultContent": "<button class = 'select' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Apply template</button>"}
             ]
 
         } );
@@ -149,7 +149,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                 $.ajax({
 
                     type: "POST",
-                   url: "../resources/views/scripts/templateview.blade.php",
+                    url: "../resources/views/scripts/templateview.blade.php",
                     data:{
                         templatename: templatename
 

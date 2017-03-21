@@ -1,13 +1,23 @@
+@extends('layout.masterTemplate')
+@section('content')
+    <div class="container text-center">
+        <div class="row content">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8 text-left" style="text-align:center">
+                <h1>View Template</h1>
+            </div>
+            <div class="col-sm-12 form-group">
+                <label>Template Name: </label>
+                <strong>@foreach($template as $temp){{$temp->tname}}@endforeach</strong><br>
+            </div>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>View Template</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-<strong>{{$template}}</strong>
-</div>
-</body>
-</html>
+            <div class="col-sm-12 form-group">
+                <label>Template Content:</label>
+                @foreach($template as $temp)
+                    <strong>{{$temp->content}}</strong><br>
+                @endforeach
+            </div>
+        </div>
+    </div>
+@endsection
