@@ -35,21 +35,20 @@ navigation links
           <ul class="dropdown-menu">
             <li><a href="{{url('/books/create')}}">Add Book</a></li>
             <li><a href="{{url('/books/edit')}}">Edit Book</a></li>
-          
           </ul>
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Add Template</a></li>
-            <li><a href="#">Edit Template</a></li>
-
+            <li><a href="{{url('/templates')}}">View Templates</a></li>
+            <li><a href="{{url('/templates/create')}}">Add Template</a></li>
+            <li><a href="{{url('/templates/edit')}}">Edit Template</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Add to collecton</a></a></li>
+            <li><a href="#">Add to collection</a></li>
             <li><a href="#">Edit Book</a></li>
             <li><a href="#">Export</a></li>
             <li><a href="{{url('/changePassword')}}">Change Password</a></li>
