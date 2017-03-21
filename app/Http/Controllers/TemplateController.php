@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
+use Illuminate\Support\Facades\Redirect;
 use App\Template;
+use Session;
 
 
 
@@ -29,7 +31,7 @@ class TemplateController extends Controller
 
         // redirect
         // Session::flash('message', 'Successfully added the template!');
-        return view('/templates/index');
+        return Redirect::to('/templates');
     }
 
     // shows the form for editing the specified template
@@ -40,7 +42,7 @@ class TemplateController extends Controller
         $template = DB::table('template')->select('content')->where('tname', '=', $tname)->get();
 
         // show the edit form and pass the template
-        return view('/templates/edit/{tname}')->with('template', $template);
+        return view('/templates/{tname}/edit')->with('template', $template);
     }
 
     //  updates a specific template in the database
@@ -53,21 +55,19 @@ class TemplateController extends Controller
 
         // redirect
         // Session::flash('message', 'Successfully updated the template!');
-        return view('/templates/index');
+        return Redirect::to('/templates');
     }
 
     // deletes a specific template
     // COMPLETE
     public function destroy($tname)
     {
-
-
-
         DB::table('template')->where('tname','=', $tname)->delete();
 
-        // redirect
         // Session::flash('message', 'Successfully deleted the template!');
-        return view('templates/index');
+
+        return Redirect::to('/templates');
+
     }
 
     // shows a specific template
@@ -77,6 +77,7 @@ class TemplateController extends Controller
         $template = DB::table('template')->select('tname')->where('tname', '=', $tname)->get();
 
         return view('templates.show')->with('template', $template);
+
     }
 
     // shows all templates
@@ -84,16 +85,13 @@ class TemplateController extends Controller
     public function index()
     {
         //$templates = Template::all();
-        $templates = Request::all();
-
+        //$templates = DB::table('template')->select('*')->get();
         // load the view and pass all templates
-        return view('templates.index')->with('templates', $templates);
+        //return view('/templates/index')->with('templates', $templates);
+        return view('/templates/index');
     }
-
-    public function view(){
-        return view('templates/index');
+    public function applyTemplate()
+    {
+        return Redirect::to('/templates/apply');
     }
-
-
-
 }

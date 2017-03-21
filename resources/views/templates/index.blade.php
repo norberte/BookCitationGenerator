@@ -9,7 +9,6 @@
     <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="index.css" />
 
 </head>
 <body>
@@ -100,37 +99,34 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
 <script>
 
-
-    //need to send an Ajax request to the server which will then do "DELETE FROM whatever WHERE something=somethingelse
-
-
-
     $(document).ready(function() {
         // Setup - add a text input to each footer cell
         $('#example').DataTable( {
+            //search only works if serverside is set to false....Not sure if we will run into
+            // any more problems because of this, but if we do changing it back to true should be a start
             "processing": true,
-            "serverSide": true,
+            "serverSide": false,
             "ajax": "../resources/views/scripts/server_processing_templateViewer.php",
-
             "columnDefs": [ {
                 "targets": 1,
                 "data": 'view',
-                "defaultContent": "<button class = 'view' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>View!</button>"},
+                "defaultContent": "<button class = 'view' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>View!</button>"},
                 {
                     "targets": 2,
                     "data": 'edit',
-                    "defaultContent": "<button class = 'edit' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Edit!</button>"},
+                    "defaultContent": "<button class = 'edit' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Edit!</button>"},
                 {
+
                     "targets": 3,
                     "data": 'delete',
-                    "defaultContent": "<button class = 'delete' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Delete!</button>"},
+                    "defaultContent": "<button class = 'delete' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Delete!</button>"},
                 {
                     "targets": 4,
                     "data": 'select',
-                    "defaultContent": "<button class = 'select' style='background-color:#3C3F41; color: white; border:none; padding: 10px 24px;'>Select!</button>"}
+                    "defaultContent": "<button class = 'select' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Select!</button>"}
             ]
+
         } );
-        var table = $('#example').DataTable();
 
         //After clicking the button, it retrieves the Template Name
         $('#example tbody').on( 'click', 'button', function () {
@@ -138,71 +134,69 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             //store the template name in a variable
             var templatename = data[0];
 
-            //fieldname will be edit/view/select/delete
-            var fieldname;
-
-
             if ( $(this).hasClass('select') ) {
-                    fieldname ='delete';
-
                 $.ajax({
-                    type: "delete",
-                    url: "templates/" + templatename,
-                    data:{
+                    type: "get",
 
-                    },
-                    success: function(data){
-                        alert("Success!");
-                    }
+                    url: "/templates/apply"
+                    //data: {
+                    //   templatename: templatename
+                    //},
+
                 });
-                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
+                window.location.href = "http://localhost/bookcat/public/templates/apply";
             }
             if ( $(this).hasClass('delete') ) {
-                fieldname = 'delete';
                 $.ajax({
-                    type: "post",
-                    url: "../resources/views/scripts/templateview.php",
+
+                    type: "POST",
+                   url: "../resources/views/scripts/templateview.blade.php",
                     data:{
-                        fieldname: fieldname,
                         templatename: templatename
+
                     },
                     success: function(data){
                         alert("Success!");
                     }
                 });
-                window.location.href = "http://localhost/bookcat/public/templates/" + templatename;
+
+                location.reload();
             }
             if ( $(this).hasClass('edit') ) {
-                fieldname = 'edit';
                 $.ajax({
-                    type: "POST",
-                    url: "../resources/views/scripts/templateview.php",
+                    type: "get",
+                    url: "/templates/" + templatename + "/edit",
                     data:{
-                        fieldname: fieldname,
-                        templatename: templatename
+                        //templatename: templatename
                     },
                     success: function(data){
                         alert("Success!");
                     }
                 });
-                alert( "Template Name: " + templatename + " Field Name: " + fieldname);
+                window.location.href = "http://localhost/bookcat/public/templates/" + templatename + "/edit";
             }
             if ( $(this).hasClass('view') ) {
-                fieldname = 'view';
                 $.ajax({
                     type: "get",
                     url: "templates/" + templatename,
                     data:{
-                    },
-                    success: function(data){
-                        alert("Success!");
                     }
                 });
                 window.location.href = "http://localhost/bookcat/public/templates/" + templatename;
             }
-
         } );
 
+        // DataTable
+        var table = $('#example').DataTable();
+        // Apply the search
+        table.columns().eq( 0 ).each( function ( colIdx ) {
+            $( 'input', table.column( colIdx ).header() ).on( 'keyup change', function () {
+                table
+                    .column( colIdx )
+                    .search( this.value )
+                    .draw();
+            } );
+        } );
 
     } );
 </script>
@@ -211,15 +205,15 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
     <table width="100%" class="display nowrap dataTable dtr-inline" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
         <thead>
         <tr role="row">
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Template Name
+            <th tabindex="0" class="sorting_asc" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" aria-sort="ascending" rowspan="1" colspan="1">Template Name
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> View
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">View
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Edit
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Edit
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Delete
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Delete
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Select
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Select
             </th>
         </tr>
         </thead>
