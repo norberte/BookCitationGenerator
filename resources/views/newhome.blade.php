@@ -181,6 +181,14 @@ button {
     }
 }
 
+td.details-control {
+    background: url('../resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.details td.details-control {
+    background: url('../resources/details_close.png') no-repeat center center;
+}
+
 	</style>
 	<!--
 	This is used to display the field of the books in the Datatable, as a way to provide searching for books by different fields link the drop down button to a different
@@ -221,9 +229,9 @@ button {
 	                <li class="dropdown">
 	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
 	                    <ul class="dropdown-menu">
-	                        <li><a href="#">Add to collecton</a></li>
-	                        <li><a href="#">Edit Book</a></li>
-	                        <li><a href="#">Export</a></li>
+	                        <li><a href="{{url('/bookcollections')}}">View Collections</a></li>
+            
+            				<li><a href="#">Export</a></li>
 	                        <li><a href="{{url('/changePassword')}}">Change Password</a></li>
 	                    </ul>
 	                </li>
@@ -246,16 +254,27 @@ button {
 
 
 <script>
+ function format ( d ) {
+         return 'Title: '+d.title+ '<br>'+
+        'Author Fullname: '+d.authorLastName+ ',' + d.authorFirstName + '<br>'+
+        'Illustrator Fullname' + d.illustratorLastName+ ',' + d.illustratorFirstName+ '<br />'+
+        'Translator Fullname:' + d.translatorLastName + ',' + d.illustratorFirstName+ '<br>' +
+        'publisher' + d.publisher + '<br />';
+    }
     $(document).ready(function() {
         // Setup - add a text input to each footer cell
-		
+		//ths is what is going to be shown in the child row containing the child row
+	
+
+
         var selected =[];
 
-      	$('#example').DataTable( {
+      	var table = $('#example').DataTable( {
             "processing": true,
             "serverSide": true,
             select: true,
-            "ajax": "../resources/views/scripts/server_processing.php",
+            "ajax": "../resources/views/scripts/server_processing.php"
+
 
 
 	
@@ -266,6 +285,11 @@ button {
 
 					//head brackets
         } );
+      
+    
+  
+ 
+   
 
     /*javascript for my modal BY Andry*/
         // Get the modal
@@ -300,7 +324,7 @@ window.onclick = function(event) {
         });
 
      // DataTable
-        var table = $('#example').DataTable();
+        
 
 /*I created this script to dynamically add form inputs for every selected item of the user Andry*/
      $('#create').on('click',function(){
@@ -432,14 +456,6 @@ window.onclick = function(event) {
     }
 }
 
-//ths is what is going to be shown in the child row containing the child row
-function format ( d ) {
-    return 'Title: '+d.title+ '<br>'+
-        'Author Fullname: '+d.authorLastName+ ',' + d.authorFirstName + '<br>'+
-        'Illustrator Fullname' + d.illustratorLastName+ ',' + d.illustratorFirstName+ '<br />'+
-        'Translator Fullname:' + d.translatorLastName + ',' + d.illustratorFirstName+ '<br>' +
-        'publisher' + d.publisher + '<br />';
-}
 
 </script>
 <!--
@@ -492,7 +508,7 @@ function format ( d ) {
 	    </tr>
 	  </thead>
 	  <tfoot>
-	    <tr>
+	    <tr id= "showchild">
 				<th class="dt-body-right" rowspan="1" colspan="1">Book ID
 	      </th>
 	      <th class="dt-body-right" rowspan="1" colspan="1">Book Title

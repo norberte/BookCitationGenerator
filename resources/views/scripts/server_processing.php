@@ -11,7 +11,7 @@ $primaryKey = 'id';
 // indexes
 
 $columns = array(
-    array( 'db' => 'id', 'dt' => 0 ),
+    array( 'db' => 'id', 'dt' => 0),
     array( 'db' => 'title', 'dt' => 1 ),
     array( 'db' => 'codeNum', 'dt' => 2 ),
     array( 'db' => 'authorLastName', 'dt' => 3 ),

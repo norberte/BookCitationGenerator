@@ -46,8 +46,8 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Colletion <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Add to collecton</a></a></li>
-            <li><a href="#">Edit Book</a></li>
+           <li><a href="{{url('/bookcollections')}}">View Collections</a></li>
+            
             <li><a href="#">Export</a></li>
           </ul>
         </li>

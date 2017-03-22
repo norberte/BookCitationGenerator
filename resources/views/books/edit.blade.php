@@ -1,390 +1,481 @@
-
-<?php
-use App\Book;
-
-//This is here because it will let me skip the values that are not in the json file.
-// it could be dangerous, but it seems to work right now.
-error_reporting(E_ERROR | E_PARSE);
-
-?>
-        <!-- this populates the form when you try to edit a book -->
-
-        <!-- change the number next to bid to change which book you are going to edit -->
-
-        <?php
-        // the book to change
-        $id = '2';
-
-        // retrieves the row from database from requested bid
-        $json = App\Book::where('id', $id)->get();
-
-        // turns the JSON file into a string
-        $items = json_decode($json[0]['bookAttr'], true);
-
-
-        ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Add Book</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href = "../resources/views/layouts/navbar.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <style>
-        th{
-            text-align: center;
-        }
-    </style>
+ <title>Edit Book</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href = "../resources/views/layouts/navbar.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link rel="stylesheet" type="text/css" href="stylesheet.css">
+ <style>
+ th{
+ text-align: center;
+ }
+ #wrapper{
+    -moz-box-shadow:0px 0px 3px #aaa;
+    -webkit-box-shadow:0px 0px 3px #aaa;
+    box-shadow:0px 0px 3px #aaa;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    border:2px solid #fff;
+    background-color:#f9f9f9;
+    width:600px;
+    overflow:hidden;
+}
+#steps{
+    width:800px;
+    overflow:hiden;
+}
+.step{
+    float:left;
+    width:600px;
+}
+#navigation1{
+    height:45px;
+    background-color:#e9e9e9;
+    border-top:1px solid #fff;
+    -moz-border-radius:0px 0px 10px 10px;
+    -webkit-border-bottom-left-radius:10px;
+    -webkit-border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+}
+#navigation1 ul{
+    list-style:none;
+  float:left;
+  margin-left:22px;
+}
+#navigation1 ul li{
+  clear:right;
+  float:left;
+    border-right:1px solid #ccc;
+    border-left:1px solid #ccc;
+    position:relative;
+  margin:0px 2px;
+}
+#navigation1 ul li a{
+    display:block;
+    height:45px;
+    background-color:#444;
+    color:#777;
+    outline:none;
+    font-weight:bold;
+    text-decoration:none;
+    line-height:45px;
+    padding:0px 20px;
+    border-right:1px solid #fff;
+    border-left:1px solid #fff;
+    background:#f0f0f0;
+    background:
+        -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.09, rgb(240,240,240)),
+        color-stop(0.55, rgb(227,227,227)),
+        color-stop(0.78, rgb(240,240,240))
+        );
+    background:
+        -moz-linear-gradient(
+        center bottom,
+        rgb(240,240,240) 9%,
+        rgb(227,227,227) 55%,
+        rgb(240,240,240) 78%
+        )
+}
+#navigation1 ul li a:hover,
+#navigation1 ul li.selected a{
+    background:#d8d8d8;
+    color:#666;
+    text-shadow:1px 1px 1px #fff;
+}
+span.checked{
+    background:transparent url(../images/checked.png) no-repeat top left;
+    position:absolute;
+    top:0px;
+    left:1px;
+    width:20px;
+    height:20px;
+}
+span.error{
+    background:transparent  no-repeat top left;
+    position:absolute;
+    top:0px;
+    left:1px;
+    width:20px;
+    height:20px;
+}
+#push{
+
+  margin-left:24em;
+}
+
+#steps form fieldset{
+    border:none;
+    padding-bottom:20px;
+}
+#steps form legend{
+    text-align:left;
+    background-color:#f0f0f0;
+    color:#666;
+    font-size:24px;
+    text-shadow:1px 1px 1px #fff;
+    font-weight:bold;
+    float:left;
+    width:590px;
+    padding:5px 0px 5px 10px;
+    margin:10px 0px;
+    border-bottom:1px solid #fff;
+    border-top:1px solid #d9d9d9;
+}
+#steps form p{
+    float:left;
+    clear:both;
+    margin:5px 0px;
+    background-color:#f4f4f4;
+    border:1px solid #fff;
+    width:400px;
+    padding:10px;
+    margin-left:100px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow:0px 0px 3px #aaa;
+    -webkit-box-shadow:0px 0px 3px #aaa;
+    box-shadow:0px 0px 3px #aaa;
+}
+#steps form p label{
+    width:160px;
+    float:left;
+    text-align:right;
+    margin-right:15px;
+    line-height:26px;
+    color:#666;
+    text-shadow:1px 1px 1px #fff;
+    font-weight:bold;
+}
+#steps form input:not([type=radio]),
+#steps form textarea,
+#steps form select{
+    background: #ffffff;
+    border: 1px solid #ddd;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    outline: none;
+    padding: 5px;
+    width: 200px;
+    float:left;
+}
+#steps form input:focus{
+    -moz-box-shadow:0px 0px 3px #aaa;
+    -webkit-box-shadow:0px 0px 3px #aaa;
+    box-shadow:0px 0px 3px #aaa;
+    background-color:#FFFEEF;
+}
+#steps form p.submit{
+    background:none;
+    border:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+}
+#steps form button {
+  border:none;
+  outline:none;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    color: #ffffff;
+    display: block;
+    cursor:pointer;
+    margin: 0px auto;
+    clear:both;
+    padding: 7px 25px;
+    text-shadow: 0 1px 1px #777;
+    font-weight:bold;
+    font-family:"Century Gothic", Helvetica, sans-serif;
+    font-size:22px;
+    -moz-box-shadow:0px 0px 3px #aaa;
+    -webkit-box-shadow:0px 0px 3px #aaa;
+    box-shadow:0px 0px 3px #aaa;
+    background:#4797ED;
+}
+#steps form button:hover {
+    background:#d8d8d8;
+    color:#666;
+    text-shadow:1px 1px 1px #fff;
+}
+
+ </style>
+ <script>
+ $(document).ready(function(){
+  /*
+  number of fieldsets
+  */
+  var fieldsetCount = $('#formElem').children().length;
+
+  /*
+  current position of fieldset / navigation link
+  */
+  var current   = 1;
+
+  /*
+  sum and save the widths of each one of the fieldsets
+  set the final sum as the total width of the steps element
+  */
+  var stepsWidth  = 0;
+    var widths    = new Array();
+  $('#steps .step').each(function(i){
+        var $step     = $(this);
+    widths[i]     = stepsWidth;
+        stepsWidth    += $step.width();
+    });
+  $('#steps').width(stepsWidth);
+
+  /*
+  to avoid problems in IE, focus the first input of the form
+  */
+  $('#formElem').children(':first').find(':input:first').focus(); 
+
+  /*
+  show the navigation bar
+  */
+  $('#navigation1').show();
+
+  /*
+  when clicking on a navigation link
+  the form slides to the corresponding fieldset
+  */
+    $('#navigation1 a').bind('click',function(e){
+    var $this = $(this);
+    var prev  = current;
+    $this.closest('ul').find('li').removeClass('selected');
+        $this.parent().addClass('selected');
+    /*
+    we store the position of the link
+    in the current variable
+    */
+    current = $this.parent().index() + 1;
+    /*
+    animate / slide to the next or to the corresponding
+    fieldset. The order of the links in the navigation
+    is the order of the fieldsets.
+    Also, after sliding, we trigger the focus on the first
+    input element of the new fieldset
+    If we clicked on the last link (confirmation), then we validate
+    all the fieldsets, otherwise we validate the previous one
+    before the form slided
+    */
+        $('#steps').stop().animate({
+            marginLeft: '-' + widths[current-1] + 'px'
+        },500,function(){
+      if(current == fieldsetCount)
+        validateSteps();
+      else
+        validateStep(prev);
+      $('#formElem').children(':nth-child('+ parseInt(current) +')').find(':input:first').focus();
+    });
+        e.preventDefault();
+    });
+
+  /*
+  clicking on the tab (on the last input of each fieldset), makes the form
+  slide to the next step
+  */
+  $('#formElem > fieldset').each(function(){
+    var $fieldset = $(this);
+    $fieldset.children(':last').find(':input').keydown(function(e){
+      if (e.which == 9){
+        $('#navigation1 li:nth-child(' + (parseInt(current)+1) + ') a').click();
+        /* force the blur for validation */
+        $(this).blur();
+        e.preventDefault();
+      }
+    });
+  });
+
+  /*
+  validates errors on all the fieldsets
+  records if the form has errors in $('#formElem').data()
+  */
+  function validateSteps(){
+    var FormErrors = false;
+    for(var i = 1; i < fieldsetCount; ++i){
+      var error = validateStep(i);
+      if(error == -1)
+        FormErrors = true;
+    }
+    $('#formElem').data('errors',FormErrors);
+  }
+
+  /*
+  validates one fieldset
+  and returns -1 if errors found, or 1 if not
+  */
+  function validateStep(step){
+    if(step == fieldsetCount) return;
+
+    var error = 1;
+    var hasError = false;
+    $('#formElem').children(':nth-child('+ parseInt(step) +')').find(':input:not(button)').each(function(){
+      var $this     = $(this);
+      var valueLength = jQuery.trim($this.val()).length;
+
+      if(valueLength == ''){
+        hasError = true;
+        $this.css('background-color','#FFEDEF');
+      }
+      else
+        $this.css('background-color','#FFFFFF');
+    });
+    var $link = $('#navigation1 li:nth-child(' + parseInt(step) + ') a');
+    $link.parent().find('.error,.checked').remove();
+
+    var valclass = 'checked';
+    if(hasError){
+      error = -1;
+      valclass = 'error';
+    }
+    $('<span class="'+valclass+'"></span>').insertAfter($link);
+
+    return error;
+
+
+  }
+    /*
+  if there are errors don't allow the user to submit
+  */
+  $('#registerButton').bind('click',function(){
+    if($('#formElem').data('errors')){
+      alert('Please correct the errors in the Form');
+      return false;
+    }
+  });
+
+
+  });
+</script>
 </head>
 <body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
 
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{url('/home')}}">BooKStrap</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('/books/create')}}">Add Book</a></li>
-                        <li><a href="{{url('/books/edit')}}">Edit Book</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('/templates')}}">View Templates</a></li>
-                        <li><a href="{{url('/templates/create')}}">Add Template</a></li>
-                        <li><a href="{{url('/templates/edit')}}">Edit Template</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Add to collection</a></li>
-                        <li><a href="#">Edit Book</a></li>
-                        <li><a href="#">Export</a></li>
-                        <li><a href="{{url('/changePassword')}}">Change Password</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li> <a href="{{ url('logout') }}"
-                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
-                        Logout
-                    </a>
-                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-            </ul>
-
-
-
-        </div>
+<<<<<<< HEAD
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{url('/home')}}">BooKStrap</a>
     </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{url('/books/create')}}">Add Book</a></li>
+            <li><a href="{{url('/books/edit')}}">Edit Book</a></li>
+
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Add Template</a></li>
+            <li><a href="#">Edit Template</a></li>
+
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{url('/bookcollections')}}">View Collections</a></li>
+            
+            <li><a href="#">Export</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li> <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+           document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
+            Logout
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+          </form>
+      </ul>
+
+
+
+    </div>
+  </div>
 </nav>
 <!-- javascript to do a pop up -->
 
+<div class="col-sm-8" id="push" style="text-align:center">
+       <h1>Title: {{$book->title}}</h1><p>&nbsp;</p>
+
+</div>
+<div class="col-md-2 col-md-offset-4">
+     
+
+
+<div id="wrapper">
+  <div id="steps">
+    <form id="formElem" name="formElem" action="/bookcat/public/books/{{$del}}/update" method="post">
+    {{ csrf_field() }}
+    @foreach($book as $key =>$value)
+      <fieldset class="step">
+        <legend>{{$key}}</legend>
+        <p>
+          <label for='{{$key}}'>{{$key}}</label>
+          <input id="{{$key}}" name='{{$key}}' value ="{{$value}}" />
+        </p>
+        
+      </fieldset>
+      @endforeach
+      <fieldset class="step">
+        <legend>Confirmation</legend>
+         <p>
+          <input id="Confirmation" type="submit" value="Save">
+        <p>
+        
+      </fieldset>
+      
+    </form>
+  </div>
+  <div id="navigation1" style="display:none;">
+    <ul>
+    @foreach($book as $key =>$value)
+      <li class="selected">
+        <a href="#">{{$key}}</a>
+      </li>
+      @endforeach
+      <li class ="selected">
+       <a href ="#">Confirmation</a>
+      </li>
+    </ul>
+  </div>
+  
+</div>
+
+
+</div>
 
 
 
-        <body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-
-        <div class="container text-center">
-            <div class="row content">
-                <div class="col-sm-2">
-                </div>
-
-                <div class="col-sm-8 text-left" style="text-align:center">
-                    <h1>Edit Book</h1><p>&nbsp;</p>
 
 
-                    <div class="col-sm-8 text-left" style="text-align:left">
-                        <h3>BASIC FIELDS</h3><p>&nbsp;</p>
-                    </div>
 
+</form>
 
-                    <div class="row">
-                        <form method="POST" action="http://localhost/bookcat/public/books/update">
-                            {{ csrf_field() }}
-
-                            <!-- For the values to pdat-->
-                            <input type="text" name="id" id="hidethis" class="form-control" value ="{{$id}}">
-                            <style>
-                                #hidethis{
-                                    display:none;
-                                }
-                            </style>
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-4 form-group">
-
-                                        <label>Book Title</label>
-                                        <input type="text" name="title"  class="form-control" value ="{{$items['title']}}">
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Code Number</label>
-                                        <input type="text" name="codeNum" class="form-control" value ="{{$items['codeNum']}}">
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Isbn</label>
-                                        <input type="text" name="isbn"  class="form-control" value ="{{$items['isbn']}}">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-4 form-group">
-                                        <label>Author First Name</label>
-                                        <input type="text" name="authorFirstName"  class="form-control" value ="{{$items['authorFirstName']}}">
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Author Last Name</label>
-                                        <input type="text" name="authorLastName"  class="form-control" value ="{{$items['authorLastName']}}">
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Price</label>
-                                        <input type="text" name="price"  class="form-control" value ="{{$items['price']}}">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-4 form-group">
-                                        <label>Translator First Name</label>
-                                        <input type="text" name="translatorFirstName"  class="form-control" value ="{{$items['translatorFirstName']}}">
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Translator Last Name</label>
-                                        <input type="text" name="translatorLastName"  class="form-control" value ="{{$items['translatorLastName']}}">
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Edition</label>
-                                        <input type="text" name="edition"  class="form-control" value ="{{$items['edition']}}">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-4 form-group">
-                                        <label>Illustrator First Name</label>
-                                        <input type="text" name="illustratorFirstName"  class="form-control" value ="{{$items['illustratorFirstName']}}">
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Illustrator Last Name</label>
-                                        <input type="text" name="illustratorLastName"  class="form-control" value ="{{$items['illustratorLastName']}}">
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Print Date</label>
-                                        <input type="text" name="printdate"  class="form-control" value ="{{$items['printdate']}}">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-4 form-group">
-                                        <label>Place of Publication</label>
-                                        <input type="text" name="placeofpublication"  class="form-control" value ="{{$items['placeofpublication']}}">
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Publisher</label>
-                                        <input type="text" name="publisher"  class="form-control" value ="{{$items['publisher']}}">
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Copyright</label>
-                                        <input type="text" name="copyright"  class="form-control" value ="{{$items['copyright']}}">
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="col-sm-8 text-left" style="text-align:left">
-                                    <h3>ADDITIONAL FIELDS</h3><p>&nbsp;</p>
-                                </div>
-
-
-                                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Additional fields</button>
-
-                                <div id="demo" class="collapse">
-
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm-4 form-group">
-                                                <label>Legal Deposit</label>
-                                                <input type="text" name="legaldeposit"  class="form-control" value ="{{$items['legaldeposit']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>ISSN Number</label>
-                                                <input type="text" name="issn"  class="form-control" value ="{{$items['issn']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Partner Companies</label>
-                                                <input type="text" name="partnercompanies"  class="form-control" value ="{{$items['partnercompanies']}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm-4 form-group">
-                                                <label>Printer</label>
-                                                <input type="text" name="Printer"  class="form-control" value ="{{$items['Printer']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Print line</label>
-                                                <input type="text" name="Printline"  class="form-control" value ="{{$items['Printline']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Print Run</label>
-                                                <input type="text" name="Printrun"  class="form-control" value ="{{$items['Printrun']}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm-4 form-group">
-                                                <label>Foreword</label>
-                                                <input type="text" name="foreword"  class="form-control" value ="{{$items['foreword']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Introduction</label>
-                                                <input type="text" name="Introduction"  class="form-control" value ="{{$items['Introduction']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Preface</label>
-                                                <input type="text" name="Preface"  class="form-control" value ="{{$items['Preface']}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm-4 form-group">
-                                                <label>Front Material</label>
-                                                <input type="text" name="Frontmaterial"  class="form-control" value ="{{$items['Frontmaterial']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Artwork Credit(s)</label>
-                                                <input type="text" name="Artworkcredits"  class="form-control" value ="{{$items['Artworkcredits']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Editing Credit(s)</label>
-                                                <input type="text" name="EditingCredits"  class="form-control" value ="{{$items['EditingCredits']}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm-4 form-group">
-                                                <label>layout Credit(s)</label>
-                                                <input type="text" name="layoutCredits"  class="form-control" value ="{{$items['layoutCredits']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Map Credit(s)</label>
-                                                <input type="text" name="MapCredits"  class="form-control" value ="{{$items['MapCredits']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Photo Credit(s)</label>
-                                                <input type="text" name="PhotoCredits"  class="form-control" value ="{{$items['PhotoCredits']}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm-4 form-group">
-                                                <label>Production Credit(s)</label>
-                                                <input type="text" name="ProductionCredits"  class="form-control" value ="{{$items['ProductionCredits']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Translation Credit(s)</label>
-                                                <input type="text" name="TranslationCredits"  class="form-control" value ="{{$items['TranslationCredits']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Companion Volumes</label>
-                                                <input type="text" name="CompanionVolumes"  class="form-control" value ="{{$items['CompanionVolumes']}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm-4 form-group">
-                                                <label>Series</label>
-                                                <input type="text" name="Series"  class="form-control" value ="{{$items['Series']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Series Editor</label>
-                                                <input type="text" name="SeriesEditor"  class="form-control" value ="{{$items['SeriesEditor']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Issue</label>
-                                                <input type="text" name="Issue"  class="form-control" value ="{{$items['Issue']}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm-4 form-group">
-                                                <label>Copies Examined</label>
-                                                <input type="text" name="CopiesExamined"  class="form-control" value ="{{$items['CopiesExamined']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Note</label>
-                                                <input type="text" name="Note"  class="form-control" value ="{{$items['Note']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Copy Number</label>
-                                                <input type="text" name="CopyNumber"  class="form-control" value ="{{$items['CopyNumber']}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm-4 form-group">
-                                                <label>Grade</label>
-                                                <input type="text" name="Grade"  class="form-control" value ="{{$items['Grade']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Description</label>
-                                                <input type="text" name="Description"  class="form-control" value ="{{$items['Description']}}">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <label>Association Copy</label>
-                                                <input type="text" name="AssociationCopy"  class="form-control" value ="{{$items['AssociationCopy']}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Submit Change">
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+</body>
+</html>

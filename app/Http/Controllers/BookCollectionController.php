@@ -120,6 +120,10 @@ class BookcollectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bookcol = bookcollection::find($id);
+        $bookcol->delete();
+        Session::flash('message', 'Successfully deleted collection!');
+
+        return redirect('/bookcollections');
     }
 }
