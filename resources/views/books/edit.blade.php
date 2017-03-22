@@ -364,7 +364,6 @@ span.error{
 <body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
 
 <nav class="navbar navbar-inverse">
-<<<<<<< HEAD
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

@@ -318,6 +318,26 @@ editbutton.onclick = function() {
 
 }
 
+// Get the button that sends the book to edit
+var viewbutton = document.getElementById("deletebook");
+viewbutton.onclick = function() {
+    var table = $('#example').DataTable();
+
+    //retrieves the selected rows, plus more garbage
+    selected = table.rows('.selected').data();
+
+    //retrieves just the selected row and bookID.
+	selection = JSON.stringify(selected[0][0]);
+
+	//gets rid of the quotes in the bookID that got returned
+   noquotes = JSON.parse(selection);
+
+
+	//redirects the number to this page so it can be edited
+   window.location.replace("http://localhost/bookcat/public/books/" + noquotes);
+
+}
+
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -559,6 +579,8 @@ window.onclick = function(event) {
 
 <button id="create">Create collection</button>
 <button id="editbook">Edit</button>
+<button id="deletebook">view book</button>
+
 
 <!-- The Modal -->
 <div id="myModal1" class="modal1">

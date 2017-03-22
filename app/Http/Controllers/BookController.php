@@ -108,17 +108,22 @@ class BookController extends Controller
 
     }
     /*This works it just looks weird with all the books because it uses route model binding.*/
-    public function destroy(Book $Book){
-            Book::destroy($Book);
-            
+   public function destroy($id)
+    {
+        $bookcol = Book::find($id);
+        $bookcol->delete();
+        Session::flash('message', 'Book successfully deleted collection!');
+
+        return redirect('/home');
     }
 
 
     public function show($id){
         $book = DB::table('books')->select('bookAttr')->where('id', '=', $id)->get();
         $books= json_decode($book);
-        dd($books);
-        return view('/books/edit', compact($books));
+        $id =$id;
+        
+        return view('/books/show', compact('id'));
     }
 
 
