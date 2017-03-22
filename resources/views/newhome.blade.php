@@ -344,11 +344,14 @@ window.onclick = function(event) {
         	form.appendChild(newcontent1);
     					
      		}
+      
  
 
   		
      	
                });
+   
+
         /*------*/ 	
     //    $( "#myBtn" ).click( function() {
         
@@ -561,9 +564,11 @@ window.onclick = function(event) {
     	  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             <input class="btn btn-primary" type="submit" value="Add bookcollection" name="signup">
                 </form>
+          
+   
    </div>
   </div>
-
+  
 
         
 	</body>
