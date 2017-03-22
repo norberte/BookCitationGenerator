@@ -274,22 +274,9 @@ tr.details td.details-control {
             "serverSide": true,
             select: true,
             "ajax": "../resources/views/scripts/server_processing.php"
-
-
-
-	
-		
-
-
-
-
 					//head brackets
         } );
-      
-    
-  
- 
-   
+
 
     /*javascript for my modal BY Andry*/
         // Get the modal
@@ -310,6 +297,27 @@ btn1.onclick = function() {
 span1.onclick = function() {
     modal1.style.display = "none";
 }
+
+// Get the button that sends the book to edit
+var editbutton = document.getElementById("editbook");
+editbutton.onclick = function() {
+    var table = $('#example').DataTable();
+
+    //retrieves the selected rows, plus more garbage
+    selected = table.rows('.selected').data();
+
+    //retrieves just the selected row and bookID.
+	selection = JSON.stringify(selected[0][0]);
+
+	//gets rid of the quotes in the bookID that got returned
+   noquotes = JSON.parse(selection);
+
+
+	//redirects the number to this page so it can be edited
+   window.location.replace("http://localhost/bookcat/public/books/" + noquotes + "/edit");
+
+}
+
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -460,6 +468,7 @@ window.onclick = function(event) {
 }
 
 
+
 </script>
 <!--
 -->
@@ -547,7 +556,9 @@ window.onclick = function(event) {
 	</div>
 
 		<!-- Trigger/Open The Modal -->
-<button id="create">Create  collection</button>
+
+<button id="create">Create collection</button>
+<button id="editbook">Edit</button>
 
 <!-- The Modal -->
 <div id="myModal1" class="modal1">
