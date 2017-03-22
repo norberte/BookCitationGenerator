@@ -4,44 +4,49 @@
 
 @section('content') 
    <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="http://localhost/bookcat/public/css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="http://localhost/bookcat/public/css/style.css" />
         <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
     <noscript>
       <style>
-        .st-accordion ul li{
-          height:auto;
-        }
-        .st-accordion ul li > a span{
-          visibility:hidden;
-        }
+      p{
+        margin-bottom:6em;
+      }
+      
       </style>
     </noscript>
+    <script>
+          window.setTimeout(function() {
+  $(".flash").fadeTo(500, 0).slideUp(500, function(){
+      $(this).remove();
+    });
+      }, 5000);
 
-            <?php
-                echo $_POST['templatename'];
-            ?>
-            <br>
-            <div class="wrapper">
-                <div id="st-accordion" class="st-accordion">
-                    <ul>
+    </script>
+
+          
+            
+                @if (Session::has('message'))
+              <div class = "alert alert-success flash">{{ Session::get('message')}}</div>
+                  @endif
+                   
                         @foreach($collections as $collection)
-                        <li>  
-                             
-                             <a href={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}}>{{$collection->cname}}</a> 
-                            
-                            <div class="st-content">
+                        
+                         <h3>{{$collection->cname}}</h3>
+                         
+                             <a href={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}} class="btn btn-info ">View Collection</a> 
+                             <form class ="form-group pull-right" action="{{'bookcollections/'.$collection->id}}" method ="post">
+                             {{ csrf_field() }}
+                             {{ method_field('DELETE')}}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                      
+                        
 
-                              
-                            </div>
-                        </li>
-                         <form action = "{{'/bookcollections/'.$collection->cname}}">
-                               <input type ="submit" value="delete">
-                             </form>
+                            
+                        
+                         <hr>
                         @endforeach
-                    </ul>
-                </div>
-            </div>
+                    
+            
         
        
  

@@ -51,9 +51,23 @@ class BookController extends Controller
 
 
    
-    public function edit()
-    {
-        return view('/books/edit');
+    public function edit($id)
+    {   
+        $books = DB::table('books')->select('bookAttr')->where('id', '=', $id)->get();
+
+        $bookat = $books[0]->bookAttr;
+
+        $book= json_decode($bookat);
+       
+    
+        
+        
+
+
+
+        
+
+        return view('/books/edit',compact('book'));
     }
 
     // this function updates books in the database
@@ -102,8 +116,9 @@ class BookController extends Controller
 
     public function show($id){
         $book = DB::table('books')->select('bookAttr')->where('id', '=', $id)->get();
-
-        return view('/home', compact($book));
+        $books= json_decode($book);
+        dd($books);
+        return view('/books/edit', compact($books));
     }
 
 
