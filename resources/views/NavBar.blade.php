@@ -31,7 +31,6 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Add Book</a></li>
-            <li><a href="#">Edit Book</a></li>
           
           </ul>
         </li>
