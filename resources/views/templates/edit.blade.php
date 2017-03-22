@@ -1,6 +1,6 @@
 @extends('layout.masterTemplate')
 @section('content')
-    <form method="post" action="{{url('/templates')}}">
+    <form method="post" action="{{url('/templates/{tname}')}}">
         {{ csrf_field() }}
         <div class="container text-center">
             <div class="row content">
@@ -11,7 +11,8 @@
                 </div>
                 <div class="col-sm-12 form-group">
                     <label>Template Name</label>
-                    <input type="text" name="tname"  class="form-control" value= @foreach($template as $temp){{$temp->tname}}@endforeach>
+                    <h1 class="form-control"> @foreach($template as $temp){{$temp->tname}}@endforeach </h1>
+                    <input type="hidden" name="tname" value=@foreach($template as $temp){{$temp->tname}}@endforeach>
                     <input type="hidden" name="content" id="hiddenValue">
                 </div>
 
@@ -314,7 +315,7 @@
                     </div>
                 </div>
                 <div>
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Add Template" onclick = getContent()>
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Update Template" onclick = getContent()>
                 </div>
             </div>
             <!--end of accordion-->

@@ -91,10 +91,19 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
     </div>
 </nav>
 
+<script>
+    window.setTimeout(function() {
+        $(".flash").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 5000);
+
+</script>
+
+@if (Session::has('message'))
+    <div class = "alert alert-success flash">{{ Session::get('message')}}</div>
+@endif
 <h1>Template Viewer</h1>
-
-
-
 
 <script>
 
@@ -133,21 +142,13 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             //store the template name in a variable
             var templatename = data[0];
 
+
             if ( $(this).hasClass('select') ) {
-                $.ajax({
-                    type: "get",
-
-                    url: "/templates/apply"
-                    //data: {
-                    //   templatename: templatename
-                    //},
-
-                });
-                window.location.href = "http://localhost/bookcat/public/templates/apply";
+                window.location.href = "{{url('/templates/apply')}}";
             }
+
             if ( $(this).hasClass('delete') ) {
                 $.ajax({
-
                     type: "POST",
                     url: "../resources/views/scripts/templateview.blade.php",
                     data:{
@@ -212,7 +213,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             </th>
             <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Delete
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Select
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Apply
             </th>
         </tr>
         </thead>
