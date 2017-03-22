@@ -6,7 +6,9 @@
             </div>
             <div class="col-sm-8 text-left" style="text-align:center">
                 <h1>View Template</h1>
+                <hr>
             </div>
+
             <div class="col-sm-12 form-group">
                 <label>Template Name: </label>
                 <strong>@foreach($template as $temp){{$temp->tname}}@endforeach</strong><br>
