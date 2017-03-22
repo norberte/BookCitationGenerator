@@ -5,11 +5,17 @@
 @section('content') 
    <link rel="shortcut icon" href="../favicon.ico"> 
         <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
+          <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="/bookcat/public/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="/bookcat/public/css/style.css" />
     <noscript>
       <style>
-      p{
-        margin-bottom:6em;
-      }
+      .st-accordion ul li{
+          height:auto;
+        }
+        .st-accordion ul li > a span{
+          visibility:hidden;
+        }
       
       </style>
     </noscript>
@@ -27,10 +33,19 @@
                 @if (Session::has('message'))
               <div class = "alert alert-success flash">{{ Session::get('message')}}</div>
                   @endif
+    
+  
                    
-                        @foreach($collections as $collection)
                         
-                         <h3>{{$collection->cname}}</h3>
+                <div class="wrapper">
+                 <div id="st-accordion" class="st-accordion">
+                    <ul>
+                       @foreach($collections as $collection)
+                        <li>
+                            <a href="#">{{$collection->cname}}<span class="st-arrow">Open or Close</span></a>
+                            <div class="st-content">
+                       
+
                          
                              <a href={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}} class="btn btn-info ">View Collection</a> 
                              <form class ="form-group pull-right" action="{{'bookcollections/'.$collection->id}}" method ="post">
@@ -39,13 +54,25 @@
                             <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                       
-                        
-
-                            
-                        
-                         <hr>
+                          </div>
+                        </li>
                         @endforeach
-                    
+                      </ul>
+                    </div>
+                    </div>
+
+    <script type="text/javascript" src="/bookcat/public/js/jquery.accordion.js"></script>
+    <script type="text/javascript" src="/bookcat/public/js/jquery.easing.1.3.js"></script>
+        <script type="text/javascript">
+            $(function() {
+      
+        $('#st-accordion').accordion({
+          oneOpenedItem : true
+        });
+        
+            });
+        </script>
+                       
             
         
        
