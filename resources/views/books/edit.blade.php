@@ -396,10 +396,9 @@ span.error{
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Add to collecton</a></a></li>
-            <li><a href="#">Edit Book</a></li>
+            <li><a href="{{url('/bookcollections')}}">View Collections</a></li>
+            
             <li><a href="#">Export</a></li>
-            <li><a href="{{url('/changePassword')}}">Change Password</a></li>
           </ul>
         </li>
       </ul>
