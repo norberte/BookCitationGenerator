@@ -362,7 +362,9 @@ span.error{
 </script>
 </head>
 <body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+
 <nav class="navbar navbar-inverse">
+<<<<<<< HEAD
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -404,7 +406,7 @@ span.error{
       <ul class="nav navbar-nav navbar-right">
         <li> <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
+           document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
             Logout
           </a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -417,6 +419,7 @@ span.error{
     </div>
   </div>
 </nav>
+<!-- javascript to do a pop up -->
 
 <div class="col-sm-8" id="push" style="text-align:center">
        <h1>Title: {{$book->title}}</h1><p>&nbsp;</p>
