@@ -1,7 +1,10 @@
-@section('navbar')
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--
+  Yields a specific title for a specific page that extends master By Andry 03/16/2017
+  -->
+  <title> @yield('title')</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href = "../resources/views/layouts/navbar.css" />
@@ -10,10 +13,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-
-<!--
-This is used to display the field of the books in the Datatable, as a way to provide searching for books by different fields link the drop down button to a different
-html file that puts the "SEARCHBY field" in the first column this automatically switches the search filed to the first column
+<!---
+navigation links
 -->
 
 <nav class="navbar navbar-inverse">
@@ -32,36 +33,35 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{url('/books/addbook')}}">Add Book</a></li>
-           
-          
+            <li><a href="{{url('/books/create')}}">Add Book</a></li>
+            <li><a href="{{url('/books/edit')}}">Edit Book</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Add Template</a></li>
-            <li><a href="#">Edit Template</a></li>
-
+            <li><a href="{{url('/templates')}}">View Templates</a></li>
+            <li><a href="{{url('/templates/create')}}">Add Template</a></li>
+            <li><a href="{{url('/templates/edit')}}">Edit Template</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Add to collecton</a></a></li>
-            <li><a href="#">Edit Book</a></li>
+
+            <li><a href="{{url('/bookcollections')}}">View Collections</a></li>
+        
             <li><a href="#">Export</a></li>
-            <li><a href="{{url('/changePassword')}}">Change Password</a></li>
           </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li> <a href="{{ route('logout') }}"
+        <li> <a href="{{ url('logout') }}"
                 onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
             Logout
           </a>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
           </form>
       </ul>
@@ -72,10 +72,14 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
   </div>
 </nav>
 
-@show
 
 <div class="container">
-  @yield('content')
+<!--
+pastes a specific sections code here. I am breaking the code up so it is easier to maintain and manage.  By Andry 03/16/2017
+-->
+ @section('content')
+  @show
+  
 </div>
 
 

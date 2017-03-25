@@ -1,69 +1,238 @@
-<!-- app/views/nerds/index.blade.php -->
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Look! I'm CRUDding</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href = "../resources/views/layouts/navbar.css" />
+    <script type= "text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 <body>
-<div class="container">
+<style>
+    table{
+        overflow-x: scroll;
+    }
+    .content{
+        width: 80%;
+    }
+    tfoot {
+        display: table-header-group;
+    }
 
-    <nav class="navbar navbar-inverse">
+    #content{
+        width: 90%;
+        height: 40em;
+        margin-top: 10em;
+        border: black 1px;
+        overflow: scroll;
+        margin-left: 80px;
+    }
+</style>
+<!--
+This is used to display the field of the books in the Datatable, as a way to provide searching for books by different fields link the drop down button to a different
+html file that puts the "SEARCHBY field" in the first column this automatically switches the search filed to the first column
+-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ URL::to('nerds') }}">Nerd Alert</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{url('/home')}}">BooKStrap</a>
         </div>
-        <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('nerds') }}">View All Nerds</a></li>
-            <li><a href="{{ URL::to('nerds/create') }}">Create a Nerd</a>
-        </ul>
-    </nav>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
 
-    <h1>All the Nerds</h1>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('/books/create')}}">Add Book</a></li>
+                        <li><a href="{{url('/books/edit')}}">Edit Book</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('/templates')}}">View Templates</a></li>
+                        <li><a href="{{url('/templates/create')}}">Add Template</a></li>
+                        <li><a href="{{url('/templates/edit')}}">Edit Template</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
 
-    <!-- will be used to show any messages -->
-    @if (Session::has('message'))
-        <div class="alert alert-info">{{ Session::get('message') }}</div>
-    @endif
+                        <li><a href="{{url('/bookcollections')}}">View Collections</a></li>
 
-    <table class="table table-striped table-bordered">
+                        <li><a href="#">Export</a></li>
+                        <li><a href="{{url('/changePassword')}}">Change Password</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li> <a href="{{ url('logout') }}"
+                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+            </ul>
+
+
+
+        </div>
+    </div>
+</nav>
+
+<script>
+    window.setTimeout(function() {
+        $(".flash").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 5000);
+
+</script>
+
+@if (Session::has('message'))
+    <div class = "alert alert-success flash">{{ Session::get('message')}}</div>
+@endif
+<h1>Template Viewer</h1>
+
+<script>
+
+    $(document).ready(function() {
+        // Setup - add a text input to each footer cell
+        $('#example').DataTable( {
+            //search only works if serverside is set to false....Not sure if we will run into
+            // any more problems because of this, but if we do changing it back to true should be a start
+            "processing": true,
+            "serverSide": false,
+            "ajax": "../resources/views/scripts/server_processing_templateViewer.php",
+            "columnDefs": [ {
+                "targets": 1,
+                "data": 'view',
+                "defaultContent": "<button class = 'view' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>View template</button>"},
+                {
+                    "targets": 2,
+                    "data": 'edit',
+                    "defaultContent": "<button class = 'edit' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Edit template</button>"},
+                {
+
+                    "targets": 3,
+                    "data": 'delete',
+                    "defaultContent": "<button class = 'delete' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Delete template</button>"},
+                {
+                    "targets": 4,
+                    "data": 'select',
+                    "defaultContent": "<button class = 'select' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Apply template</button>"}
+            ]
+
+        } );
+
+        //After clicking the button, it retrieves the Template Name
+        $('#example tbody').on( 'click', 'button', function () {
+            var data = table.row( $(this).parents('tr') ).data();
+            //store the template name in a variable
+            var templatename = data[0];
+
+
+            if ( $(this).hasClass('select') ) {
+                window.location.href = "{{url('/templates/apply')}}";
+            }
+
+            if ( $(this).hasClass('delete') ) {
+                $.ajax({
+                    type: "POST",
+                    url: "../resources/views/scripts/templateview.blade.php",
+                    data:{
+                        templatename: templatename
+
+                    },
+                    success: function(data){
+                        alert("Success!");
+                    }
+                });
+                alert("Template Name: '" + templatename + "' has been deleted");
+                location.reload();
+            }
+            if ( $(this).hasClass('edit') ) {
+                $.ajax({
+                    type: "get",
+                    url: "/templates/" + templatename + "/edit",
+                    data:{
+                        //templatename: templatename
+                    },
+                    success: function(data){
+                        alert("Success!");
+                    }
+                });
+                window.location.href = "http://localhost/bookcat/public/templates/" + templatename + "/edit";
+            }
+            if ( $(this).hasClass('view') ) {
+                $.ajax({
+                    type: "get",
+                    url: "templates/" + templatename,
+                    data:{
+                    }
+                });
+                window.location.href = "http://localhost/bookcat/public/templates/" + templatename;
+            }
+        } );
+
+        // DataTable
+        var table = $('#example').DataTable();
+        // Apply the search
+        table.columns().eq( 0 ).each( function ( colIdx ) {
+            $( 'input', table.column( colIdx ).header() ).on( 'keyup change', function () {
+                table
+                    .column( colIdx )
+                    .search( this.value )
+                    .draw();
+            } );
+        } );
+
+    } );
+</script>
+
+<div id = "content">
+    <table width="100%" class="display nowrap dataTable dtr-inline" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
         <thead>
-        <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Nerd Level</td>
-            <td>Actions</td>
+        <tr role="row">
+            <th tabindex="0" class="sorting_asc" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" aria-sort="ascending" rowspan="1" colspan="1">Template Name
+            </th>
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">View
+            </th>
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Edit
+            </th>
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Delete
+            </th>
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Apply
+            </th>
         </tr>
         </thead>
-        <tbody>
-        @foreach($nerds as $key => $value)
-            <tr>
-                <td>{{ $value->id }}</td>
-                <td>{{ $value->name }}</td>
-                <td>{{ $value->email }}</td>
-                <td>{{ $value->nerd_level }}</td>
+        <tfoot>
+        <tr>
+            <th class="dt-body-right" rowspan="1" colspan="1">
+            </th>
+            <th class="dt-body-right" rowspan="1" colspan="1">
+            </th>
+            <th class="dt-body-right" rowspan="1" colspan="1">
+            </th>
+            <th class="dt-body-right" rowspan="1" colspan="1">
+            </th>
+            <th class="dt-body-right" rowspan="1" colspan="1">
+            </th>
+        </tr>
+        </tfoot>
 
-                <!-- we will also add show, edit, and delete buttons -->
-                <td>
-
-                    <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-                    <!-- we will add this later since its a little more complicated than the other two buttons -->
-                {{ Form::open(array('url' => 'nerds/' . $value->id, 'class' => 'pull-right')) }}
-                {{ Form::hidden('_method', 'DELETE') }}
-                {{ Form::submit('Delete this Nerd', array('class' => 'btn btn-warning')) }}
-                {{ Form::close() }}
-
-                <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                    <a class="btn btn-small btn-success" href="{{ URL::to('nerds/' . $value->id) }}">Show this Nerd</a>
-
-                    <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('nerds/' . $value->id . '/edit') }}">Edit this Nerd</a>
-
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
     </table>
 
 </div>

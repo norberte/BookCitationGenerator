@@ -10,4 +10,5 @@ class bookcollection extends Model
    	{
    		return $this->belongsToMany(Book::class);
    	}
+   
 }

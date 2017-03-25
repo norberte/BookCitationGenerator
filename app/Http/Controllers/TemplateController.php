@@ -5,95 +5,91 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use App\Template;
+
+
+
 
 class TemplateController extends Controller
 {
+
+
     public function create()
     {
-        return view('templates.create');
+        return view('/templates/create');
     }
 
-    // TO DO: figure out how to add each position to the DB
-    // the below store method is a placeholder
-    public function store(){
-        var_dump($_POST['template']);
+    // creates and adds a new template into the Database
+    // COMPLETE
+    public function store()
+    {
+        DB::table('template')->insert(
+            ['tname' => request('tname'), 'content' => request('content')]
+        );
+
+        // redirect
+        // Session::flash('message', 'Successfully added the template!');
+        return Redirect::to('/templates');
     }
 
+    // shows the form for editing the specified template
+    // COMPLETE
     public function edit($tname)
     {
         // get the template
-        $template = DB::table('template')->select('position', 'attribute', 'attributeStyle', 'keyword', 'keywordStyle')->where('tname', '=', $tname)->get();
+        $template = DB::table('template')->select('*')->where('tname', '=', $tname)->get();
 
         // show the edit form and pass the template
-        return view('nerds.edit')->with('nerd', $template);
+        return view('/templates/edit')->with('template', $template);
     }
 
-    // this function updates templates in the database
-    public function update($tname, $pos) {
-        DB::table('template')->where('tname', '=', $tname)->where('position', '=', $pos)->update([
-            'keyword' => request('keyword'),
-            'keywordStyle' => request('keywordStyle'),
-            'attribute' => request('attribute'),
-            'attributeStyle' => request('attributeStyle')
-        ]);
-
-        return view('/templates');
-    }
-
-/*
-    public function update($id)
+    //  updates a specific template in the database
+    // COMPLETE
+    public function update($tname)
     {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-            'name'       => 'required',
-            'email'      => 'required|email',
-            'nerd_level' => 'required|numeric'
-        );
-        $validator = Validator::make(Input::all(), $rules);
-
-        // process the login
-        if ($validator->fails()) {
-            return Redirect::to('nerds/' . $id . '/edit')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
-            // store
-            $nerd = Nerd::find($id);
-            $nerd->name       = Input::get('name');
-            $nerd->email      = Input::get('email');
-            $nerd->nerd_level = Input::get('nerd_level');
-            $nerd->save();
-
-            // redirect
-            Session::flash('message', 'Successfully updated nerd!');
-            return Redirect::to('nerds');
-        }
-    }
-*/
-
-    // delete template - COMPLETE
-    public function destroy($templateName){
-        DB::table('template')->where('tname', '=', $templateName)->delete();
+        DB::table('template')
+            ->where('tname', request('tname'))
+            ->update(['content' => request('content')]);
 
         // redirect
-        Session::flash('message', 'Successfully deleted the nerd!');
-        return Redirect::to('templates');
+        Session::flash('message', 'Successfully updated the template!');
+        return Redirect::to('/templates');
     }
 
-    // show a specific template - COMPLETE
-    public function show($tname){
-        $template = DB::table('template')->select('position', 'attribute', 'attributeStyle', 'keyword', 'keywordStyle')->where('tname', '=', $tname)->get();
+    // deletes a specific template
+    // COMPLETE
+    public function destroy($tname)
+    {
+        DB::table('template')->where('tname','=', $tname)->delete();
 
-        return view('templates.show', compact($template));
+        Session::flash('message', 'Successfully deleted the template!');
+        return Redirect::to('/templates');
+
     }
 
-    public function index(){
-        // get all the nerds
-        $templates = Template::all();
+    // shows a specific template
+    // COMPLETE
+    public function show($tname)
+    {
+        $template = DB::table('template')->select('*')->where('tname', '=', $tname)->get();
 
-        // load the view and pass the nerds
-        return view('templates.index')->with('templates', $templates);
+        return view('/templates/show')->with('template', $template);
+    }
+
+    // shows all templates
+    // COMPLETE
+    public function index()
+    {
+        //$templates = Template::all();
+        //$templates = DB::table('template')->select('*')->get();
+        // load the view and pass all templates
+        //return view('/templates/index')->with('templates', $templates);
+        return view('/templates/index');
+    }
+    public function applyTemplate()
+    {
+        return view('/templates/apply');
     }
 }

@@ -14,15 +14,11 @@ class CreateTemplatesTable extends Migration
     public function up()
     {
         Schema::create('Template', function (Blueprint $table) {
-            $table->string('tname', 255)->unique();
-            $table->integer("bookcollection_id");
-            $table->integer('position');
-            $table->string('attribute')->nullable();
-            $table->string('attributeStyle')->nullable();
-            $table->string('keyword')->nullable();
-            $table->string('keywordStyle')->nullable();
+
+            $table->string('tname', 255)->primary();
+            $table->integer("bookcollection_id")->nullable();
+            $table->longtext('content');
             $table->string('createdBy')->nullable();
-            $table->primary(['tname', 'position']);
             $table->timestamps();
         });
     }

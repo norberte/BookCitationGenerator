@@ -13,10 +13,6 @@ class Template extends Model
     protected $table = 'template';
 
     protected $tname;
-    protected $position = [];
-    protected $attribute = [];
-    protected $attributeStyle = [];
-    protected $keyword = [];
-    protected $keywordStyle = [];
+    protected $content;
 
 }
