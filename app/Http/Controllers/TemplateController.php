@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use App\Template;
-use Session;
 
 
 
@@ -39,22 +39,22 @@ class TemplateController extends Controller
     public function edit($tname)
     {
         // get the template
-        $template = DB::table('template')->select('content')->where('tname', '=', $tname)->get();
+        $template = DB::table('template')->select('*')->where('tname', '=', $tname)->get();
 
         // show the edit form and pass the template
-        return view('/templates/{tname}/edit')->with('template', $template);
+        return view('/templates/edit')->with('template', $template);
     }
 
     //  updates a specific template in the database
     // COMPLETE
     public function update($tname)
     {
-        DB::table('template')->where('tname', '=', $tname)->update([
-            'content' => request('content'),
-        ]);
+        DB::table('template')
+            ->where('tname', request('tname'))
+            ->update(['content' => request('content')]);
 
         // redirect
-        // Session::flash('message', 'Successfully updated the template!');
+        Session::flash('message', 'Successfully updated the template!');
         return Redirect::to('/templates');
     }
 
@@ -64,8 +64,7 @@ class TemplateController extends Controller
     {
         DB::table('template')->where('tname','=', $tname)->delete();
 
-        // Session::flash('message', 'Successfully deleted the template!');
-
+        Session::flash('message', 'Successfully deleted the template!');
         return Redirect::to('/templates');
 
     }
@@ -74,10 +73,9 @@ class TemplateController extends Controller
     // COMPLETE
     public function show($tname)
     {
-        $template = DB::table('template')->select('tname')->where('tname', '=', $tname)->get();
+        $template = DB::table('template')->select('*')->where('tname', '=', $tname)->get();
 
-        return view('templates.show')->with('template', $template);
-
+        return view('/templates/show')->with('template', $template);
     }
 
     // shows all templates
@@ -92,6 +90,6 @@ class TemplateController extends Controller
     }
     public function applyTemplate()
     {
-        return Redirect::to('/templates/apply');
+        return view('/templates/apply');
     }
 }

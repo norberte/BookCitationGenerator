@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
 use App\bookcollection;
 
 class BookcollectionController extends Controller
@@ -17,72 +18,8 @@ class BookcollectionController extends Controller
      */
     public function index()
     {   
-        //$result= array();
-        //$specificcol=array();
-        //$allbooks=array();
+    
         $collections = bookcollection::all();
-        //$books = bookcollection::with('books')->get()->toArray();
-        //$test = collect($books)->pluck('books')->toArray(); 
-        //$result[] = bookcollection::find($i)->books->toArray();
-         
-         /*for($i = 1; $i<=sizeof($collections);  $i++){
-            
-            ${'result'.$i}=array();
-            ${'result'.$i} = bookcollection::find($i)->books->toArray();
-           
-            //$specificcol[] = bookcollection::find($i)->books->toArray();
-
-           
-            
-            foreach(${'result'.$i} as $key=> $val){
-
-                ${'title'.$i}[] = $val['title'];
-
-            }
-           if(!empty(${'result'.$i})){
-            array_push($allbooks,${'title'.$i});
-
-           }
-           
-            dd($allbooks);       
-                    
-            
-        }*/
-
-        //dd($allbooks);
-
-        //dd($allbooks);
-        
-        
-       
-        /* foreach($test as $outer)
-         {
-            foreach($outer as $key=>$val)
-                {
-                    $result2[]=$val['title'];
-                }
-
-         }
-         */
-        /*$test2=collect($books)->pluck('books');
-        dd($result1);*/
-        //dd(sizeof($collections));
-        //$chunks =  $test->collapse();
-        //$flatcheck = $test->flatten(1);
-        //$keys=$flatcheck->keys();
-        //dd($test);
-        //dd($result2);
-        //dd($specificcol);
-        //
-        //dd($books);
-        //dd($result);
-        //
-        //dd($books);
-        //dd($keys);
-        //dd($flatcheck);
-        //dd($test);
-        //dd($books);
-
 
         return view('bookcollections.index',
         compact('collections'));
@@ -95,7 +32,7 @@ class BookcollectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -107,15 +44,22 @@ class BookcollectionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {    
+
+        
         //in front end name="book_id[]""
         $bookcollection = new bookcollection;
 
         $bookcollection->cname = $request->cname;
         
         $bookcollection->save();
-
+        
+        /*set to false so I dont overwrite existing relationships.this adds the book array of ids and associates it with the corresponding request cname*/
         $bookcollection->books()->sync($request->books,false);
+
+        Session::flash('message', 'Successfully created collection!');
+
+        return redirect('/home');
 
 
     }
@@ -176,6 +120,10 @@ class BookcollectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bookcol = bookcollection::find($id);
+        $bookcol->delete();
+        Session::flash('message', 'Successfully deleted collection!');
+
+        return redirect('/bookcollections');
     }
 }

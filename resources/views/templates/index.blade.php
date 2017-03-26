@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,22 +56,22 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     <ul class="dropdown-menu">
                         <li><a href="{{url('/books/create')}}">Add Book</a></li>
                         <li><a href="{{url('/books/edit')}}">Edit Book</a></li>
-
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Add Template</a></li>
-                        <li><a href="#">Edit Template</a></li>
-
+                        <li><a href="{{url('/templates')}}">View Templates</a></li>
+                        <li><a href="{{url('/templates/create')}}">Add Template</a></li>
+                        <li><a href="{{url('/templates/edit')}}">Edit Template</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Add to collecton</a></li>
-                        <li><a href="#">Edit Book</a></li>
+
+                        <li><a href="{{url('/bookcollections')}}">View Collections</a></li>
+
                         <li><a href="#">Export</a></li>
                         <li><a href="{{url('/changePassword')}}">Change Password</a></li>
                     </ul>
@@ -92,10 +94,19 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
     </div>
 </nav>
 
+<script>
+    window.setTimeout(function() {
+        $(".flash").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 5000);
+
+</script>
+
+@if (Session::has('message'))
+    <div class = "alert alert-success flash">{{ Session::get('message')}}</div>
+@endif
 <h1>Template Viewer</h1>
-
-
-
 
 <script>
 
@@ -110,20 +121,20 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             "columnDefs": [ {
                 "targets": 1,
                 "data": 'view',
-                "defaultContent": "<button class = 'view' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>View!</button>"},
+                "defaultContent": "<button class = 'view' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>View template</button>"},
                 {
                     "targets": 2,
                     "data": 'edit',
-                    "defaultContent": "<button class = 'edit' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Edit!</button>"},
+                    "defaultContent": "<button class = 'edit' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Edit template</button>"},
                 {
 
                     "targets": 3,
                     "data": 'delete',
-                    "defaultContent": "<button class = 'delete' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Delete!</button>"},
+                    "defaultContent": "<button class = 'delete' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Delete template</button>"},
                 {
                     "targets": 4,
                     "data": 'select',
-                    "defaultContent": "<button class = 'select' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Select!</button>"}
+                    "defaultContent": "<button class = 'select' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>Apply template</button>"}
             ]
 
         } );
@@ -134,23 +145,15 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             //store the template name in a variable
             var templatename = data[0];
 
+
             if ( $(this).hasClass('select') ) {
-                $.ajax({
-                    type: "get",
-
-                    url: "/templates/apply"
-                    //data: {
-                    //   templatename: templatename
-                    //},
-
-                });
-                window.location.href = "http://localhost/bookcat/public/templates/apply";
+                window.location.href = "{{url('/templates/apply')}}";
             }
+
             if ( $(this).hasClass('delete') ) {
                 $.ajax({
-
                     type: "POST",
-                   url: "../resources/views/scripts/templateview.blade.php",
+                    url: "../resources/views/scripts/templateview.blade.php",
                     data:{
                         templatename: templatename
 
@@ -159,7 +162,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                         alert("Success!");
                     }
                 });
-
+                alert("Template Name: '" + templatename + "' has been deleted");
                 location.reload();
             }
             if ( $(this).hasClass('edit') ) {
@@ -213,7 +216,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             </th>
             <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Delete
             </th>
-            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Select
+            <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1">Apply
             </th>
         </tr>
         </thead>

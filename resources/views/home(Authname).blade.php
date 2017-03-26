@@ -59,7 +59,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('/templates/index')}}">View Templates</a></li>
+                        <li><a href="{{url('/templates')}}">View Templates</a></li>
                         <li><a href="{{url('/templates/create')}}">Add Template</a></li>
                         <li><a href="{{url('/templates/edit')}}">Edit Template</a></li>
                     </ul>
