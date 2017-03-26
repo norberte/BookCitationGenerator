@@ -93,3 +93,9 @@ Route::resource('bookcollections','BookcollectionController');
 
 Route::get('/scripts/templateview/', 'TemplateController@templateview');
 
+//route to export HTML page
+Route::get('/exportThis', 'HomeController@export');
+
+//route to export HTML page
+Route::post('/exportThis', 'HomeController@export');
+

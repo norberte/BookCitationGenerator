@@ -26,4 +26,9 @@ class HomeController extends Controller
         //return view('home(Authname)');
         return view('newhome');
     }
+
+    public function export(){
+        return view('exportThis');
+    }
+
 }

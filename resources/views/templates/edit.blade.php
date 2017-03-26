@@ -9,7 +9,7 @@
                 <div class="col-sm-8 text-left" style="text-align:center">
                     <h1>Create Template</h1><p>&nbsp;</p>
                 </div>
-                <div class="col-sm-12 form-group">
+.                <div class="col-sm-12 form-group">
                     <label>Template Name</label>
                     <h1 class="form-control"> @foreach($template as $temp){{$temp->tname}}@endforeach </h1>
                     <input type="hidden" name="tname" value=@foreach($template as $temp){{$temp->tname}}@endforeach>
