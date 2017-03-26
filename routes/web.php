@@ -1,3 +1,6 @@
+<!-- to create a "session" (or a middleware), just attach "->middleware('auth')" to the end
+This makes the user have to be logged in to be able to access that page -->
+
 <?php
 /*
 |--------------------------------------------------------------------------
@@ -24,61 +27,61 @@ Route::get('/home', 'HomeController@index');
 Auth::routes();
 
 //routes to page for adding books
-Route::get('/books/create','BookController@create');
+Route::get('/books/create','BookController@create')->middleware('auth');
 
 //Route for storing user input into the database
-Route::post('/books','BookController@store');
+Route::post('/books','BookController@store')->middleware('auth');
 
 //Route to the page to edit books
-Route::get('/books/{books}/edit', 'BookController@edit');
+Route::get('/books/{books}/edit', 'BookController@edit')->middleware('auth');
 // David, shouldn't this be '/books/edit/{Book}', since you are editing a specific book
 
 //Route to update edit into the database
-Route::post('/books/{books}/update', 'BookController@update');
+Route::post('/books/{books}/update', 'BookController@update')->middleware('auth');
 
 //Route to show all info about a book, {Book} expects a bid
-Route::get('/books/{Book}', 'BookController@show');
+Route::get('/books/{Book}', 'BookController@show')->middleware('auth');
 
 //delete selected book, {Book} expects a bid
-Route::delete('/books/{Book}','BookController@destroy');
+Route::delete('/books/{Book}','BookController@destroy')->middleware('auth');
 
 
 
 
 // route for changing password page
-Route::get('/changePassword', 'changePassword@index');
+Route::get('/changePassword', 'changePassword@index')->middleware('auth');
 
 //route to update database with new password
-Route::post('/changePassword', 'changePassword@update');
+Route::post('/changePassword', 'changePassword@update')->middleware('auth');
 
 
 // routes for templates
 Auth::routes();
 
 //routes to page for creating a Template
-Route::get('/templates/create','TemplateController@create');
+Route::get('/templates/create','TemplateController@create')->middleware('auth');
 
 //Route for storing custom template into the database
-Route::post('/templates','TemplateController@store');
+Route::post('/templates','TemplateController@store')->middleware('auth');
 
 //Route to the template page
-Route::get('/templates', 'TemplateController@index');
+Route::get('/templates', 'TemplateController@index')->middleware('auth');
 
 //Route to the page to edit templates
-Route::get('/templates/{tname}/edit', 'TemplateController@edit');
+Route::get('/templates/{tname}/edit', 'TemplateController@edit')->middleware('auth');
 
 //Route to update edit templates into the database
 Route::post('/templates/{tname}', 'TemplateController@update');
 
 //Route to delete a selected template, {tname} - name of template expected
 
-Route::get('/templates/delete/{tname}', 'TemplateController@destroy');
+Route::get('/templates/delete/{tname}', 'TemplateController@destroy')->middleware('auth');
 
 
 //Route to show all info about specific book, {tname} - name of template expected
-Route::get('/templates/{tname}', 'TemplateController@show');
+Route::get('/templates/{tname}', 'TemplateController@show')->middleware('auth');
 
-Route::get('/templates/apply', 'TemplateController@applyTemplate');
+Route::get('/templates/apply', 'TemplateController@applyTemplate')->middleware('auth');
 
 
 /*this is pretty cool instead of having to define every single route for get, post, delete patch etc. I defined a resouceful controller that automatically links to the required controller method here is an example of how the routes work: 
@@ -90,12 +93,12 @@ Route::resource('bookcollections','BookcollectionController');
 //Route to template viewer page
 //Route::get('/templates', 'TemplateController@view');
 
-
-Route::get('/scripts/templateview/', 'TemplateController@templateview');
-
-//route to export HTML page
-Route::get('/exportThis', 'HomeController@export');
+//this makes the it so you can delete a template from the database using datatables
+Route::get('/scripts/templateview/', 'TemplateController@templateview')->middleware('auth');
 
 //route to export HTML page
-Route::post('/exportThis', 'HomeController@export');
+Route::get('/exportThis', 'HomeController@export')->middleware('auth');
+
+//route to export HTML page
+Route::post('/exportThis', 'HomeController@export')->middleware('auth');
 
