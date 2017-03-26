@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
             return redirect('/home');
         }
 
-         return redirect('http://localhost/bookcat/public/');
-        //   return $next($request);
+        // return redirect('http://localhost/bookcat/public/');
+           return $next($request);
     }
 }
