@@ -1,5 +1,6 @@
 @extends('layout.master')
 @section('content')
+
 	{{$collection->cname}}
 	<br>
 	<br>

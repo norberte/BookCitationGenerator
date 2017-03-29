@@ -147,7 +147,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
 
             if ( $(this).hasClass('select') ) {
-                window.location.href = "{{url('/templates/apply')}}";
+                window.location.href = "http://localhost/bookcat/public/templates/apply/" + templatename;
             }
 
             if ( $(this).hasClass('delete') ) {
