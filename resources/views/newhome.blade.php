@@ -321,7 +321,7 @@ editbutton.onclick = function() {
 }
 
 // Get the button that sends the book to edit
-var viewbutton = document.getElementById("deletebook");
+var viewbutton = document.getElementById("viewbook");
 viewbutton.onclick = function() {
     var table = $('#example').DataTable();
 
@@ -335,7 +335,7 @@ viewbutton.onclick = function() {
    noquotes = JSON.parse(selection);
 
 
-	//redirects the number to this page so it can be edited
+	//redirects the number to this page so it can be viewed
    window.location.replace("http://localhost/bookcat/public/books/" + noquotes);
 
 }
@@ -581,7 +581,7 @@ window.onclick = function(event) {
 
 <button id="create">Create collection</button>
 <button id="editbook">Edit</button>
-<button id="deletebook">view book</button>
+<button id="viewbook">view book</button>
 
 
 <!-- The Modal -->

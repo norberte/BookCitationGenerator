@@ -4,7 +4,7 @@ use App\Book;
 
 
 // DB table to use
-$table = 'template';
+$table = 'templates';
 
 // Table's primary key
 $primaryKey = 'tname';
