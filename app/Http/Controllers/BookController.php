@@ -119,11 +119,17 @@ class BookController extends Controller
 
 
     public function show($id){
-        $book = DB::table('books')->select('bookAttr')->where('id', '=', $id)->get();
-        $books= json_decode($book);
-        $id =$id;
+        $books = DB::table('books')->select('bookAttr')->where('id', '=', $id)->get();
         
-        return view('/books/show', compact('id'));
+
+        $bookat = $books[0]->bookAttr;
+
+        $books= json_decode($bookat);
+
+       
+        
+        
+        return view('/books/show', compact('books'));
     }
 
 

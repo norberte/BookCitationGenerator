@@ -8,7 +8,7 @@ use Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use App\Template;
-
+use App\bookcollection;
 
 
 
@@ -25,7 +25,7 @@ class TemplateController extends Controller
     // COMPLETE
     public function store()
     {
-        DB::table('template')->insert(
+        DB::table('templates')->insert(
             ['tname' => request('tname'), 'content' => request('content')]
         );
 
@@ -39,7 +39,7 @@ class TemplateController extends Controller
     public function edit($tname)
     {
         // get the template
-        $template = DB::table('template')->select('*')->where('tname', '=', $tname)->get();
+        $template = DB::table('templates')->select('*')->where('tname', '=', $tname)->get();
 
         // show the edit form and pass the template
         return view('/templates/edit')->with('template', $template);
@@ -49,7 +49,7 @@ class TemplateController extends Controller
     // COMPLETE
     public function update($tname)
     {
-        DB::table('template')
+        DB::table('templates')
             ->where('tname', request('tname'))
             ->update(['content' => request('content')]);
 
@@ -62,7 +62,7 @@ class TemplateController extends Controller
     // COMPLETE
     public function destroy($tname)
     {
-        DB::table('template')->where('tname','=', $tname)->delete();
+        DB::table('templates')->where('tname','=', $tname)->delete();
 
         Session::flash('message', 'Successfully deleted the template!');
         return Redirect::to('/templates');
@@ -73,9 +73,29 @@ class TemplateController extends Controller
     // COMPLETE
     public function show($tname)
     {
-        $template = DB::table('template')->select('*')->where('tname', '=', $tname)->get();
+        $template = DB::table('templates')->select('*')->where('tname', '=', $tname)->get();
 
         return view('/templates/show')->with('template', $template);
+    }
+
+      public function preview($tname)
+    {
+        $tem = DB::table('templates')->select('*')->where('tname', '=', $tname)->get();
+        $temp = $tem[0];
+
+        return view('/templates/tempreview')->with('temp', $temp);
+    }
+
+    public function export(Request $request){
+
+            $template = Template::find($request->tname);
+         $bookcollection = bookcollection::find($request->bookcol);
+            $template->bookcollections()->attach($request->bookcol,[ 'templates_tname'=>$request->tname]);
+          
+         
+         //$template->bookcollections()->sync($request->bookcol,false);
+
+         return view('/newhome');
     }
 
     // shows all templates
@@ -88,8 +108,20 @@ class TemplateController extends Controller
         //return view('/templates/index')->with('templates', $templates);
         return view('/templates/index');
     }
-    public function applyTemplate()
-    {
-        return view('/templates/apply');
+    public function applyTemplate($tname)
+    {   
+        
+        
+        $collections = bookcollection::all();
+       
+        $conten = DB::table('templates')->select('*')->where('tname', '=', $tname)->get()->toArray();
+        
+
+        $content = $conten[0];
+        
+       
+    
+
+        return view('/templates/apply',compact('template','collections','content'));
     }
 }
