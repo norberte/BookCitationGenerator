@@ -335,6 +335,7 @@ viewbutton.onclick = function() {
    noquotes = JSON.parse(selection);
 
 
+
 	//redirects the number to this page so it can be viewed
    window.location.replace("http://localhost/bookcat/public/books/" + noquotes);
 
