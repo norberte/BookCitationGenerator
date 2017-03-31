@@ -1,12 +1,10 @@
+<h1>Export Bibliography</h1>
 <?php
-$body ="
-<b>Title:</b>1984
-<b>Author:</b>George Orwell
-<b>Publisher:</b><i>Penguin Books</i>
-<b>Random Content:</b><p>&nbsp; &nbsp; &nbsp; &nbsp; This is random. This is random. This is random. This is random. This is random. This is random. This is random. </p>
-";
-
-
+$body = "TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
+TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
+TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
+TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
+TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING";
 ?>
 
 
@@ -14,6 +12,15 @@ $body ="
 <input type ="submit" name="submit_word" value="Export to Word" style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;' />
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
+
+<style>
+    #styleit{
+        border-style: solid;
+        border-width: 4px;
+        width: 50%;
+    }
+
+</style>
 
 <?php
 if (isset($_POST['submit_word'])){
@@ -24,5 +31,8 @@ if (isset($_POST['submit_word'])){
 }
 
 echo "<html>";
+echo '<div id="styleit">';
 echo "$body";
+echo "<br>";
+echo '</div>';
 echo "</html>";

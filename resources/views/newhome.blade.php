@@ -238,21 +238,23 @@ tr.details td.details-control {
 	                    </ul>
 	                </li>
 	            </ul>
-	            <ul class="nav navbar-nav navbar-right">
-	                <li> <a href="{{ url('logout') }}"
-	                        onclick="event.preventDefault();
-	                                                     document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
-	                        Logout
-	                    </a>
-	                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
-	                    {{ csrf_token() }}
-	                        
-	                    </form>
-	            </ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li> <a href="{{ url('logout') }}"
+							onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
+							Logout
+						</a>
+						<form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+							{{ csrf_field() }}
+						</form>
+				</ul>
 	        </div>
 	    </div>
 	</nav>
 
+	<button id="create" style='background-color:#337AB7; float: left;'>Create Collection</button>
+	<button id="editbook" style='background-color:#337AB7; float: left;'>Edit</button>
+	<button id="viewbook" style='background-color:#337AB7; float: left;'>View Book</button>
 
 
 <script>
@@ -580,9 +582,7 @@ window.onclick = function(event) {
 
 		<!-- Trigger/Open The Modal -->
 
-<button id="create">Create collection</button>
-<button id="editbook">Edit</button>
-<button id="viewbook">view book</button>
+
 
 
 <!-- The Modal -->
