@@ -238,17 +238,16 @@ tr.details td.details-control {
 	                    </ul>
 	                </li>
 	            </ul>
-	            <ul class="nav navbar-nav navbar-right">
-	                <li> <a href="{{ url('logout') }}"
-	                        onclick="event.preventDefault();
-	                                                     document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
-	                        Logout
-	                    </a>
-	                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
-	                    {{ csrf_token() }}
-	                        
-	                    </form>
-	            </ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li> <a href="{{ url('logout') }}"
+							onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
+							Logout
+						</a>
+						<form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+							{{ csrf_field() }}
+						</form>
+				</ul>
 	        </div>
 	    </div>
 	</nav>
