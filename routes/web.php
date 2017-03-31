@@ -1,6 +1,3 @@
-<!-- to create a "session" (or a middleware), just attach "->middleware('auth')" to the end
-This makes the user have to be logged in to be able to access that page -->
-
 <?php
 /*
 |--------------------------------------------------------------------------
@@ -11,6 +8,9 @@ This makes the user have to be logged in to be able to access that page -->
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
+- To create a "session" (or a middleware), just attach "->middleware('auth')" to the end
+This makes the user have to be logged in to be able to access that page
 */
 Route::get('/', function () {
     return view('welcome');
@@ -33,7 +33,7 @@ Route::post('/books','BookController@store');
 
 //Route to the page to edit books
 Route::get('/books/{books}/edit', 'BookController@edit');
-// David, shouldn't this be '/books/edit/{Book}', since you are editing a specific book
+
 
 //Route to update edit into the database
 Route::post('/books/{books}/update', 'BookController@update');
@@ -97,6 +97,9 @@ Route::resource('bookcollections','BookcollectionController');
 
 //this makes the it so you can delete a template from the database using datatables
 Route::get('/scripts/templateview/', 'TemplateController@templateview');
+
+//searching for templates ajax
+Route::get('/templateSearch', 'BookCollectionController@search');
 
 //route to export HTML page
 Route::get('/exportThis', 'HomeController@export');

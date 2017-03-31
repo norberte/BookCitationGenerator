@@ -4,10 +4,11 @@
 @section('content')
 
 
+
+
+
+<div class="col-sm-4 form-group center" id="float_this">
     <h3 id="padding">Change Password</h3><p>&nbsp;</p>
-
-
-<div class="col-sm-4 form-group" id="float_this">
 <form action="http://localhost/bookcat/public/changePassword" method="post">
     {{ csrf_field() }}
    <label>Old password:</label>
@@ -23,6 +24,10 @@
 <style>
     #padding{
         margin-left: 40px;
+    }
+    .center{
+        margin-left: 25%;
+
     }
 </style>
 @endsection
