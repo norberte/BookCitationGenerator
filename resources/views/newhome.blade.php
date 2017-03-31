@@ -252,6 +252,9 @@ tr.details td.details-control {
 	    </div>
 	</nav>
 
+	<button id="create" style='background-color:#337AB7; float: left;'>Create Collection</button>
+	<button id="editbook" style='background-color:#337AB7; float: left;'>Edit</button>
+	<button id="viewbook" style='background-color:#337AB7; float: left;'>View Book</button>
 
 
 <script>
@@ -579,9 +582,7 @@ window.onclick = function(event) {
 
 		<!-- Trigger/Open The Modal -->
 
-<button id="create">Create collection</button>
-<button id="editbook">Edit</button>
-<button id="viewbook">view book</button>
+
 
 
 <!-- The Modal -->
