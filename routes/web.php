@@ -72,7 +72,7 @@ Route::post('/templates/{tname}', 'TemplateController@update');
 //Route for iframe template preview
 Route::get('/templatepreview/{tname}', 'TemplateController@preview');
 
-Route::post('/applytemplate/preview/{tname}','TemplateController@export');
+Route::post('/applytemplate/preview/{tname}','TemplateController@generateCitations');
 
 //Route to delete a selected template, {tname} - name of template expected
 
@@ -86,8 +86,8 @@ Route::get('/templates/{tname}', 'TemplateController@show');
 Route::get('/templates/apply', 'TemplateController@applyTemplate');
 
 
-/*this is pretty cool instead of having to define every single route for get, post, delete patch etc. I defined a resouceful controller that automatically links to the required controller method here is an example of how the routes work: 
-anything in the URL that links to bookcollections with a get method will be redirected to bookcollections.index which sends you to the index method of bookcolectionController . To see all the other routes in cmd type php artisan route:list. To test it out in the url bar enter the address http://localhost/bookcat/public/bookcollections that should link to the index page!  , by Andry 3/16/2017*/ 
+/*this is pretty cool instead of having to define every single route for get, post, delete patch etc. I defined a resouceful controller that automatically links to the required controller method here is an example of how the routes work:
+anything in the URL that links to bookcollections with a get method will be redirected to bookcollections.index which sends you to the index method of bookcolectionController . To see all the other routes in cmd type php artisan route:list. To test it out in the url bar enter the address http://localhost/bookcat/public/bookcollections that should link to the index page!  , by Andry 3/16/2017*/
 
 Route::resource('bookcollections','BookcollectionController');
 
