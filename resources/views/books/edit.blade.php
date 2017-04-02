@@ -25,11 +25,7 @@ $url = $_SERVER['REQUEST_URI'];
 // URL splits up between /'s. Then I grab the second to last one, which is our book ID.
 $urlExplode = explode('/',$url);
 $bookID = $urlExplode[count($urlExplode)-2];
-
-echo $bookID;
-
-
-
+        
         $json = App\Book::where('id', $bookID)->get();
        // the book to change
 
