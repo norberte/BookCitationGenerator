@@ -61,10 +61,7 @@ $users = DB::table('bookcollections')
 
 
             </div>
-            <form action="../../bookcollections" method="get">
-                <input type ="submit" name="submit_word" value="View all books" style='background-color:#337AB7; color: white; border:none; padding: 10px 24px; float:right;' />
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            </form>
+                <a href="../../bookcollections"  style='background-color:#337AB7; color: white; border:none; padding: 10px 24px; float:right;'>View all books</a>
         </div>
         <br />
         <div id="result"></div>
