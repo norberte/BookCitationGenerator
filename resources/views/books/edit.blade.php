@@ -26,10 +26,6 @@ $url = $_SERVER['REQUEST_URI'];
 $urlExplode = explode('/',$url);
 $bookID = $urlExplode[count($urlExplode)-2];
 
-echo $bookID;
-
-
-
         $json = App\Book::where('id', $bookID)->get();
        // the book to change
 
@@ -435,7 +431,7 @@ $items = json_decode($json[0]['bookAttr'], true);
 
                     <hr>
 
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Add Book">
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Edit Book">
 
                 </form>
 
