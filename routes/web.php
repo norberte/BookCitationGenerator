@@ -98,8 +98,8 @@ Route::resource('bookcollections','BookcollectionController');
 //this makes the it so you can delete a template from the database using datatables
 Route::get('/scripts/templateview/', 'TemplateController@templateview');
 
-//searching for templates ajax
-Route::get('/templateSearch', 'BookCollectionController@search');
+//searching for templates
+Route::post('templates/template/search', 'BookCollectionController@search');
 
 //route to export HTML page
 Route::get('/exportThis', 'HomeController@export');

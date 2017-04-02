@@ -251,12 +251,12 @@ tr.details td.details-control {
 	        </div>
 	    </div>
 	</nav>
-
+	<h1 style="text-align: center;">Homepage: Book List</h1>
+<div style="float:right;">
 	<button id="create" style='background-color:#337AB7; float: left;'>Create Collection</button>
 	<button id="editbook" style='background-color:#337AB7; float: left;'>Edit</button>
 	<button id="viewbook" style='background-color:#337AB7; float: left;'>View Book</button>
-
-
+</div>
 <script>
  function format ( d ) {
          return 'Title: '+d.title+ '<br>'+

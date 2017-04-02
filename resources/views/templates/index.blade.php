@@ -106,7 +106,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 @if (Session::has('message'))
     <div class = "alert alert-success flash">{{ Session::get('message')}}</div>
 @endif
-<h1>Template Viewer</h1>
+<h1 style="text-align: center";>Template Viewer</h1>
 
 <script>
 
