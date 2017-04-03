@@ -95,9 +95,12 @@ class BookcollectionController extends Controller
          //$bookcollections->books()->detach(1);
           /*code for deleting a bookcollection or book from a book collection!*/
 
-        $books = $bookcollection->books;
+        
+      
+     //gets all the books from the collection ID
+      $books = bookcollection::find($bookcollection)->books;
 
-        return view('bookcollections.edit',compact('bookcollection','books'));
+        return view('bookcollections.edit',compact('$books'));
     }
 
     /**

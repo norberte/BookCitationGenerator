@@ -123,7 +123,7 @@
                                     ?>
 
                          
-                             <a href={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}} class="btn btn-info">View Collection</a>
+                             <a href={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}} class="btn btn-info">Edit Collection</a>
                              <form class ="form-group pull-right" action="{{'bookcollections/'.$collection->id}}" method ="post">
                              {{ csrf_field() }}
                              {{ method_field('DELETE')}}
