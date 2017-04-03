@@ -11,6 +11,9 @@
     <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css"/>
+
 
 </head>
 <body>
@@ -106,7 +109,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 @if (Session::has('message'))
     <div class = "alert alert-success flash">{{ Session::get('message')}}</div>
 @endif
-<h1>Template Viewer</h1>
+<h1 style="text-align: center";>Template Viewer</h1>
 
 <script>
 
@@ -204,8 +207,8 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
     } );
 </script>
 
-<div id = "content">
-    <table width="100%" class="display nowrap dataTable dtr-inline" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
+<div id="content">
+    <table width="100%" class="display nowrap dataTable dtr-inline ui celled table" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
         <thead>
         <tr role="row">
             <th tabindex="0" class="sorting_asc" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" aria-sort="ascending" rowspan="1" colspan="1">Template Name
@@ -221,18 +224,6 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
         </tr>
         </thead>
         <tfoot>
-        <tr>
-            <th class="dt-body-right" rowspan="1" colspan="1">
-            </th>
-            <th class="dt-body-right" rowspan="1" colspan="1">
-            </th>
-            <th class="dt-body-right" rowspan="1" colspan="1">
-            </th>
-            <th class="dt-body-right" rowspan="1" colspan="1">
-            </th>
-            <th class="dt-body-right" rowspan="1" colspan="1">
-            </th>
-        </tr>
         </tfoot>
 
     </table>
