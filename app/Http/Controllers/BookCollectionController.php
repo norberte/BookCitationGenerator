@@ -129,4 +129,12 @@ class BookcollectionController extends Controller
 
         return redirect('/bookcollections');
     }
+
+    public function search(){
+
+        return view ('templates/template/search');
+
+    }
+
+
 }
