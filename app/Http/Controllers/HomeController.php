@@ -31,4 +31,13 @@ class HomeController extends Controller
         return view('exportThis');
     }
 
+    public function exportScript(){
+
+        return view('exportScript');
+
+    }
+
+
+
+
 }

@@ -105,4 +105,5 @@ Route::post('templates/template/search', 'BookCollectionController@search');
 Route::get('/exportThis', 'HomeController@export');
 
 //route to export HTML page
-Route::post('/exportThis', 'HomeController@export');
+Route::post('/exportThis', 'HomeController@exportScript');
+
