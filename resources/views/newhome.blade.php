@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 	<html lang="en">
 	<head>
@@ -200,66 +198,69 @@ tr.details td.details-control {
 	html file that puts the "SEARCHBY field" in the first column this automatically switches the search filed to the first column
 	-->
 	<nav class="navbar navbar-inverse">
-	    <div class="container-fluid">
-	        <div class="navbar-header">
-	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	            </button>
-	            <a class="navbar-brand" href="{{url('/home')}}">BooKStrap</a>
-	        </div>
-	        <div class="collapse navbar-collapse" id="myNavbar">
-	            <ul class="nav navbar-nav">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{{url('/home')}}">BooKStrap</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
 
-
-	                <li class="dropdown">
-	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
-	                    <ul class="dropdown-menu">
-	                        <li><a href="{{url('/books/create')}}">Add Book</a></li>
-	                       
-
-
-	                    </ul>
-	                </li>
-	                <li class="dropdown">
-	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
-	                    <ul class="dropdown-menu">
-	                        <li><a href="#">Add Template</a></li>
-	                        <li><a href="#">Edit Template</a></li>
-
-
-	                    </ul>
-	                </li>
-	                <li class="dropdown">
-	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
-	                    <ul class="dropdown-menu">
-	                        <li><a href="{{url('/bookcollections')}}">View Collections</a></li>
-            
-            				<li><a href="#">Export</a></li>
-	                        <li><a href="{{url('/changePassword')}}">Change Password</a></li>
-	                    </ul>
-	                </li>
-	            </ul>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{url('/books/create')}}">Add Book</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{url('/templates')}}">View Templates</a></li>
+							<li><a href="{{url('/templates/create')}}">Add Template</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{url('/bookcollections')}}">View Collections</a></li>
+						</ul>
+					</li>
+				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li> <a href="{{ url('logout') }}"
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#"> Account <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{url('/changePassword')}}">Change Password</a></li>
+						<li><a href="{{ url('logout') }}"
 							onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
 							Logout
-						</a>
+							</a></li>
 						<form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
 							{{ csrf_field() }}
 						</form>
+						</ul>
+					</li>
 				</ul>
-	        </div>
-	    </div>
+
+
+
+			</div>
+		</div>
 	</nav>
-	<h1 style="text-align: center;">Homepage: Book List</h1>
-<div style="float:right;">
-	<button id="create" style='background-color:#337AB7; float: left;'>Create Collection</button>
-	<button id="editbook" style='background-color:#337AB7; float: left;'>Edit</button>
-	<button id="viewbook" style='background-color:#337AB7; float: left;'>View Book</button>
+
+	<h1 style="text-align: center; margin-right:4.5em;">Book List</h1>
+
+<div style="display: table; margin: 2em auto;">
+	<button id="create" style='background-color:#337AB7;'>Create Collection</button>
+	<button id="viewbook" style='background-color:#337AB7;'>View Book</button>
+	<button id="editbook" style='background-color:#337AB7;'>Edit</button>
 </div>
+
 <script>
  function format ( d ) {
          return 'Title: '+d.title+ '<br>'+
@@ -588,18 +589,18 @@ window.onclick = function(event) {
 
   <!-- Modal content -->
   <div class="modal-overlay1">
-	
+
 
 
     <span class="close1">&times;</span>
     <div id="formdiv">
-    
+
     	<form action="http://localhost/bookcat/public/bookcollections"  method="POST"  id="form1" >
     	  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             <input class="btn btn-primary" type="submit" value="Add bookcollection" name="signup">
                 </form>
-          
-   
+
+
    </div>
   </div>
   

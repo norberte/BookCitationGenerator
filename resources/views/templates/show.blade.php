@@ -1,4 +1,4 @@
-@extends('layout.masterTemplate')
+@extends('layout.master')
 @section('content')
     <div class="container text-center">
         <div class="row content">
