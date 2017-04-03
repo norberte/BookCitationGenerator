@@ -152,7 +152,8 @@ class TemplateController extends Controller
             if(count($matches) > 0){
                 for($i=0; $i<count($matches); $i++){
                     if($i != 0){
-                        echo "Match: ".$matches[$i]."<br>";
+                        // this was showing up on the export page.
+                      //  echo "Match: ".$matches[$i]."<br>";
                         array_push($fullyTokenized, $matches[$i]);
                     }
                 }
@@ -294,6 +295,13 @@ class TemplateController extends Controller
             }
             array_push($citationsArray, $citation);
         }
-        return view('/exportThis',compact('citationsArray'));
+
+        // turning it into one long string
+        $longString = "";
+        foreach($citationsArray as $loop){
+                $longString .= $loop;
+                $longString .= "<br><br><br>";
+        }
+        return view('/exportThis',compact('longString'));
     }
 }
