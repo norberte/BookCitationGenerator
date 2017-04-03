@@ -53,7 +53,7 @@ $users = DB::table('bookcollections')
 
             <div class="input-group">
                 <span class="input-group-addon">Search</span>
-                <form  action="http://localhost/bookcat/public/templates/template/search" method="post">
+                <form  action="{{url('templates/template/search')}}" method="post">
                     {{ csrf_field() }}
                     <input type="text" name="search_text" id="search_text" placeholder="Search by collection name" class="form-control"/>
                     <input type="submit" name="search_template" value="submit">
