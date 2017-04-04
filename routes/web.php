@@ -21,6 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/addhome/{bookcollection}','BookcollectionController@addbooks');
+
 
 
 
