@@ -2,12 +2,15 @@
 
 @section('title','Apply Template')
 
-@section('content') 
+@section('content')
+    <?php
+    use App\bookcollection;
+    ?>
    <link rel="shortcut icon" href="../favicon.ico"> 
         <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
-          <link rel="shortcut icon" href="../favicon.ico"> 
- 	
- 		
+          <link rel="shortcut icon" href="../favicon.ico">
+         <link rel="stylesheet" type="text/css" href="http://localhost/bookcat/resources/views/books/showbook.css" />
+     <link rel="stylesheet" type="text/css" href="http://localhost/bookcat/resources/views/templates/popup.css" />
  		<style>
 
     	.box{
@@ -20,15 +23,10 @@
     	position: relative;
     	z-index: 100;
 	   }
-    	 
-		
+
 	
     	</style>
- 	
-    	
-  
-   
-     
+
     <script>
           window.setTimeout(function() {
   $(".flash").fadeTo(500, 0).slideUp(500, function(){
@@ -38,6 +36,7 @@
 
     </script>
 
+
           
             
                 @if (Session::has('message'))
@@ -45,29 +44,58 @@
                   @endif
     
   
-                 <h1><strong>Apply <a href={{'http://localhost/bookcat/public/templatepreview/'.$content->tname}}>{{$content->tname}}</a><div class="box"><iframe src={{'http://localhost/bookcat/public/templatepreview/'.$content->tname}} width = "500px" height = "50px"></iframe></div> to the following collections</strong><h1>
+                 <h1 style="text-align: center;"><strong>Apply <a href={{'http://localhost/bookcat/public/templatepreview/'.$content->tname}}>{{$content->tname}}</a> to the following book collections:</strong><h1>
                         
              
                    
                     <form method = "POST" action={{'http://localhost/bookcat/public/applytemplate/preview/'.$content->tname}}>
                     {{ csrf_field() }}
-                       @foreach($collections as $collection)
-                    
+
+                           <table class="table-fill">
+                           <thead>
+                           <tr>
+                               <th class="text-left">
+                                   Select
+                               </th>
+                               <th class="text-left">
+                                   Book Collection
+                               </th>
+                               <th class="text-left">
+                                   Preview
+                               </th>
+                           </tr>
+
+                           </thead>
+                               @foreach($collections as $collection)
+                                   <tr>
+                                       <td class="text-left">
+                                           <input type="checkbox" name="bookcol[]" value={{$collection->id}}>
+                                       </td>
+                                       <td class="text-left">
+                                           <a href={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}}>{{$collection->cname}}</a>
+                                       </td>
+                                       <td class="text-left">
+                                           <div id="popup"> <a href="{{url('/bookcollections/'.$collection->id)}}">View Collection<span><?php      $collectionId = $collection->id;
+
+                                                       //gets all the books from the collection ID
+                                                       $bookId = bookcollection::find($collectionId)->books;
+
+                                                       //prints out all the books from the collection ID
+                                                       foreach ($bookId as $value){
+                                                           echo "<p style='color:blue;'>Title: $value->title</p>";
+                                                           echo "<p>&emsp;Author Last Name: $value->authorLastName</p>";
+
+                                                           echo "<br>";
+                                                       }?></span></a></div>
+                                       </td>
+                                   </tr>
+                               @endforeach
+                           </table>
 							
-                            <input type="checkbox" name="bookcol[]" value={{$collection->id}}> <a href={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}}>{{$collection->cname}}</a><div class="box"><iframe src={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}} width = "500px" height = "500px"></iframe></div><br>
 
-
-
-                       
-                        @endforeach
-                         
-                    <input type="hidden" name="tname" value={{$content->tname}}>
-                    <input type="submit" value="Preview">
-						</form>
-
-  
-                       
-            
+                         <input type="hidden" name="tname" value={{$content->tname}}>
+                         <input type="submit" value="Submit" style='background-color:#337AB7; color: white; border:none; padding: 10px 24px; float:right;'>
+                    </form>
         
        
  
