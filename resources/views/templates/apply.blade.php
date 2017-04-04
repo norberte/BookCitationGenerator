@@ -45,16 +45,16 @@
                   @endif
     
   
-                 <h1><strong>Apply <a href={{'http://localhost/bookcat/public/templatepreview/'.$content->tname}}>{{$content->tname}}</a><div class="box"><iframe src={{'http://localhost/bookcat/public/templatepreview/'.$content->tname}} width = "500px" height = "50px"></iframe></div> to the following collections</strong><h1>
+                 <h1><strong>Apply <a href="{{url('/templatepreview/'.$content->tname)}}">{{$content->tname}}</a><div class="box"><iframe src="{{url('/templatepreview/'.$content->tname)}}" width = "500px" height = "50px"></iframe></div> to the following collections</strong><h1>
                         
              
                    
-                    <form method = "POST" action={{'http://localhost/bookcat/public/applytemplate/preview/'.$content->tname}}>
+                    <form method = "POST" action="{{url('/applytemplate/preview/'.$content->tname)}}">
                     {{ csrf_field() }}
                        @foreach($collections as $collection)
                     
 							
-                            <input type="checkbox" name="bookcol[]" value={{$collection->id}}> <a href={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}}>{{$collection->cname}}</a><div class="box"><iframe src={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}} width = "500px" height = "500px"></iframe></div><br>
+                            <input type="checkbox" name="bookcol[]" value={{$collection->id}}> <a href="{{url('/bookcollections/'.$collection->id)}}">{{$collection->cname}}</a><div class="box"><iframe src="{{url('/bookcollections/'.$collection->id)}}" width = "500px" height = "500px"></iframe></div><br>
 
 
 

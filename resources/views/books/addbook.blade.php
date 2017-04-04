@@ -26,7 +26,7 @@
 
 
   <div class="row">
-    <form method="POST" action="http://localhost/bookcat/public/books">
+    <form method="POST" action="{{url('/books')}}">
       {{ csrf_field() }}
       <div class="col-sm-12">
         <div class="row">

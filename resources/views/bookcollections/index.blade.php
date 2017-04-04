@@ -10,8 +10,8 @@
    <link rel="shortcut icon" href="../favicon.ico"> 
         <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
           <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="/bookcat/public/css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="/bookcat/public/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="{{url('/css/demo.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{url('/css/style.css')}}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
@@ -91,7 +91,7 @@
                                     ?>
 
 
-                             <form class ="form-group pull-right" action="{{'bookcollections/'.$collection->id}}" method ="post">
+                             <form class ="form-group pull-right" action="{{url('bookcollections/'.$collection->id)}}" method ="post">
                              {{ csrf_field() }}
                              {{ method_field('DELETE')}}
                             <button type="submit" class="btn btn-danger">Delete</button>

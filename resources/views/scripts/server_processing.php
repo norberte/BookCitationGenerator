@@ -27,10 +27,10 @@ $columns = array(
 
 // SQL server connection information
 $sql_details = array(
-    'user' => 'root',
-    'pass' => 'batchat', // to be changed for every different instance of a local DB
-    'db'   => 'bookcat',
-    'host' => 'localhost'
+    'user' => env('DB_USERNAME'),
+    'pass' => env('DB_PASSWORD'),
+    'db'   => env('DB_DATABASE'),
+    'host' => env('DB_HOST')
 );
 
 

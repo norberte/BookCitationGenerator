@@ -167,7 +167,7 @@ $items = json_decode($json[0]['bookAttr'], true);
 
             <div class="row">
                 <!-- DEL NEEDS TO BE THE BOOK ID THAT IS GETTING EDITED -->
-                <form method="POST" action="/bookcat/public/books/{{$bookID}}/update">
+                <form method="POST" action="{{url('/books/'.$bookID.'/update')}}">
                     {{ csrf_field() }}
                     <div class="col-sm-12">
                         <div class="row">

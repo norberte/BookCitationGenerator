@@ -323,7 +323,7 @@ editbutton.onclick = function() {
 
 
 	//redirects the number to this page so it can be edited
-   window.location.replace("http://localhost/bookcat/public/books/" + noquotes + "/edit");
+   window.location.replace("{{url('/books/')}}" + noquotes + "/edit");
 
 }
 
@@ -344,7 +344,7 @@ viewbutton.onclick = function() {
 
 
 	//redirects the number to this page so it can be viewed
-   window.location.replace("http://localhost/bookcat/public/books/" + noquotes);
+   window.location.replace("{{url('/books/')}}" + noquotes);
 
 }
 
@@ -599,7 +599,7 @@ window.onclick = function(event) {
     <span class="close1">&times;</span>
     <div id="formdiv">
 
-    	<form action="http://localhost/bookcat/public/bookcollections"  method="POST"  id="form1" >
+    	<form action="{{url('/bookcollections')}}"  method="POST"  id="form1" >
     	  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             
                 </form>
