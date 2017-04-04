@@ -381,8 +381,12 @@ window.onclick = function(event) {
     		newcontent1.innerHTML = (selected[i]) + '<br>';
         	form.appendChild(newcontent1);
     					
-     		}
-      
+     		}    
+     		     var subbutoon1 = document.createElement('div');
+
+                 subbutoon1.innerHTML='<input class="btn btn-primary pull-right" type="submit" value="Add bookcollection" name="signup">';
+                 form.appendChild(subbutoon1);
+
  
 
   		
@@ -597,7 +601,7 @@ window.onclick = function(event) {
 
     	<form action="http://localhost/bookcat/public/bookcollections"  method="POST"  id="form1" >
     	  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-            <input class="btn btn-primary" type="submit" value="Add bookcollection" name="signup">
+            
                 </form>
 
 
