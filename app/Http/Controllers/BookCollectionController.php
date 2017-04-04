@@ -76,7 +76,8 @@ class BookcollectionController extends Controller
        /*get all books associated with collection*/
         $books = bookcollection::find($id)->books;
 
-        return view('bookcollections.edit',compact('collection','books'));
+
+        return view('bookcollections.edit',compact('collection','books','id'));
 
     }
 
@@ -86,7 +87,7 @@ class BookcollectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(bookcollection $bookcollection)
+    public function edit($id)
     {    
         /*Thanks to route model binding and resourceful controllers I no longer need the commented out line of code if I wanted to use the uncommented line. I'd have to change the parameter back to edit($id)*/
          
@@ -95,12 +96,12 @@ class BookcollectionController extends Controller
          //$bookcollections->books()->detach(1);
           /*code for deleting a bookcollection or book from a book collection!*/
 
-        
+    
       
      //gets all the books from the collection ID
-      $books = bookcollection::find($bookcollection)->books;
-
-        return view('bookcollections.edit',compact('$books'));
+      $books = bookcollection::find($id)->books;
+    
+        return view('bookcollections.edit',compact('books'));
     }
 
     /**
@@ -110,9 +111,18 @@ class BookcollectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request,$id)
+    {   
+        $bookcollection = bookcollection::find($id);
+        $bookcollection->books()->detach($request->books);
+
+        return redirect('bookcollections/'.$id);
+        
+    }
+
+    public function addbooks($id){
+
+        return view('/addhome');
     }
 
     /**
