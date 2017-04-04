@@ -282,7 +282,7 @@ tr.details td.details-control {
             "serverSide": true,
             "bSort" : false,
             select: true,
-            "ajax": "../../public/server_processing.php"
+            "ajax": "../resources/views/scripts/server_processing.php"
 					//head brackets
         } );
 
