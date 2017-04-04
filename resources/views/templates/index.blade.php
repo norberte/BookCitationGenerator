@@ -117,7 +117,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             // any more problems because of this, but if we do changing it back to true should be a start
             "processing": true,
             "serverSide": false,
-            "ajax": "../resources/views/scripts/server_processing_templateViewer.php",
+            "ajax": "../../../public/server_processing_templateViewer.php",
             "columnDefs": [ {
                 "targets": 1,
                 "data": 'view',
