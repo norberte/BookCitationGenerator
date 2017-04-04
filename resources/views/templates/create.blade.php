@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('content')
-    <form method="post" action="{{url('/templates')}}">
+    <form id="mainForm" method="post" action="{{url('/templates')}}">
         {{ csrf_field() }}
         <div class="container text-center">
             <div class="row content">
@@ -11,13 +11,13 @@
                 </div>
                 <div class="col-sm-12 form-group">
                     <label>Template Name</label>
-                    <input type="text" name="tname"  class="form-control" placeholder="MLA Basic Book Format" >
+                    <input type="text" name="tname" id="required" class="form-control" placeholder="Template Name" required>
                     <input type="hidden" name="content" id="hiddenValue">
                 </div>
 
                 <div class="col-sm-12 form-group">
                     <label>Template Creation Text Area:</label>
-                    <textarea class="form-control" rows="10" id="content"placeholder="authorLname, authorFname. <i>title.</i> publisher, prinitdate."></textarea>
+                    <textarea class="form-control" rows="10" id="content" placeholder="authorLastName, authorFirstName. <i>title.</i> publisher, printDate." required ></textarea>
                 </div>
             </div>
             <h5>Input Guide:</h5>
@@ -59,9 +59,9 @@
                                         <td><button type="button" class="btn btn-default" onclick="insertAtCaret('title ')">Select</button> </td>
                                     </tr>
                                     <tr align="center">
-                                        <td>Code Name</td>
-                                        <td>codeName</td>
-                                        <td><button type="button" class="btn btn-default" onclick="insertAtCaret('codeName ')">Select</button> </td>
+                                        <td>Code Number</td>
+                                        <td>codeNumber</td>
+                                        <td><button type="button" class="btn btn-default" onclick="insertAtCaret('codeNumber ')">Select</button> </td>
                                     </tr>
                                     <tr align="center">
                                         <td>ISBN number</td>
@@ -299,8 +299,8 @@
 
                                     <tr align ="center">
                                         <td>Series Editor</td>
-                                        <td>seriesEditor</td>
-                                        <td><button type="button" class="btn btn-default" onclick="insertAtCaret('seriesEditor ')">Select</button> </td>
+                                        <td>SeriesEditor</td>
+                                        <td><button type="button" class="btn btn-default" onclick="insertAtCaret('SeriesEditor ')">Select</button> </td>
 
                                     </tr>
 
@@ -362,6 +362,12 @@
                                         <td>Author First Name Variant</td>
                                         <td>authorFirstNameVariant</td>
                                         <td><button type="button" class="btn btn-default" onclick="insertAtCaret('authorFirstNameVariant ')">Select</button> </td>
+                                    </tr>
+
+                                    <tr align ="center">
+                                        <td>Author Last Name Variant</td>
+                                        <td>authorLastNameVariant</td>
+                                        <td><button type="button" class="btn btn-default" onclick="insertAtCaret('authorLastNameVariant ')">Select</button> </td>
                                     </tr>
 
                                     <tr align ="center">
