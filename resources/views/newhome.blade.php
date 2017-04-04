@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 	<html lang="en">
 	<head>
@@ -11,6 +9,9 @@
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.1/css/select.dataTables.min.css">
 	    <script type="text/javascript" scr="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css"/>
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css"/>
+
 	</head>
 	<body>
 	<style>
@@ -197,65 +198,68 @@ tr.details td.details-control {
 	html file that puts the "SEARCHBY field" in the first column this automatically switches the search filed to the first column
 	-->
 	<nav class="navbar navbar-inverse">
-	    <div class="container-fluid">
-	        <div class="navbar-header">
-	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	            </button>
-	            <a class="navbar-brand" href="{{url('/home')}}">BooKStrap</a>
-	        </div>
-	        <div class="collapse navbar-collapse" id="myNavbar">
-	            <ul class="nav navbar-nav">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{{url('/home')}}">BooKStrap</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
 
-
-	                <li class="dropdown">
-	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
-	                    <ul class="dropdown-menu">
-	                        <li><a href="{{url('/books/create')}}">Add Book</a></li>
-	                       
-
-
-	                    </ul>
-	                </li>
-	                <li class="dropdown">
-	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
-	                    <ul class="dropdown-menu">
-	                        <li><a href="#">Add Template</a></li>
-	                        <li><a href="#">Edit Template</a></li>
-
-
-	                    </ul>
-	                </li>
-	                <li class="dropdown">
-	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
-	                    <ul class="dropdown-menu">
-	                        <li><a href="{{url('/bookcollections')}}">View Collections</a></li>
-            
-            				<li><a href="#">Export</a></li>
-	                        <li><a href="{{url('/changePassword')}}">Change Password</a></li>
-	                    </ul>
-	                </li>
-	            </ul>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{url('/books/create')}}">Add Book</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Template <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{url('/templates')}}">View Templates</a></li>
+							<li><a href="{{url('/templates/create')}}">Add Template</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{url('/bookcollections')}}">View Collections</a></li>
+						</ul>
+					</li>
+				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li> <a href="{{ url('logout') }}"
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#"> Account <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{url('/changePassword')}}">Change Password</a></li>
+						<li><a href="{{ url('logout') }}"
 							onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
 							Logout
-						</a>
+							</a></li>
 						<form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
 							{{ csrf_field() }}
 						</form>
+						</ul>
+					</li>
 				</ul>
-	        </div>
-	    </div>
+
+
+
+			</div>
+		</div>
 	</nav>
 
-	<button id="create" style='background-color:#337AB7; float: left;'>Create Collection</button>
-	<button id="editbook" style='background-color:#337AB7; float: left;'>Edit</button>
-	<button id="viewbook" style='background-color:#337AB7; float: left;'>View Book</button>
+	<h1 style="text-align: center; margin-right:4.5em;">Book List</h1>
 
+<div style="display: table; margin: 2em auto;">
+	<button id="create" style='background-color:#337AB7;'>Create Collection</button>
+	<button id="viewbook" style='background-color:#337AB7;'>View Book</button>
+	<button id="editbook" style='background-color:#337AB7;'>Edit</button>
+</div>
 
 <script>
  function format ( d ) {
@@ -276,6 +280,7 @@ tr.details td.details-control {
       	var table = $('#example').DataTable( {
             "processing": true,
             "serverSide": true,
+            "bSort" : false,
             select: true,
             "ajax": "../resources/views/scripts/server_processing.php"
 					//head brackets
@@ -376,8 +381,12 @@ window.onclick = function(event) {
     		newcontent1.innerHTML = (selected[i]) + '<br>';
         	form.appendChild(newcontent1);
     					
-     		}
-      
+     		}    
+     		     var subbutoon1 = document.createElement('div');
+
+                 subbutoon1.innerHTML='<input class="btn btn-primary pull-right" type="submit" value="Add bookcollection" name="signup">';
+                 form.appendChild(subbutoon1);
+
  
 
   		
@@ -410,13 +419,6 @@ window.onclick = function(event) {
         } );
 
 
-
-       
-
-      
-
-
-
         // Apply the search
         table.columns('#example').eq( 0 ).each( function ( colIdx ) {
             $( 'input', table.column( colIdx ).header() ).on( 'keyup change', function () {
@@ -427,13 +429,9 @@ window.onclick = function(event) {
             } );
         } );
 
-
-
 				//so now use js to print all the selected books to a modal form and then when submitted
 				//thi is what is posted, the php file will retrieve this array by $array=json_decode($_POST['jsondata']);
 				//so what this code below will do is when the button is clicked it will trasnfer the array from this file to the php to show book collecton
-
-
 		
 
 				// Setup - add a text input to each footer cell
@@ -515,14 +513,18 @@ window.onclick = function(event) {
 
 </div>
 	<div id = "content">
-	  <table width="100%" class="display nowrap dataTable dtr-inline" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
+	  <table width="100%" class="display nowrap dataTable dtr-inline ui celled table" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
+
+
 	  <thead>
+
+
 	    <tr role="row">
-				<th tabindex="0" class="sorting_asc" aria-controls="example" style="width: 139px;" aria-label="Name: activate to sort column descending" aria-sort="ascending" rowspan="1" colspan="1">Book ID
+				<th tabindex="0" class="sorting" aria-controls="example" style="width: 139px;" aria-label="Name: activate to sort column descending" aria-sort="ascending" rowspan="1" colspan="1">Book ID
 	      </th>
 				<th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Book Title
 			 </th>
-	      <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Code Number
+	      <th tabindex="0" class="sorting " aria-controls="example" style="width: 218px;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Code Number
 	      </th>
 	      <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Author Last Name
 	      </th>
@@ -544,33 +546,34 @@ window.onclick = function(event) {
 	      </th>
 	    </tr>
 	  </thead>
+
 	  <tfoot>
-	    <tr id= "showchild">
-				<th class="dt-body-right" rowspan="1" colspan="1">Book ID
-	      </th>
-	      <th class="dt-body-right" rowspan="1" colspan="1">Book Title
-	      </th>
-	      <th class="dt-body-right" rowspan="1" colspan="1">Code Number
-	      </th>
-	      <th class="dt-body-right" rowspan="1" colspan="1">Author Last Name
-	      </th>
-	      <th class="dt-body-right" rowspan="1" colspan="1">Author First Name
-	      </th>
-	      <th rowspan="1" colspan="1">Illustrator Last Name
-	      </th>
-	      <th class="dt-body-right" rowspan="1" colspan="1">Illustrator First Name
-	      </th>
-	      <th class="dt-body-right" rowspan="1" colspan="1">Translator Last Name
-	      </th>
-	      <th class="dt-body-right" rowspan="1" colspan="1">Translator First Name
-	      </th>
-	      <th class="dt-body-right" rowspan="1" colspan="1">Publisher
-	      </th>
-	      <th class="dt-body-right" rowspan="1" colspan="1">Copyright
-	      </th>
-	      <th class="dt-body-right" rowspan="1" colspan="1">ISBN
-	      </th>
-	    </tr>
+	  <th tabindex="0" class="sorting" aria-controls="example" style="width: 139px; font-weight: bold;" aria-label="Name: activate to sort column descending" aria-sort="ascending" rowspan="1" colspan="1">Book ID
+	  </th>
+	  <th tabindex="0" class="sorting" aria-controls="example" style="width: 218px; font-weight: bold;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Book Title
+	  </th>
+	  <th tabindex="0" class="sorting " aria-controls="example" style="width: 218px; font-weight: bold;" aria-label="Position: activate to sort column ascending" rowspan="1" colspan="1"> Code Number
+	  </th>
+	  <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px; font-weight: bold;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Author Last Name
+	  </th>
+	  <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px; font-weight: bold;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Author First Name
+	  </th>
+	  <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px; font-weight: bold;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Illustrator Last Name
+	  </th>
+	  <th tabindex="0" class="sorting" aria-controls="example" style="width: 91px; font-weight: bold;" aria-label="Start date: activate to sort column ascending" rowspan="1" colspan="1">Illustrator First Name
+	  </th>
+	  <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px; font-weight: bold;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Translator Last Name
+	  </th>
+	  <th tabindex="0" class="dt-body-right sorting" aria-controls="example" style="width: 78px; font-weight: bold;" aria-label="Salary: activate to sort column ascending" rowspan="1" colspan="1">Translator First Name
+	  </th>
+	  <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px; font-weight: bold;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Publisher
+	  </th>
+	  <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px; font-weight: bold;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">Copyright
+	  </th>
+	  <th tabindex="0" class="sorting" aria-controls="example" style="width: 102px; font-weight: bold;" aria-label="Office: activate to sort column ascending" rowspan="1" colspan="1">ISBN
+	  </th>
+
+
 	  </tfoot>
 
 
@@ -590,18 +593,18 @@ window.onclick = function(event) {
 
   <!-- Modal content -->
   <div class="modal-overlay1">
-	
+
 
 
     <span class="close1">&times;</span>
     <div id="formdiv">
-    
+
     	<form action="http://localhost/bookcat/public/bookcollections"  method="POST"  id="form1" >
     	  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-            <input class="btn btn-primary" type="submit" value="Add bookcollection" name="signup">
+            
                 </form>
-          
-   
+
+
    </div>
   </div>
   

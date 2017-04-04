@@ -20,6 +20,42 @@ Yields a specific title for a specific page that extends master By Andry 03/16/2
         function getContent(){
             document.getElementById("hiddenValue").value = document.getElementById("content").value;
         }
+        function insertAtCaret(text) {
+            var txtarea = document.getElementById("content");
+            if (!txtarea) { return; }
+
+            var scrollPos = txtarea.scrollTop;
+            var strPos = 0;
+            var br = ((txtarea.selectionStart || txtarea.selectionStart == '0') ?
+                "ff" : (document.selection ? "ie" : false ) );
+            if (br == "ie") {
+                txtarea.focus();
+                var range = document.selection.createRange();
+                range.moveStart ('character', -txtarea.value.length);
+                strPos = range.text.length;
+            } else if (br == "ff") {
+                strPos = txtarea.selectionStart;
+            }
+
+            var front = (txtarea.value).substring(0, strPos);
+            var back = (txtarea.value).substring(strPos, txtarea.value.length);
+            txtarea.value = front + text + back;
+            strPos = strPos + text.length;
+            if (br == "ie") {
+                txtarea.focus();
+                var ieRange = document.selection.createRange();
+                ieRange.moveStart ('character', -txtarea.value.length);
+                ieRange.moveStart ('character', strPos);
+                ieRange.moveEnd ('character', 0);
+                ieRange.select();
+            } else if (br == "ff") {
+                txtarea.selectionStart = strPos;
+                txtarea.selectionEnd = strPos;
+                txtarea.focus();
+            }
+
+            txtarea.scrollTop = scrollPos;
+        }
     </script>
 </head>
 <body>
@@ -44,7 +80,6 @@ navigation links
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Book <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('/books/create')}}">Add Book</a></li>
-                        <li><a href="{{url('/books/edit')}}">Edit Book</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -52,28 +87,30 @@ navigation links
                     <ul class="dropdown-menu">
                         <li><a href="{{url('/templates')}}">View Templates</a></li>
                         <li><a href="{{url('/templates/create')}}">Add Template</a></li>
-                        <li><a href="{{url('/templates/edit')}}">Edit Template</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Book Collection <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Add to collection</a></li>
-                        <li><a href="#">Edit Book</a></li>
-                        <li><a href="#">Export</a></li>
-                        <li><a href="{{url('/changePassword')}}">Change Password</a></li>
+                        <li><a href="{{url('/bookcollections')}}">View Collections</a></li>
                     </ul>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li> <a href="{{ url('logout') }}"
-                        onclick="event.preventDefault();
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Account <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('/changePassword')}}">Change Password</a></li>
+                        <li><a href="{{ url('logout') }}"
+                               onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-in"></span>
-                        Logout
-                    </a>
-                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
+                                Logout
+                            </a></li>
+                        <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </ul>
+                </li>
             </ul>
 
 
