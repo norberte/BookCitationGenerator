@@ -1,10 +1,5 @@
-
-@extends('layouts.navbar')
-
+@extends('layout.master')
 @section('content')
-
-
-
 
 
 <div class="col-sm-4 form-group center" id="float_this">
