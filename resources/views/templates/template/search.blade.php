@@ -51,19 +51,17 @@ $users = DB::table('bookcollections')
         <h2 align="center">Search for a book collection</h2><br />
         <div class="form-group">
 
-            <div class="input-group">
-                <span class="input-group-addon">Search</span>
+            <div class="form-group">
+
                 <form  action="{{url('templates/template/search')}}" method="post">
                     {{ csrf_field() }}
-                    <input type="text" name="search_text" id="search_text" placeholder="Search by collection name" class="form-control"/>
-                    <input type="submit" name="search_template" value="submit">
+                    <input type="text"  class="form-control" name="search_text" id="search_text" placeholder="Search by collection name" class="form-control"/>
+                    <span class="input-group-btn">
+                    <input class="btn btn-default" type="submit" name="search_template" value="submit" style="float:right; background-color: #337AB7; color: white;">
+                    </span>
                 </form>
-
-
             </div>
-                <a href="../../bookcollections"  style='background-color:#337AB7; color: white; border:none; padding: 10px 24px; float:right;'>View all books</a>
-        </div>
-        <br />
+        <br/>
         <div id="result"></div>
     </div>
     <script>
@@ -102,17 +100,7 @@ $users = DB::table('bookcollections')
                             //prints out all the books from the collection ID
                             foreach ($bookId as $value){
                                 echo "<p style='color:blue; font-size: 2em;'>Title: $value->title</p>";
-                                echo "<p>&emsp;Author First Name: $value->authorFirstName</p>";
                                 echo "<p>&emsp;Author Last Name: $value->authorLastName</p>";
-                                echo "<p>&emsp;Code Number: $value->codeNum</p>";
-                                echo "<p>&emsp;Illustrator First Name: $value->illustratorFirstName</p>";
-                                echo "<p>&emsp;Illustrator Last Name: $value->illustratorLastName</p>";
-                                echo "<p>&emsp;Translator First Name: $value->translatorFirstName</p>";
-                                echo "<p>&emsp;Translator Last Name: $value->translatorLastName</p>";
-                                echo "<p>&emsp;Publisher: $value->publisher</p>";
-                                echo "<p>&emsp;Copyright: $value->copyright</p>";
-                                echo "<p>&emsp;ISBN: $value->isbn</p>";
-
 
                                 echo "<br>";
                             }

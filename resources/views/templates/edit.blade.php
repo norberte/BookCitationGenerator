@@ -1,4 +1,4 @@
-@extends('layout.masterTemplate')
+@extends('layout.master')
 @section('content')
     <form method="post" action="{{url('/templates/{tname}')}}">
         {{ csrf_field() }}
@@ -59,9 +59,9 @@
                                         <td><button type="button" class="btn btn-default" onclick="insertAtCaret('title ')">Select</button> </td>
                                     </tr>
                                     <tr align="center">
-                                        <td>Code Name</td>
-                                        <td>codeName</td>
-                                        <td><button type="button" class="btn btn-default" onclick="insertAtCaret('codeName ')">Select</button> </td>
+                                        <td>Code Number</td>
+                                        <td>codeNumber</td>
+                                        <td><button type="button" class="btn btn-default" onclick="insertAtCaret('codeNumber ')">Select</button> </td>
                                     </tr>
                                     <tr align="center">
                                         <td>ISBN number</td>
@@ -299,8 +299,8 @@
 
                                     <tr align ="center">
                                         <td>Series Editor</td>
-                                        <td>seriesEditor</td>
-                                        <td><button type="button" class="btn btn-default" onclick="insertAtCaret('seriesEditor ')">Select</button> </td>
+                                        <td>SeriesEditor</td>
+                                        <td><button type="button" class="btn btn-default" onclick="insertAtCaret('SeriesEditor ')">Select</button> </td>
 
                                     </tr>
 
@@ -362,6 +362,12 @@
                                         <td>Author First Name Variant</td>
                                         <td>authorFirstNameVariant</td>
                                         <td><button type="button" class="btn btn-default" onclick="insertAtCaret('authorFirstNameVariant ')">Select</button> </td>
+                                    </tr>
+
+                                    <tr align ="center">
+                                        <td>Author Last Name Variant</td>
+                                        <td>authorLastNameVariant</td>
+                                        <td><button type="button" class="btn btn-default" onclick="insertAtCaret('authorLastNameVariant ')">Select</button> </td>
                                     </tr>
 
                                     <tr align ="center">

@@ -249,14 +249,14 @@ class TemplateController extends Controller
         $tname = $request->tname;
         $collections = $request->bookcol;
 
-        $tags = array(0 => "title",1 => "codeNum",2 => "isbn",3 => "authorFirstName",4 => "authorLastName",5 => "price",6 => "translatorFirstName",7 => "translatorLastName",
-            8 => "edition",9 => "illustratorFirstName",10 => "illustratorLastName",11 => "printdate",12 => "placeofpublication",13 => "publisher",14 => "copyright",
-            15 => "legaldeposit",16 => "issn",17 => "partnercompanies",18 => "Printer",19 => "Printline",20 => "Printrun",21 => "foreword",22 => "Introduction",
-            23 => "Preface",24 => "Frontmaterial",25 => "Artworkcredits",26 => "EditingCredits",27 => "layoutCredits",28 => "MapCredits",29 => "PhotoCredits",
-            30 => "ProductionCredits",31 => "TranslationCredits",32 => "CompanionVolumes",33 => "series",34 => "SeriesEditor",35 => "Issue",36 => "CopiesExamined",
-            37 => "Note",38 => "CopyNumber",39 => "Grade",40 => "Description",41 => "AssociationCopy", 42 => "TitleVariant", 43 => "AuthorLastNameVariant",
-            44 => "AuthorFirstNameVariant", 45 => "IllustratorFirstNameVariant", 46 => "IllustratorLastNameVariant", 47 => "TranslatorFirstNameVariant",
-            48 => "TranslatorLastNameVariant",49 => "PublisherVariant", 50 => "coverDesignCredit", 51 => "designCredit");
+        $tags = array(0 => "authorFirstName",1 => "authorLastName",2 => "title",3 => "codeNumber",4 => "isbn",5 => "price",6 => "translatorFirstName",7 => "translatorLastName",
+            8 => "edition",9 => "illustratorFirstName",10 => "illustratorLastName",11 => "printDate",12 => "placeOfPublication",13 => "publisher",14 => "copyRight",
+            15 => "legalDeposit",16 => "issn",17 => "partnerCompanies",18 => "printer",19 => "printLine",20 => "printRun",21 => "foreword",22 => "introduction",
+            23 => "preface",24 => "frontMaterial",25 => "artworkCredits",26 => "editingCredits",27 => "layoutCredits",28 => "mapCredits",29 => "photoCredits",
+            30 => "productionCredits",31 => "translationCredits",32 => "companionVolumes",33 => "series",34 => "SeriesEditor",35 => "issue",36 => "copiesExamined",
+            37 => "note",38 => "copyNumber",39 => "grade",40 => "description",41 => "associationCopy", 42 => "titleVariant", 43 => "authorFirstNameVariant",
+            44 => "authorLastNameVariant", 45 => "illustratorFirstNameVariant", 46 => "illustratorLastNameVariant", 47 => "translatorFirstNameVariant",
+            48 => "translatorFirstNameVariant",49 => "publisherVariant", 50 => "coverDesignCredit", 51 => "designCredit");
 
         /* get the content of the template based on a temaplateName */
         $templateStr = DB::table('templates')->select('content')->where('tname', '=', $tname)->get()->toArray();

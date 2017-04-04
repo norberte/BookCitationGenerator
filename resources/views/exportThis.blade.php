@@ -7,7 +7,7 @@
     <input type="hidden" name="longstring" value="{{$longString}}">
 </form>
 
-<a href="{{url('/home')}}"  style='background-color:#337AB7; color: white; border:none; padding: 10px 24px; position:relative; bottom: 2.7em; left: 40em;'>Home</a>
+<a href="{{url('/templates')}}"  style='background-color:#337AB7; color: white; border:none; padding: 10px 24px; position:relative; bottom: 2.7em; left: 40em;'>Templates</a>
 
 <style>
     #styleit{
