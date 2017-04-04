@@ -32,14 +32,16 @@
         <h2 align="center">Search for a book collection</h2><br />
         <div class="form-group">
 
-            <div class="input-group">
-                <span class="input-group-addon">Search</span>
-                <form  action="http://localhost/bookcat/public/templates/template/search" method="post">
-                    {{ csrf_field() }}
-                    <input type="text" name="search_text" id="search_text" placeholder="Search by collection name" class="form-control"/>
-                    <input type="submit" name="search_template" value="submit">
-                </form>
 
+            <div class="form-group">
+
+                <form  action="{{url('templates/template/search')}}" method="post">
+                    {{ csrf_field() }}
+                    <input type="text"  class="form-control" name="search_text" id="search_text" placeholder="Search by collection name" class="form-control"/>
+                    <span class="input-group-btn">
+                    <input class="btn btn-default" type="submit" name="search_template" value="submit" style="float:right; background-color: #337AB7; color: white;">
+                    </span>
+                </form>
             </div>
         </div>
         <br />
