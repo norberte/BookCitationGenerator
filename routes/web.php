@@ -19,76 +19,77 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->middleware('auth');
 
-Route::get('/addhome/{bookcollection}','BookcollectionController@addbooks');
+Route::get('/addhome/{bookcollection}','BookcollectionController@addbooks')->middleware('auth');
 
-Route::post('/bookadd/{id}','BookcollectionController@add');
+Route::post('/bookadd/{id}','BookcollectionController@add')->middleware('auth');
 
 
 
 Auth::routes();
 
+
+Route::get('/books/create','BookController@create')->middleware('auth');
 //routes to page for adding books
-Route::get('/books/create','BookController@create');
-//routes to page for adding books
-Route::get('/books/{id}/delete','BookController@destroy');
+Route::get('/books/{id}/delete','BookController@destroy')->middleware('auth');
+
 //Route for storing user input into the database
-Route::post('/books','BookController@store');
+Route::post('/books','BookController@store')->middleware('auth');
 
 //Route to the page to edit books
-Route::get('/books/{books}/edit', 'BookController@edit');
+Route::get('/books/{books}/edit', 'BookController@edit')->middleware('auth');
 
 
 //Route to update edit into the database
-Route::post('/books/{books}/update', 'BookController@update');
+Route::post('/books/{books}/update', 'BookController@update')->middleware('auth');
 
 //Route to show all info about a book, {Book} expects a bid
-Route::get('/books/{Book}', 'BookController@show');
+Route::get('/books/{Book}', 'BookController@show')->middleware('auth');
 
 //delete selected book, {Book} expects a bid
-Route::delete('/books/{Book}','BookController@destroy');
+Route::delete('/books/{Book}','BookController@destroy')->middleware('auth');
 
 
 
 // route for changing password page
-Route::get('/changePassword', 'changePassword@index');
+Route::get('/changePassword', 'changePassword@index')->middleware('auth');
 
 //route to update database with new password
-Route::post('/changePassword', 'changePassword@update');
+Route::post('/changePassword', 'changePassword@update')->middleware('auth');
 
 // routes for templates
 Auth::routes();
 
 //routes to page for creating a Template
-Route::get('/templates/create','TemplateController@create');
+Route::get('/templates/create','TemplateController@create')->middleware('auth');
 
 //Route for storing custom template into the database
-Route::post('/templates','TemplateController@store');
+Route::post('/templates','TemplateController@store')->middleware('auth');
 
 //Route to the template page
-Route::get('/templates', 'TemplateController@index');
+Route::get('/templates', 'TemplateController@index')->middleware('auth');
 
 //Route to the page to edit templates
-Route::get('/templates/{tname}/edit', 'TemplateController@edit');
+Route::get('/templates/{tname}/edit', 'TemplateController@edit')->middleware('auth');
 
 //Route to update edit templates into the database
-Route::post('/templates/{tname}', 'TemplateController@update');
+Route::post('/templates/{tname}', 'TemplateController@update')->middleware('auth');
 //Route for iframe template preview
-Route::get('/templatepreview/{tname}', 'TemplateController@preview');
+Route::get('/templatepreview/{tname}', 'TemplateController@preview')->middleware('auth');
 
-Route::post('/applytemplate/preview/{tname}','TemplateController@generateCitations');
+Route::post('/applytemplate/preview/{tname}','TemplateController@generateCitations')->middleware('auth');
 
 //Route to delete a selected template, {tname} - name of template expected
 
-Route::get('/templates/delete/{tname}', 'TemplateController@destroy');
+Route::get('/templates/delete/{tname}', 'TemplateController@destroy')->middleware('auth');
 
-Route::get('/templates/apply/{tname}', 'TemplateController@applyTemplate');
+Route::get('/templates/apply/{tname}', 'TemplateController@applyTemplate')->middleware('auth');
 
 
 //Route to show all info about specific book, {tname} - name of template expected
-Route::get('/templates/{tname}', 'TemplateController@show');
-Route::get('/templates/apply', 'TemplateController@applyTemplate');
+Route::get('/templates/{tname}', 'TemplateController@show')->middleware('auth');
+Route::get('/templates/apply', 'TemplateController@applyTemplate')->middleware('auth');
 
 
 /*this is pretty cool instead of having to define every single route for get, post, delete patch etc. I defined a resouceful controller that automatically links to the required controller method here is an example of how the routes work:
@@ -101,14 +102,14 @@ Route::resource('bookcollections','BookcollectionController');
 //Route::get('/templates', 'TemplateController@view');
 
 //this makes the it so you can delete a template from the database using datatables
-Route::get('/scripts/templateview/', 'TemplateController@templateview');
+Route::get('/scripts/templateview/', 'TemplateController@templateview')->middleware('auth');
 
 //searching for templates
-Route::post('templates/template/search', 'BookCollectionController@search');
+Route::post('templates/template/search', 'BookCollectionController@search')->middleware('auth');
 
 //route to export HTML page
-Route::get('/exportThis', 'HomeController@export');
+Route::get('/exportThis', 'HomeController@export')->middleware('auth');
 
 //route to export HTML page
-Route::post('/exportThis', 'HomeController@exportScript');
+Route::post('/exportThis', 'HomeController@exportScript')->middleware('auth');
 
