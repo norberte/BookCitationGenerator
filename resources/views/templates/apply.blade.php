@@ -3,9 +3,7 @@
 @section('title','Apply Template')
 
 @section('content')
-    <?php
-    use App\bookcollection;
-    ?>
+   
    <link rel="shortcut icon" href="/favicon.ico"> 
         <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
           <link rel="shortcut icon" href="/favicon.ico">
@@ -78,8 +76,7 @@
                                        <td class="text-left">
                                            <div id="popup"> <a href="{{url('/bookcollections/'.$collection->id)}}">View Collection<span><?php      $collectionId = $collection->id;
 
-                                                       //gets all the books from the collection ID
-                                                       $bookId = bookcollection::find($collectionId)->books;
+                                                      
 
                                                        //prints out all the books from the collection ID
                                                        foreach ($bookId as $value){
