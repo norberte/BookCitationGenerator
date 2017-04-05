@@ -6,11 +6,11 @@
     <?php
     use App\bookcollection;
     ?>
-   <link rel="shortcut icon" href="../favicon.ico"> 
+   <link rel="shortcut icon" href="/favicon.ico"> 
         <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
-          <link rel="shortcut icon" href="../favicon.ico">
-         <link rel="stylesheet" type="text/css" href="/../resources/views/books/showbook.css" />
-     <link rel="stylesheet" type="text/css" href="/../resources/views/templates/popup.css" />
+          <link rel="shortcut icon" href="/favicon.ico">
+         <link rel="stylesheet" type="text/css" href="/css/showbook.css" />
+     <link rel="stylesheet" type="text/css" href="/css/popup.css" />
  		<style>
 
     	.box{
@@ -27,7 +27,7 @@
 	
     	</style>
 
-    <script>
+  <script>
           window.setTimeout(function() {
   $(".flash").fadeTo(500, 0).slideUp(500, function(){
       $(this).remove();
