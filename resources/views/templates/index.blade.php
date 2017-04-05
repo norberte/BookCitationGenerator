@@ -163,12 +163,9 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     data:{
                         templatename: templatename
 
-                    },
-                    success: function(data){
-                        alert("Success!");
                     }
                 });
-                alert("Template Name: '" + templatename + "' has been deleted");
+ 
                 location.reload();
             }
             if ( $(this).hasClass('edit') ) {
