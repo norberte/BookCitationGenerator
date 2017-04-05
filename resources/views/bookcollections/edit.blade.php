@@ -12,11 +12,11 @@
     use App\bookcollection;
             ?>
 
-   <link rel="shortcut icon" href="../favicon.ico"> 
+   <link rel="shortcut icon" href="/favicon.ico"> 
         <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
-          <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="/bookcat/public/css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="/bookcat/public/css/style.css" />
+          <link rel="shortcut icon" href="/favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
      <noscript>
       <style>
       body{
@@ -66,8 +66,8 @@
               <div class = "alert alert-success flash">{{ Session::get('message')}}</div>
                   @endif
 
-                <img src="../../public/col.png" width =80% height=200px style="position:relative; left:10em; background:repeat-x; border-radius: 1em; opacity:0.95;margin-top:0em">
-                <form method='POST' action="{{'http://localhost/bookcat/public/bookcollections/'.$id}}">
+                <img src="/col.png" width =80% height=200px style="position:relative; left:10em; background:repeat-x; border-radius: 1em; opacity:0.95;margin-top:0em">
+                <form method='POST' action="{{url('/bookcollections/'.$id)}}">
                     	{{ csrf_field() }}
                     	{{ method_field('PUT')}}
 				<div style ="float:right">
@@ -112,7 +112,7 @@
                                     ?>
 
                          
-                             <a href={{'http://localhost/bookcat/public/books/'.$book->id}} class="btn btn-info">View Book</a>
+                             <a href={{url('/books/'.$book->id)}} class="btn btn-info">View Book</a>
                              
                              
                             
@@ -128,11 +128,11 @@
                     </div>
                     <button type="submit" class="btn btn-danger " style="margin-left:70em">Delete</button>
                             </form>
-                          <a href={{'http://localhost/bookcat/public/addhome/'.$id}} class="btn btn-info pull-right">Add Books</a>
+                          <a href={{url('/addhome/'.$id)}} class="btn btn-info pull-right">Add Books</a>
                   
 
-    <script type="text/javascript" src="/bookcat/public/js/jquery.accordion.js"></script>
-    <script type="text/javascript" src="/bookcat/public/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="/js/jquery.accordion.js"></script>
+    <script type="text/javascript" src="/js/jquery.easing.1.3.js"></script>
         <script type="text/javascript">
             $(function() {
       
