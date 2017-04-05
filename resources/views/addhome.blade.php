@@ -294,7 +294,7 @@ tr.details td.details-control {
             "serverSide": true,
             "bSort" : false,
             select: true,
-            "ajax": "../../resources/views/scripts/server_processing.php"
+            "ajax": "/server_processing.php"
 					//head brackets
         } );
 
