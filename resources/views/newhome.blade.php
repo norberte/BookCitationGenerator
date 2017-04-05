@@ -9,8 +9,8 @@
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.1/css/select.dataTables.min.css">
 	    <script type="text/javascript" scr="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css"/>
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css"/>
 
 	</head>
 	<body style="background-color: rgb(255, 249, 229)">
@@ -338,7 +338,7 @@ editbutton.onclick = function() {
 
 
 	//redirects the number to this page so it can be edited
-   window.location.replace("{{url('/books/')}}" + noquotes + "/edit");
+   window.location.replace("{{url('/books/'.noquotes.'/edit')}}");
 
 }
 // Get the button that sends the book to edit
@@ -357,7 +357,7 @@ deletebutton.onclick = function() {
 
 
 	//redirects the number to this page so it can be edited
-   window.location.replace("{{url('/books/')}}" + noquotes + "/delete");
+   window.location.replace("{{url('/books/'.noquotes.'/delete')}}");
 
 }
 
@@ -378,7 +378,7 @@ viewbutton.onclick = function() {
 
 
 	//redirects the number to this page so it can be viewed
-   window.location.replace("{{url('/books/')}}" + noquotes);
+   window.location.replace("{{url('/books/'.noquotes)}}");
 
 }
 
@@ -443,7 +443,7 @@ window.onclick = function(event) {
     //  		tid[i] = parseInt(selected[i]);
      		
     //  	}
-				// 	$.post('/bookcat/public/bookcollections', tid)
+				// 	$.post({{url('/bookcollections')}}, tid)
 				// })
 			window.setTimeout(function() {
   $(".flash").fadeTo(500, 0).slideUp(500, function(){
