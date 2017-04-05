@@ -269,9 +269,11 @@ tr.details td.details-control {
 	<h1 style="text-align: center; margin-right:4.5em;">Book List</h1>
 
 <div style="display: table; margin: 2em auto;">
-	<button id="create" style='background-color:#337AB7;'>Create Collection</button>
-	<button id="viewbook" style='background-color:#337AB7;'>View Book</button>
-	<button id="editbook" style='background-color:#337AB7;'>Edit</button>
+	<button id="deletebook"   class ="btn-danger">Delete</button>
+	<button id="create"  class="btn-primary">Create Collection</button>
+	<button id="viewbook"  class="btn-primary">View Book</button>
+	<button id="editbook" class="btn-primary">Edit</button>
+	
 </div>
 
 <script>
@@ -337,6 +339,25 @@ editbutton.onclick = function() {
 
 	//redirects the number to this page so it can be edited
    window.location.replace("http://localhost/bookcat/public/books/" + noquotes + "/edit");
+
+}
+// Get the button that sends the book to edit
+var deletebutton = document.getElementById("deletebook");
+deletebutton.onclick = function() {
+    var table = $('#example').DataTable();
+
+    //retrieves the selected rows, plus more garbage
+    selected = table.rows('.selected').data();
+
+    //retrieves just the selected row and bookID.
+	selection = JSON.stringify(selected[0][0]);
+
+	//gets rid of the quotes in the bookID that got returned
+   noquotes = JSON.parse(selection);
+
+
+	//redirects the number to this page so it can be edited
+   window.location.replace("http://localhost/bookcat/public/books/" + noquotes + "/delete");
 
 }
 
