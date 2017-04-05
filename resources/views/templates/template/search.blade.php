@@ -106,7 +106,7 @@ $users = DB::table('bookcollections')
                             }
 
                             ?>
-
+                         <a href="{{url('/bookcollections/'.$collection->id)}}" class="btn btn-info">Edit Collection</a>
 
                             <form class ="form-group pull-right" action="{{url('/bookcollections/'.$user->id)}}" method ="post">
                                 {{ csrf_field() }}
