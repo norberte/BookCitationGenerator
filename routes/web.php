@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/addhome/{bookcollection}','BookcollectionController@addbooks');
 
+Route::post('/bookadd/{id}','BookcollectionController@add');
 
 
 
@@ -30,6 +31,8 @@ Auth::routes();
 
 //routes to page for adding books
 Route::get('/books/create','BookController@create');
+//routes to page for adding books
+Route::get('/books/{id}/delete','BookController@destroy');
 //Route for storing user input into the database
 Route::post('/books','BookController@store');
 

@@ -15,7 +15,8 @@
 
 </head>
 
-<body>
+<body style="background-color: rgb(255, 249, 229)">
+
 <style>
     table{
         overflow-x: scroll;
@@ -210,6 +211,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 </script>
 
 <div id="content">
+<fieldset style="padding:2em" >
     <table width="100%" class="display nowrap dataTable dtr-inline ui celled table" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
         <thead>
         <tr role="row">
@@ -229,7 +231,8 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
         </tfoot>
 
     </table>
-
+</fieldset>
 </div>
+
 </body>
 </html>

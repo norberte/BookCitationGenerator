@@ -13,8 +13,8 @@
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css"/>
 
 	</head>
-	<body>
-	<style>
+	<body style="background-color: rgb(255, 249, 229)">
+		<style>
 	table{
 	  overflow-x: scroll;
 	}
@@ -36,7 +36,7 @@
 	  height: 40em;
 	  margin-top: 10em;
 	  border: black 1px;
-	  overflow: scroll;
+	  overflow-x: scroll;
 	  margin-left: 80px;
 	}
 
@@ -127,12 +127,21 @@ button {
   	left: 50%;
   	width:95%;
     max-width: 800px; /* Full width */
-    height:80%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    height:20em; /* Full height */
+    padding-bottom:0em;
+    border-radius:0.3em;
+    padding-left:2em;
+
+   
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,2); /* Black w/ opacity */
+    background-color: rgb(162, 175, 196); /* Black w/ opacity */
     padding-top: 60px;
     transform: translate(-50%, -50%);
+}
+.modal1 p{
+	margin top:2em;
+	margin-bottom:2em;
+	padding-left:2em;
 }
 }
 
@@ -141,6 +150,8 @@ button {
     background-color: #fefefe;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
+    overflow:auto;
+    padding-bottom:0em;
     width: 80%; /* Could be more or less, depending on screen size */
 }
 .modal-overlay1{
@@ -151,6 +162,8 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
+  overflow:auto;
+  padding-bottom:0em;
 
 }
 
@@ -256,9 +269,11 @@ tr.details td.details-control {
 	<h1 style="text-align: center; margin-right:4.5em;">Book List</h1>
 
 <div style="display: table; margin: 2em auto;">
-	<button id="create" style='background-color:#337AB7;'>Create Collection</button>
-	<button id="viewbook" style='background-color:#337AB7;'>View Book</button>
-	<button id="editbook" style='background-color:#337AB7;'>Edit</button>
+	<button id="deletebook"   class ="btn-danger">Delete</button>
+	<button id="create"  class="btn-primary">Create Collection</button>
+	<button id="viewbook"  class="btn-primary">View Book</button>
+	<button id="editbook" class="btn-primary">Edit</button>
+	
 </div>
 
 <script>
@@ -326,6 +341,25 @@ editbutton.onclick = function() {
    window.location.replace("http://localhost/bookcat/public/books/" + noquotes + "/edit");
 
 }
+// Get the button that sends the book to edit
+var deletebutton = document.getElementById("deletebook");
+deletebutton.onclick = function() {
+    var table = $('#example').DataTable();
+
+    //retrieves the selected rows, plus more garbage
+    selected = table.rows('.selected').data();
+
+    //retrieves just the selected row and bookID.
+	selection = JSON.stringify(selected[0][0]);
+
+	//gets rid of the quotes in the bookID that got returned
+   noquotes = JSON.parse(selection);
+
+
+	//redirects the number to this page so it can be edited
+   window.location.replace("http://localhost/bookcat/public/books/" + noquotes + "/delete");
+
+}
 
 // Get the button that sends the book to edit
 var viewbutton = document.getElementById("viewbook");
@@ -369,22 +403,27 @@ window.onclick = function(event) {
          
      	selected = table.rows('.selected').data();
      	form = document.getElementById('form1');
-     	var subbutoon = document.createElement('div');
-     	subbutoon.innerHTML = '<input type="text" name="cname" placeholder ="Enter Book collection name" />';
+     	subbutoon = document.createElement('div');
+     	subbutoon.innerHTML = '<input type = "text" name = "cname" placeholder = "Enter Book Collection Name" size = "35" required/>';
      	form.appendChild(subbutoon);
 
      	for(var i =0; i<selected.length; i++){
     		var newcontent = document.createElement('div');
-    		newcontent.innerHTML = '<input type="hidden" name="books[]" value ="'+parseInt(selected[i])+'"/><br>';
+    		
+    		newcontent.innerHTML = '<input type="hidden" name="books[]" value ="'+parseInt(selected[i])
++'"/><br>';
         	form.appendChild(newcontent);
-        	var newcontent1 = document.createElement('p');
-    		newcontent1.innerHTML = (selected[i]) + '<br>';
-        	form.appendChild(newcontent1);
+        	
     					
-     		}    
+     		 
+
+     		var newcontent1 = document.createElement('p');
+    		newcontent1.innerHTML = 'Book ID: ' +(selected[i][0])+ ' Book Title: '+(selected[i][1])+'<br>';
+        	form.appendChild(newcontent1);  
+        }
      		     var subbutoon1 = document.createElement('div');
 
-                 subbutoon1.innerHTML='<input class="btn btn-primary pull-right" type="submit" value="Add bookcollection" name="signup">';
+                 subbutoon1.innerHTML='<hr/><input class="btn btn-primary pull-right" type="submit" value="confirm" name="signup">';
                  form.appendChild(subbutoon1);
 
  
@@ -392,6 +431,7 @@ window.onclick = function(event) {
   		
      	
                });
+   
    
 
         /*------*/ 	
@@ -501,18 +541,12 @@ window.onclick = function(event) {
 @endif
 
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-    <button id = "collect">add Collection</button>
-  </div>
 
-</div>
+
+	<fieldset style="padding:0em" >
 	<div id = "content">
+
 	  <table width="100%" class="display nowrap dataTable dtr-inline ui celled table" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
 
 
@@ -582,6 +616,8 @@ window.onclick = function(event) {
 
 
 	</div>
+	</fieldset>
+	
 
 		<!-- Trigger/Open The Modal -->
 

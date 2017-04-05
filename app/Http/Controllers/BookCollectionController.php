@@ -122,7 +122,7 @@ class BookcollectionController extends Controller
 
     public function addbooks($id){
 
-        return view('/addhome');
+        return view('/addhome', compact('id'));
     }
 
     /**
@@ -143,6 +143,23 @@ class BookcollectionController extends Controller
     public function search(){
 
         return view ('templates/template/search');
+
+    }
+    public function add(Request $request,$id)
+    {    
+
+        
+       $bookcollection = bookcollection::find($id);
+       
+        
+        /*set to false so I dont overwrite existing relationships.this adds the book array of ids and associates it with the corresponding request cname*/
+        $bookcollection->books()->attach($request->books);
+
+
+        Session::flash('message', 'Successfully created collection!');
+
+        return redirect('/addhome/'.$id);
+
 
     }
 

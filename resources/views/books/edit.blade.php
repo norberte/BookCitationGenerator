@@ -1,5 +1,4 @@
-@extends('layout.master')
-@section('content')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +40,7 @@ $items = json_decode($json[0]['bookAttr'], true);
 
 ?>
 
-<body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; background-color: rgb(255, 249, 229)" >
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
