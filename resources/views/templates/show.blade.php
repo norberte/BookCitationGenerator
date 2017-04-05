@@ -1,5 +1,5 @@
 @extends('layout.master')
-<link rel="stylesheet" type="text/css" href="../../resources/views/books/showbook.css" />
+<link rel="stylesheet" type="text/css" href="/css/showbook.css" />
 
 @section('content')
     <body>
