@@ -89,7 +89,7 @@
                                     ?>
 
                          
-                             <a href={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}} class="btn btn-info">Edit Collection</a>
+                             <a href="{{'http://localhost/bookcat/public/bookcollections/'.$collection->id}}" class="btn btn-info">Edit Collection</a>
 
 
 
