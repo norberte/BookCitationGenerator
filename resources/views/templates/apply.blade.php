@@ -9,8 +9,8 @@
    <link rel="shortcut icon" href="../favicon.ico"> 
         <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
           <link rel="shortcut icon" href="../favicon.ico">
-         <link rel="stylesheet" type="text/css" href="http://localhost/bookcat/resources/views/books/showbook.css" />
-     <link rel="stylesheet" type="text/css" href="http://localhost/bookcat/resources/views/templates/popup.css" />
+         <link rel="stylesheet" type="text/css" href="/../resources/views/books/showbook.css" />
+     <link rel="stylesheet" type="text/css" href="/../resources/views/templates/popup.css" />
  		<style>
 
     	.box{
