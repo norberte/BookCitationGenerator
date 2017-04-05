@@ -1,7 +1,7 @@
 
 #popup { color: #000; background-color: #c0c0c0; }
 
-#popup a, #popup a:visited {
+#popup a , #popup a:visited {
     position: relative;
     display: block;
     width: auto;
@@ -19,12 +19,12 @@
     display: none;
 }
 
-#popup a:hover {
+#popup a:hover{
     background-color: #e9e9e2;
 }
 
 
-#popup a:hover	{
+#popup a:hover 	{
     color: #f00;
     background-color: #e9e9e2;
     text-indent: 0;
