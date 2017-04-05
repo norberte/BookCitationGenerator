@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="http://localhost/bookcat/resources/views/templates/popup.css" />
 
 
 </head>
+
 <body>
 <style>
     table{
@@ -30,7 +32,6 @@
         height: 40em;
         margin-top: 10em;
         border: black 1px;
-        overflow: scroll;
         margin-left: 80px;
     }
 </style>
@@ -103,12 +104,15 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
 </script>
 
+
+
 @if (Session::has('message'))
     <div class = "alert alert-success flash">{{ Session::get('message')}}</div>
 @endif
 <h1 style="text-align: center";>Template Viewer</h1>
 
 <script>
+
 
     $(document).ready(function() {
         // Setup - add a text input to each footer cell
@@ -121,7 +125,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             "columnDefs": [ {
                 "targets": 1,
                 "data": 'view',
-                "defaultContent": "<button class = 'view' style='background-color:#337AB7; color: white; border:none; padding: 10px 24px;'>View template</button>"},
+                "defaultContent": '<button class = "view" style="background-color:#337AB7; color: white; border:none; padding: 10px 24px;">View template</button>'},
                 {
                     "targets": 2,
                     "data": 'edit',
@@ -138,6 +142,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
             ]
 
         } );
+
 
         //After clicking the button, it retrieves the Template Name
         $('#example tbody').on( 'click', 'button', function () {

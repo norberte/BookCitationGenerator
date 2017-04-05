@@ -12,6 +12,7 @@
           <link rel="shortcut icon" href="../favicon.ico"> 
         <link rel="stylesheet" type="text/css" href="/bookcat/public/css/demo.css" />
         <link rel="stylesheet" type="text/css" href="/bookcat/public/css/style.css" />
+     <link rel="stylesheet" type="text/css" href="http://resources/views/templates/template/navbar.css" />
     
 
     <noscript>
