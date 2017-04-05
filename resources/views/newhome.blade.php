@@ -277,6 +277,7 @@ tr.details td.details-control {
 </div>
 
 <script>
+//this function may be useless
  function format ( d ) {
          return 'Title: '+d.title+ '<br>'+
         'Author Fullname: '+d.authorLastName+ ',' + d.authorFirstName + '<br>'+
