@@ -44,11 +44,12 @@
                   @endif
     
   
-                 <h1 style="text-align: center;"><strong>Apply <a href={{'http://localhost/bookcat/public/templatepreview/'.$content->tname}}>{{$content->tname}}</a> to the following book collections:</strong><h1>
+                 <h1 style="text-align: center;"><strong>Apply <a href={{url('/templatepreview/'.$content->tname)}}>{{$content->tname}}</a> to the following book collections:</strong><h1>
+
                         
              
                    
-                    <form method = "POST" action={{'http://localhost/bookcat/public/applytemplate/preview/'.$content->tname}}>
+                    <form method = "POST" action="{{url('/applytemplate/preview/'.$content->tname)}}">
                     {{ csrf_field() }}
 
                            <table class="table-fill">
@@ -72,7 +73,7 @@
                                            <input type="checkbox" name="bookcol[]" value={{$collection->id}}>
                                        </td>
                                        <td class="text-left">
-                                           <a href={{'http://localhost/bookcat/public/bookcollections/'.$collection->id}}>{{$collection->cname}}</a>
+                                           <a href={{url('/bookcollections/'.$collection->id)}}>{{$collection->cname}}</a>
                                        </td>
                                        <td class="text-left">
                                            <div id="popup"> <a href="{{url('/bookcollections/'.$collection->id)}}">View Collection<span><?php      $collectionId = $collection->id;

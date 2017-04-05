@@ -29,8 +29,8 @@ $users = DB::table('bookcollections')
     <link rel="shortcut icon" href="../favicon.ico">
     <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
     <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/bookcat/public/css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="/bookcat/public/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{{url('/css/demo.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{url('/css/style.css')}}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
@@ -53,7 +53,7 @@ $users = DB::table('bookcollections')
 
             <div class="form-group">
 
-                <form  action="{{url('templates/template/search')}}" method="post">
+                <form  action="{{url('/templates/template/search')}}" method="post">
                     {{ csrf_field() }}
                     <input type="text"  class="form-control" name="search_text" id="search_text" placeholder="Search by collection name" class="form-control"/>
                     <span class="input-group-btn">
@@ -108,7 +108,7 @@ $users = DB::table('bookcollections')
                             ?>
 
 
-                            <form class ="form-group pull-right" action="{{'bookcollections/'.$user->id}}" method ="post">
+                            <form class ="form-group pull-right" action="{{url('/bookcollections/'.$user->id)}}" method ="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE')}}
                                 <button type="submit" class="btn btn-danger">Delete</button>

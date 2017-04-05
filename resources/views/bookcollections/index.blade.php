@@ -10,10 +10,9 @@
    <link rel="shortcut icon" href="../favicon.ico"> 
 
           <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="/bookcat/public/css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="/bookcat/public/css/style.css" />
-     <link rel="stylesheet" type="text/css" href="http://resources/views/templates/template/navbar.css" />
-    
+        <link rel="stylesheet" type="text/css" href="/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/css/navbar.css" />
 
     <noscript>
       <style>
@@ -90,11 +89,11 @@
                                     ?>
 
                          
-                             <a href="{{'http://localhost/bookcat/public/bookcollections/'.$collection->id}}" class="btn btn-info">Edit Collection</a>
+                             <a href="{{url('/bookcollections/'.$collection->id)}}" class="btn btn-info">Edit Collection</a>
 
 
 
-                             <form class ="form-group pull-right" action="{{'bookcollections/'.$collection->id}}" method ="post">
+                             <form class ="form-group pull-right" action="{{url('bookcollections/'.$collection->id)}}" method ="post">
                              {{ csrf_field() }}
                              {{ method_field('DELETE')}}
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -107,8 +106,8 @@
                     </div>
                     </div>
 
-    <script type="text/javascript" src="/bookcat/public/js/jquery.accordion.js"></script>
-    <script type="text/javascript" src="/bookcat/public/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="/js/jquery.accordion.js"></script>
+    <script type="text/javascript" src="/js/jquery.easing.1.3.js"></script>
         <script type="text/javascript">
             $(function() {
       

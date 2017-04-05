@@ -37,7 +37,7 @@
                                 <table class="table table-striped" >
                                     <thead>
                                     <tr align ="left">
-                                        <th ><strong>Attibute Name:</strong></th>
+                                        <th><strong>Attibute Name:</strong></th>
                                         <th><strong>Input Name:</strong></th>
                                         <th><strong>Select:</strong></th>
                                     </tr>

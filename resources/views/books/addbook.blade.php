@@ -2,7 +2,6 @@
 @section('content')
         <!DOCTYPE html>
 <title>Add Book</title>
-<link rel="stylesheet" type="text/css" href="stylesheet.css">
 <style>
   th{
     text-align: center;
@@ -26,7 +25,6 @@
                   @endif
                    
 
-
 <div class="container text-center">
   <div class="row content">
     <div class="col-sm-2">
@@ -42,7 +40,7 @@
 
 
       <div class="row">
-        <form method="POST" action="http://localhost/bookcat/public/books">
+        <form method="POST" action="{{url('/books')}}">
           {{ csrf_field() }}
           <div class="col-sm-12">
             <div class="row">
