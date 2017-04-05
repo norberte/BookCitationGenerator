@@ -338,7 +338,7 @@ editbutton.onclick = function() {
 
 
 	//redirects the number to this page so it can be edited
-   window.location.replace("{{url('/books/'.noquotes.'/edit')}}");
+   window.location.replace("/books/"+noquotes+"/edit");
 
 }
 // Get the button that sends the book to edit
@@ -357,7 +357,7 @@ deletebutton.onclick = function() {
 
 
 	//redirects the number to this page so it can be edited
-   window.location.replace("{{url('/books/'.noquotes.'/delete')}}");
+   window.location.replace("/books/"+noquotes+"/delete");
 
 }
 
@@ -378,7 +378,7 @@ viewbutton.onclick = function() {
 
 
 	//redirects the number to this page so it can be viewed
-   window.location.replace("{{url('/books/'.noquotes)}}");
+   window.location.replace("/books/"+noquotes);
 
 }
 
