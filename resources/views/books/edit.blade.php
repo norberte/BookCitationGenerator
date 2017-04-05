@@ -1,44 +1,33 @@
-@extends('layout.master')
-@section('content')
-<!DOCTYPE html>
+
+        <!DOCTYPE html>
 <html lang="en">
 
 <head>
- <title>Edit Book</title>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <link rel="stylesheet" href = "../resources/views/layouts/navbar.css"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <title>Edit Book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href = "../resources/views/layouts/navbar.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
 </head>
 
 <?php
-
-
 // this ignores the empty values in the form
 error_reporting(E_ERROR | E_PARSE);
-
 // gets the string of the URL
 $url = $_SERVER['REQUEST_URI'];
-
 // URL splits up between /'s. Then I grab the second to last one, which is our book ID.
 $urlExplode = explode('/',$url);
 $bookID = $urlExplode[count($urlExplode)-2];
-
-        $json = App\Book::where('id', $bookID)->get();
-       // the book to change
-
-        // retrieves the row from database from requested bid
-       $json = App\Book::where('id', $bookID)->get();
-
-      // turns the JSON file into a string
+$json = App\Book::where('id', $bookID)->get();
+// the book to change
+// retrieves the row from database from requested bid
+$json = App\Book::where('id', $bookID)->get();
+// turns the JSON file into a string
 $items = json_decode($json[0]['bookAttr'], true);
-
-
-
 ?>
 
 <body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
@@ -102,54 +91,49 @@ $items = json_decode($json[0]['bookAttr'], true);
 <!--
 <div class="col-sm-8" id="push" style="text-align:center">
        <h1>Title: {{$book->title}}</h1><p>&nbsp;</p>
-
 </div>
 <div class="col-md-2 col-md-offset-4">
-     
-
 
 <div id="wrapper">
   <div id="steps">
     <form id="formElem" name="formElem" action="/bookcat/public/books/{{$del}}/update" method="post">
     {{ csrf_field() }}
-    @foreach($book as $key =>$value)
-      <fieldset class="step">
-        <legend>{{$key}}</legend>
+@foreach($book as $key =>$value)
+    <fieldset class="step">
+      <legend>{{$key}}</legend>
         <p>
           <label for='{{$key}}'>{{$key}}</label>
           <input id="{{$key}}" name='{{$key}}' value ="{{$value}}" />
         </p>
-        
+
       </fieldset>
       @endforeach
-      <fieldset class="step">
-        <legend>Confirmation</legend>
-         <p>
-          <input id="Confirmation" type="submit" value="Save">
-        <p>
-        
-      </fieldset>
-      
-    </form>
-  </div>
-  <div id="navigation1" style="display:none;">
-    <ul>
-    @foreach($book as $key =>$value)
-      <li class="selected">
-        <a href="#">{{$key}}</a>
+        <fieldset class="step">
+          <legend>Confirmation</legend>
+           <p>
+            <input id="Confirmation" type="submit" value="Save">
+          <p>
+
+        </fieldset>
+
+      </form>
+    </div>
+    <div id="navigation1" style="display:none;">
+      <ul>
+      @foreach($book as $key =>$value)
+    <li class="selected">
+      <a href="#">{{$key}}</a>
       </li>
       @endforeach
-      <li class ="selected">
-       <a href ="#">Confirmation</a>
-      </li>
-    </ul>
+        <li class ="selected">
+         <a href ="#">Confirmation</a>
+        </li>
+      </ul>
+    </div>
+
   </div>
-  
-</div>
-
-
-</div>
--->
+  </div>
+  -->
 
 <div class="container text-center">
     <div class="row content">
@@ -177,11 +161,11 @@ $items = json_decode($json[0]['bookAttr'], true);
                                 <input type="text" name="title"  class="form-control" value ="{{$items['title']}}">
                             </div>
                             <div class="col-sm-4 form-group">
-                                <label>Code number</label>
-                                <input type="text" name="codeNum"  class="form-control" value ="{{$items['codeNum']}}" >
+                                <label>Code Number</label>
+                                <input type="text" name="codeNumber"  class="form-control" value ="{{$items['codeNumber']}}" >
                             </div>
                             <div class="col-sm-4 form-group">
-                                <label>isbn</label>
+                                <label>ISBN Number</label>
                                 <input type="text" name="isbn"  class="form-control"value ="{{$items['isbn']}}" >
                             </div>
                         </div>
@@ -233,7 +217,7 @@ $items = json_decode($json[0]['bookAttr'], true);
                             </div>
                             <div class="col-sm-4 form-group">
                                 <label>Print Date</label>
-                                <input type="text" name="printdate"  class="form-control" value ="{{$items['printdate']}}" >
+                                <input type="text" name="printDate"  class="form-control" value ="{{$items['printDate']}}" >
                             </div>
                         </div>
 
@@ -242,7 +226,7 @@ $items = json_decode($json[0]['bookAttr'], true);
                         <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label>Place of Publication</label>
-                                <input type="text" name="placeofpublication"  class="form-control" value ="{{$items['placeofpublication']}}" >
+                                <input type="text" name="placeOfPublication"  class="form-control" value ="{{$items['placeOfPublication']}}" >
                             </div>
                             <div class="col-sm-4 form-group">
                                 <label>Publisher</label>
@@ -250,7 +234,7 @@ $items = json_decode($json[0]['bookAttr'], true);
                             </div>
                             <div class="col-sm-4 form-group">
                                 <label>Copy Right</label>
-                                <input type="text" name="copyright"  class="form-control" value ="{{$items['copyright']}}" >
+                                <input type="text" name="copyRight"  class="form-control" value ="{{$items['copyRight']}}" >
                             </div>
                         </div>
 
@@ -272,7 +256,7 @@ $items = json_decode($json[0]['bookAttr'], true);
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
                                         <label>Legal Deposit</label>
-                                        <input type="text" name="legaldeposit"  class="form-control" value ="{{$items['legaldeposit']}}" >
+                                        <input type="text" name="legalDeposit"  class="form-control" value ="{{$items['legalDeposit']}}" >
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>ISSN Number</label>
@@ -280,7 +264,7 @@ $items = json_decode($json[0]['bookAttr'], true);
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Partner Companies</label>
-                                        <input type="text" name="partnercompanies"  class="form-control" value ="{{$items['partnercompanies']}}" >
+                                        <input type="text" name="partnerCompanies"  class="form-control" value ="{{$items['partnerCompanies']}}" >
                                     </div>
                                 </div>
                             </div>
@@ -289,15 +273,15 @@ $items = json_decode($json[0]['bookAttr'], true);
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
                                         <label>Printer</label>
-                                        <input type="text" name="Printer"  class="form-control" value ="{{$items['Printer']}}" >
+                                        <input type="text" name="printer"  class="form-control" value ="{{$items['printer']}}" >
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Print line</label>
-                                        <input type="text" name="Printline"  class="form-control" value ="{{$items['Printline']}}" >
+                                        <input type="text" name="printline"  class="form-control" value ="{{$items['printline']}}" >
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Print Run</label>
-                                        <input type="text" name="Printrun"  class="form-control" value ="{{$items['Printrun']}}" >
+                                        <input type="text" name="printrun"  class="form-control" value ="{{$items['printrun']}}" >
                                     </div>
                                 </div>
                             </div>
@@ -310,11 +294,11 @@ $items = json_decode($json[0]['bookAttr'], true);
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Introduction</label>
-                                        <input type="text" name="Introduction"  class="form-control" value ="{{$items['introduction']}}" >
+                                        <input type="text" name="introduction"  class="form-control" value ="{{$items['introduction']}}" >
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Preface</label>
-                                        <input type="text" name="Preface"  class="form-control"value ="{{$items['Preface']}}"  >
+                                        <input type="text" name="preface"  class="form-control"value ="{{$items['preface']}}"  >
                                     </div>
                                 </div>
                             </div>
@@ -323,15 +307,15 @@ $items = json_decode($json[0]['bookAttr'], true);
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
                                         <label>Front Material</label>
-                                        <input type="text" name="Frontmaterial"  class="form-control"value ="{{$items['Frontmaterial']}}" >
+                                        <input type="text" name="frontmaterial"  class="form-control"value ="{{$items['frontmaterial']}}" >
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Artwork Credit(s)</label>
-                                        <input type="text" name="Artworkcredits"  class="form-control" value ="{{$items['Artworkcredits']}}" >
+                                        <input type="text" name="artworkCredits"  class="form-control" value ="{{$items['artworkCredits']}}" >
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Editing Credit(s)</label>
-                                        <input type="text" name="EditingCredits"  class="form-control" value ="{{$items['EditingCredits']}}">
+                                        <input type="text" name="editingCredits"  class="form-control" value ="{{$items['editingCredits']}}">
                                     </div>
                                 </div>
                             </div>
@@ -339,16 +323,16 @@ $items = json_decode($json[0]['bookAttr'], true);
                             <div class="col-sm-12">
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
-                                        <label>layout Credit(s)</label>
+                                        <label>Layout Credit(s)</label>
                                         <input type="text" name="layoutCredits"  class="form-control" value ="{{$items['layoutCredits']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Map Credit(s)</label>
-                                        <input type="text" name="MapCredits"  class="form-control" value ="{{$items['MapCredits']}}" >
+                                        <input type="text" name="mapCredits"  class="form-control" value ="{{$items['mapCredits']}}" >
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Photo Credit(s)</label>
-                                        <input type="text" name="PhotoCredits"  class="form-control" value ="{{$items['PhotoCredits']}}" >
+                                        <input type="text" name="photoCredits"  class="form-control" value ="{{$items['photoCredits']}}" >
                                     </div>
                                 </div>
                             </div>
@@ -357,15 +341,15 @@ $items = json_decode($json[0]['bookAttr'], true);
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
                                         <label>Production Credit(s)</label>
-                                        <input type="text" name="ProductionCredits"  class="form-control" value ="{{$items['ProductionCredits']}}">
+                                        <input type="text" name="productionCredits"  class="form-control" value ="{{$items['productionCredits']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Translation Credit(s)</label>
-                                        <input type="text" name="TranslationCredits"  class="form-control" value ="{{$items['TranslationCredits']}}" >
+                                        <input type="text" name="translationCredits"  class="form-control" value ="{{$items['translationCredits']}}" >
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Companion Volumes</label>
-                                        <input type="text" name="CompanionVolumes"  class="form-control" value ="{{$items['CompanionVolumes']}}" >
+                                        <input type="text" name="companionVolumes"  class="form-control" value ="{{$items['companionVolumes']}}" >
                                     </div>
                                 </div>
                             </div>
@@ -374,15 +358,15 @@ $items = json_decode($json[0]['bookAttr'], true);
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
                                         <label>Series</label>
-                                        <input type="text" name="Series"  class="form-control" value ="{{$items['Series']}}">
+                                        <input type="text" name="series"  class="form-control" value ="{{$items['series']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Series Editor</label>
-                                        <input type="text" name="SeriesEditor"  class="form-control"value ="{{$items['SeriesEditor']}}"  >
+                                        <input type="text" name="seriesEditor"  class="form-control"value ="{{$items['seriesEditor']}}"  >
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Issue</label>
-                                        <input type="text" name="Issue"  class="form-control" value ="{{$items['Issue']}}">
+                                        <input type="text" name="issue"  class="form-control" value ="{{$items['issue']}}">
                                     </div>
                                 </div>
                             </div>
@@ -390,16 +374,67 @@ $items = json_decode($json[0]['bookAttr'], true);
                             <div class="col-sm-12">
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
-                                        <label>Copies Examined</label>
-                                        <input type="text" name="CopiesExamined"  class="form-control" value ="{{$items['CopiesExamined']}}">
+                                        <label>Title Variant</label>
+                                        <input type="titleVariant" name="series"  class="form-control" value ="{{$items['titleVariant']}}">
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Author First Name Variant</label>
+                                        <input type="text" name="authorFirstNameVariant"  class="form-control"value ="{{$items['authorFirstNameVariant']}}"  >
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Author Last Name Variant</label>
+                                        <input type="text" name="authorLastNameVariant"  class="form-control" value ="{{$items['authorLastNameVariant']}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-4 form-group">
+                                        <label>Illustrator First Name Variant</label>
+                                        <input type="titleVariant" name="illustratorFirstNameVariant"  class="form-control" value ="{{$items['illustratorFirstNameVariant']}}">
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Illustrator Last Name Variant</label>
+                                        <input type="text" name="illustratorLastNameVariant"  class="form-control"value ="{{$items['illustratorLastNameVariant']}}"  >
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Translator First Name Variant</label>
+                                        <input type="text" name="translatorFirstNameVariant"  class="form-control" value ="{{$items['translatorFirstNameVariant']}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-4 form-group">
+                                        <label>Translator Last Name Variant</label>
+                                        <input type="titleVariant" name="translatorFirstNameVariant"  class="form-control" value ="{{$items['translatorFirstNameVariant']}}">
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Publisher Variant</label>
+                                        <input type="text" name="publisherVariant"  class="form-control"value ="{{$items['publisherVariant']}}"  >
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Cover Design Credit(s)</label>
+                                        <input type="text" name="coverDesignCredit"  class="form-control" value ="{{$items['coverDesignCredit']}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-4 form-group">
+                                        <label>Design Credit(s)</label>
+                                        <input type="text" name="designCredit"  class="form-control" value ="{{$items['designCredit ']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Note</label>
-                                        <input type="text" name="Note"  class="form-control" value ="{{$items['Note']}}" >
+                                        <input type="text" name="note"  class="form-control" value ="{{$items['note']}}" >
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Copy Number</label>
-                                        <input type="text" name="CopyNumber"  class="form-control" value ="{{$items['CopyNumber']}}">
+                                        <input type="text" name="copyNumber"  class="form-control" value ="{{$items['copyNumber']}}">
                                     </div>
                                 </div>
                             </div>
@@ -408,24 +443,31 @@ $items = json_decode($json[0]['bookAttr'], true);
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
                                         <label>Grade</label>
-                                        <input type="text" name="Grade"  class="form-control"value ="{{$items['Grade']}}" >
+                                        <input type="text" name="grade"  class="form-control"value ="{{$items['grade']}}" >
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Description</label>
-                                        <input type="text" name="Description"  class="form-control" value ="{{$items['Description']}}">
+                                        <input type="text" name="description"  class="form-control" value ="{{$items['description']}}">
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label>Association Copy</label>
-                                        <input type="text" name="AssociationCopy"  class="form-control" value ="{{$items['AssociationCopy']}}">
+                                        <input type="text" name="associationCopy"  class="form-control" value ="{{$items['associationCopy']}}">
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-4 form-group">
+                                        <label>Copies Examined</label>
+                                        <input type="text" name="copiesExamined"  class="form-control"value ="{{$items['copiesExamined']}}" >
+                                    </div>
+
+                                </div>
+                            </div>
 
 
                         </div>
-
-
 
 
 
@@ -441,7 +483,7 @@ $items = json_decode($json[0]['bookAttr'], true);
 
 
 
-</form>
+                </form>
 
 </body>
 </html>
