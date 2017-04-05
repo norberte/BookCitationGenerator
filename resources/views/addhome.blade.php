@@ -538,7 +538,7 @@ window.onclick = function(event) {
     <span class="close1">&times;</span>
     <div id="formdiv">
 
-    	<form action= {{'http://localhost/bookcat/public/bookadd/'.$id }} method="POST"  id="form1"  >
+    	<form action= {{url('/bookadd/'.$id) }} method="POST"  id="form1"  >
 
     	  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             
