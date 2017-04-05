@@ -1,5 +1,6 @@
 @extends('layout.masterTemplate')
 @section('content')
+<body style="background-color: rgb(255, 249, 229)">
     <form id="mainForm" method="post" action="{{url('/templates')}}">
         {{ csrf_field() }}
         <div class="container text-center">
@@ -462,4 +463,5 @@
             <!--end of accordion-->
         </div>
     </form>
+    </body>
 @endsection
