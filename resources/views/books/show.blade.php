@@ -8,7 +8,7 @@
 
 </head>
 <title>{{$books->title}}</title>
-<body>
+<body style="background-color: rgb(255, 249, 229)">
 <table  class="table-fill">
     <thead>
     <tr>

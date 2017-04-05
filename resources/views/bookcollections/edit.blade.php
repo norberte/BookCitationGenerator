@@ -2,11 +2,9 @@
 @section('content')
 
 	    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
-	    <script type= "text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	   
 	    <script type= "text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-	    <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	    <script type= "text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>>
 	    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.1/css/select.dataTables.min.css">
 	    <script type="text/javascript" scr="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
 
@@ -49,22 +47,7 @@
         }
      </style>
      </noscript>
-     <style>
-    	#box{
-    	display: none;
-    	width: 100%;
-		}
-
-		a:hover + #box,#box:hover{
-   		 display: block;
-   		 width:600px;
-   		 height:600px;
-    	position: relative;
-    	z-index: 100;
-	   }
-
-      
-      </style>
+     
    
   
 
@@ -82,10 +65,12 @@
                 @if (Session::has('message'))
               <div class = "alert alert-success flash">{{ Session::get('message')}}</div>
                   @endif
+
                 <img src="../../public/col.png" width =80% height=200px style="position:relative; left:10em; background:repeat-x; border-radius: 1em; opacity:0.95;margin-top:0em">
                 <form method='POST' action="{{'http://localhost/bookcat/public/bookcollections/'.$id}}">
                     	{{ csrf_field() }}
                     	{{ method_field('PUT')}}
+				<div style ="float:right">
                         
                 <div class="wrapper">
                  <div id="st-accordion" class="st-accordion">
@@ -143,6 +128,7 @@
                     </div>
                     <button type="submit" class="btn btn-danger " style="margin-left:70em">Delete</button>
                             </form>
+                          <a href={{'http://localhost/bookcat/public/addhome/'.$id}} class="btn btn-info pull-right">Add Books</a>
                   
 
     <script type="text/javascript" src="/bookcat/public/js/jquery.accordion.js"></script>

@@ -8,7 +8,7 @@
             ?>
 
    <link rel="shortcut icon" href="../favicon.ico"> 
-        <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
+
           <link rel="shortcut icon" href="../favicon.ico"> 
         <link rel="stylesheet" type="text/css" href="/bookcat/public/css/demo.css" />
         <link rel="stylesheet" type="text/css" href="/bookcat/public/css/style.css" />

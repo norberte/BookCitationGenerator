@@ -45,6 +45,10 @@ class BookController extends Controller
         DB::table('books')
             ->where('id', $id)
             ->update($inputOnly);
+         
+         Session::flash('message', 'Book titled: '.$inputOnly['title']. ' successfully added collection!');
+
+     
 
 
         return view('/books/addbook');

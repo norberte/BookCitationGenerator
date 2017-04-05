@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/addhome/{bookcollection}','BookcollectionController@addbooks');
 
+Route::post('/bookadd/{id}','BookcollectionController@add');
 
 
 
