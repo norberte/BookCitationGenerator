@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layout.masterTemplate')
 @section('content')
     <form id="mainForm" method="post" action="{{url('/templates')}}">
         {{ csrf_field() }}
