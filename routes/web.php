@@ -82,7 +82,7 @@ Route::post('/applytemplate/preview/{tname}','TemplateController@generateCitatio
 
 //Route to delete a selected template, {tname} - name of template expected
 
-Route::post('/templates/delete/{tname}', 'TemplateController@destroy')->middleware('auth');
+Route::get('/templates/delete/{tname}', 'TemplateController@destroy')->middleware('auth');
 
 Route::get('/templates/apply/{tname}', 'TemplateController@applyTemplate')->middleware('auth');
 
