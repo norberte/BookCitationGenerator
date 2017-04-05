@@ -88,7 +88,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                   <img src="../public/booklogo.png" height="400px" width="400px">
+                   <img src="/booklogo.png" height="400px" width="400px">
                 </div>
                 <div class="container">
                     <div class="row">
