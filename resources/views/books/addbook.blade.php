@@ -50,7 +50,7 @@
               </div>
               <div class="col-sm-4 form-group">
                 <label>Code Number</label>
-                <input type="text" name="codeNumber"  class="form-control"  >
+                <input type="text" name="codeNum"  class="form-control"  >
               </div>
               <div class="col-sm-4 form-group">
                 <label>ISBN Number</label>
