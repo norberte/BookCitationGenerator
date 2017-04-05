@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../../resources/views/books/showbook.css" />
+    <link rel="stylesheet" type="text/css" href="../resources/views/books/showbook.css" />
 
 </head>
 <title>{{$books->title}}</title>
