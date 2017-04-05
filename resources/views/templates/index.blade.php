@@ -177,9 +177,6 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     url: "/templates/" + templatename + "/edit",
                     data:{
                         //templatename: templatename
-                    },
-                    success: function(data){
-                        alert("Success!");
                     }
                 });
                 window.location.href = "/templates/" + templatename + "/edit";
