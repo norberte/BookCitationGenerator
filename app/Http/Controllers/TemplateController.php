@@ -132,10 +132,12 @@ class TemplateController extends Controller
 
         $content = $conten[0];
         
+        $bookId = bookcollection::find($collections)->books;
+        
        
     
 
-        return view('/templates/apply',compact('template','collections','content'));
+        return view('/templates/apply',compact('template','collections','content','bookId'));
     }
 
     public function split_data_tags($string){
