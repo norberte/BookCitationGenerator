@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css"/>
-    <link rel="stylesheet" type="text/css" href="http://localhost/bookcat/resources/views/templates/popup.css" />
+    <link rel="stylesheet" type="text/css" href="/css/popup.css" />
 
 
 </head>
@@ -153,7 +153,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
 
             if ( $(this).hasClass('select') ) {
-                window.location.href = "{{url('/templates/apply/')}}" + templatename;
+                window.location.href = "/templates/apply/" + templatename;
             }
 
             if ( $(this).hasClass('delete') ) {
@@ -182,7 +182,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                         alert("Success!");
                     }
                 });
-                window.location.href = "{{url('/templates')}}" + templatename + "/edit";
+                window.location.href = "/templates/" + templatename + "/edit";
             }
             if ( $(this).hasClass('view') ) {
                 $.ajax({
@@ -191,7 +191,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
                     data:{
                     }
                 });
-                window.location.href = "{{url('/templates')}}" + templatename;
+                window.location.href = "/templates/" + templatename;
             }
         } );
 
