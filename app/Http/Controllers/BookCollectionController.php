@@ -76,7 +76,8 @@ class BookcollectionController extends Controller
        /*get all books associated with collection*/
         $books = bookcollection::find($id)->books;
 
-        return view('bookcollections.edit',compact('collection','books'));
+
+        return view('bookcollections.edit',compact('collection','books','id'));
 
     }
 
@@ -86,7 +87,7 @@ class BookcollectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(bookcollection $bookcollection)
+    public function edit($id)
     {    
         /*Thanks to route model binding and resourceful controllers I no longer need the commented out line of code if I wanted to use the uncommented line. I'd have to change the parameter back to edit($id)*/
          
@@ -95,9 +96,12 @@ class BookcollectionController extends Controller
          //$bookcollections->books()->detach(1);
           /*code for deleting a bookcollection or book from a book collection!*/
 
-        $books = $bookcollection->books;
-
-        return view('bookcollections.edit',compact('bookcollection','books'));
+    
+      
+     //gets all the books from the collection ID
+      $books = bookcollection::find($id)->books;
+    
+        return view('bookcollections.edit',compact('books'));
     }
 
     /**
@@ -107,9 +111,18 @@ class BookcollectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request,$id)
+    {   
+        $bookcollection = bookcollection::find($id);
+        $bookcollection->books()->detach($request->books);
+
+        return redirect('bookcollections/'.$id);
+        
+    }
+
+    public function addbooks($id){
+
+        return view('/addhome', compact('id'));
     }
 
     /**
@@ -130,6 +143,23 @@ class BookcollectionController extends Controller
     public function search(){
 
         return view ('templates/template/search');
+
+    }
+    public function add(Request $request,$id)
+    {    
+
+        
+       $bookcollection = bookcollection::find($id);
+       
+        
+        /*set to false so I dont overwrite existing relationships.this adds the book array of ids and associates it with the corresponding request cname*/
+        $bookcollection->books()->attach($request->books);
+
+
+        Session::flash('message', 'Successfully created collection!');
+
+        return redirect('/addhome/'.$id);
+
 
     }
 

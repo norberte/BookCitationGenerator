@@ -44,6 +44,7 @@
             }
 
             .content {
+                position:relative;
                 text-align: center;
             }
 
@@ -64,10 +65,16 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            #reposition{
+                position:relative;
+                left:10em;
+                bottom:5.5em;
+            }
         </style>
     </head>
 
     <body>
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -81,11 +88,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    BooKStrap
+                   <img src="../public/booklogo.png" height="400px" width="400px">
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
+                        <div class="col-md-5 col-md-offset-2" id="reposition">
                             <div class="panel panel-default">
                                 <div class="panel-heading">Login</div>
                                 <div class="panel-body">

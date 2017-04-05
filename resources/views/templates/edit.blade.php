@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layout.masterTemplate')
 @section('content')
     <form method="post" action="{{url('/templates/{tname}')}}">
         {{ csrf_field() }}
@@ -456,7 +456,7 @@
                     </div>
                 </div>
                 <div>
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Add Template" onclick = getContent()>
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Save changes" onclick = getContent()>
                 </div>
             </div>
             <!--end of accordion-->
