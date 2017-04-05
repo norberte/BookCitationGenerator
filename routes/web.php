@@ -19,17 +19,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->middleware('auth');
 
 Route::get('/addhome/{bookcollection}','BookcollectionController@addbooks')->middleware('auth');
 
+Route::post('/bookadd/{id}','BookcollectionController@add')->middleware('auth');
 
 
 
 Auth::routes();
 
-//routes to page for adding books
+
 Route::get('/books/create','BookController@create')->middleware('auth');
+//routes to page for adding books
+Route::get('/books/{id}/delete','BookController@destroy')->middleware('auth');
+
 //Route for storing user input into the database
 Route::post('/books','BookController@store')->middleware('auth');
 

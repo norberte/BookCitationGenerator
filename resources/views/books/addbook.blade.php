@@ -10,6 +10,21 @@
 </style>
 </head>
 <body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<script>
+          window.setTimeout(function() {
+  $(".flash").fadeTo(500, 0).slideUp(500, function(){
+      $(this).remove();
+    });
+      }, 5000);
+
+    </script>
+
+          
+            
+                @if (Session::has('message'))
+              <div class = "alert alert-success flash">{{ Session::get('message')}}</div>
+                  @endif
+                   
 
 
 <div class="container text-center">
