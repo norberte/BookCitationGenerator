@@ -158,7 +158,7 @@ html file that puts the "SEARCHBY field" in the first column this automatically 
 
             if ( $(this).hasClass('delete') ) {
                 $.ajax({
-                    type: "POST",
+                    type: "get",
                     url:"/templates/" +"delete/"+ templatename,
                     data:{
                         templatename: templatename
