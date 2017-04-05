@@ -8,7 +8,7 @@
   }
 </style>
 </head>
-<body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<body style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; background-color: rgb(255, 249, 229);">
 <script>
           window.setTimeout(function() {
   $(".flash").fadeTo(500, 0).slideUp(500, function(){
