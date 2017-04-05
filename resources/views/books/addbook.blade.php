@@ -46,7 +46,7 @@
             <div class="row">
               <div class="col-sm-4 form-group">
                 <label>Book Title</label>
-                <input type="text" name="title"  class="form-control" >
+                <input type="text" name="title"  class="form-control" required>
               </div>
               <div class="col-sm-4 form-group">
                 <label>Code Number</label>
