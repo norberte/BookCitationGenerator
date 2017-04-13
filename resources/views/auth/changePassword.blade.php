@@ -4,7 +4,7 @@
 
 <div class="col-sm-4 form-group center" id="float_this">
     <h3 id="padding">Change Password</h3><p>&nbsp;</p>
-<form action="http://localhost/bookcat/public/changePassword" method="post">
+<form action={{url('/changePassword')}} method="post">
     {{ csrf_field() }}
    <label>Old password:</label>
     <input type="password" class="form-control" name="oldpassword"><br>
