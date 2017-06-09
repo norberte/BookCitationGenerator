@@ -21,10 +21,10 @@ $columns = array(
 
 // SQL server connection information
 $sql_details = array(
-    'user' => 'root',
-    'pass' => 'ag4f29hely7up',
-    'db'   => 'bookcat',
-    'host' => 'localhost'
+    'user' => env('DB_USERNAME'),
+    'pass' => env('DB_PASSWORD'),
+    'db'   => env('DB_DATABASE'),
+    'host' => env('DB_HOST')
 );
 
 
